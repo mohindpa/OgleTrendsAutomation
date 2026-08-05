@@ -4,207 +4,333 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OgleTrends Automation — Live Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&amp;family=Fira+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <style>
     :root {
-      --bg: #0b1020;
-      --card: #131a2e;
-      --border: #232c47;
-      --text: #e8ecf8;
-      --muted: #8b93ad;
-      --cyan: #22d3ee;
-      --emerald: #34d399;
-      --amber: #fbbf24;
-      --rose: #fb7185;
+      --bg: #020617;
+      --card: #0e1223;
+      --card-hover: #121830;
+      --border: #1e2a4a;
+      --border-strong: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --faint: #64748b;
+      --primary: #22d3ee;
+      --secondary: #3b82f6;
+      --accent: #22c55e;
+      --warn: #fbbf24;
+      --danger: #fb7185;
       --violet: #a78bfa;
-      --slate: #94a3b8;
+      --glow-primary: rgba(34, 211, 238, 0.35);
+      --glow-accent: rgba(34, 197, 94, 0.3);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
+      font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(1200px 500px at 80% -10%, rgba(34,211,238,0.06), transparent 60%),
+        radial-gradient(900px 400px at 10% 110%, rgba(34,197,94,0.05), transparent 60%),
+        var(--bg);
       color: var(--text);
       min-height: 100vh;
       padding: 24px;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 1240px; margin: 0 auto; }
+    .mono { font-family: 'Fira Code', ui-monospace, Menlo, monospace; }
+    .wrap { max-width: 1280px; margin: 0 auto; }
 
+    /* ─── Header ─── */
     header {
       display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+      flex-wrap: wrap; gap: 14px; margin-bottom: 28px;
     }
-    h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
-    h1 .dot { color: var(--emerald); }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(59,130,246,0.18));
+      border: 1px solid var(--border-strong);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 24px var(--glow-primary);
+    }
+    h1 {
+      font-size: 20px; font-weight: 700; letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,0.75));
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .subtitle { font-size: 13px; color: var(--muted); margin-top: 3px; }
+    .subtitle .mono { color: var(--primary); }
     .status-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--muted);
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(14,18,35,0.8); border: 1px solid var(--border-strong);
+      border-radius: 999px; padding: 8px 16px; font-size: 12.5px; color: var(--muted);
+      backdrop-filter: blur(8px);
     }
-    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-    .mono { font-family: 'SF Mono', ui-monospace, Menlo, monospace; }
+    .status-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 10px var(--glow-accent);
+      animation: pulse 2.2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.45; transform: scale(0.82);} }
+    @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 16px; }
+    /* ─── Grid & Cards ─── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
     .card {
-      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+      background: linear-gradient(180deg, rgba(20,27,50,0.75), rgba(14,18,35,0.85));
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px;
+      position: relative; overflow: hidden;
+      transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
     }
-    .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-    .kpi-value { font-size: 28px; font-weight: 700; font-family: 'SF Mono', ui-monospace, Menlo, monospace; }
-    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+    .card::before {
+      content: ''; position: absolute; inset: 0 0 auto 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34,211,238,0.35), transparent);
+      opacity: 0; transition: opacity 200ms ease;
+    }
+    .card:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.35); }
+    .card:hover::before { opacity: 1; }
+    .kpi-label {
+      font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.1em;
+      font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 7px;
+    }
+    .kpi-value { font-size: 30px; font-weight: 700; font-family: 'Fira Code', monospace; letter-spacing: -0.03em; }
+    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 6px; display: flex; align-items: center; gap: 6px; }
+    .kpi-icon { width: 16px; height: 16px; stroke: var(--faint); flex-shrink: 0; }
+    .trend { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+    .trend.up { color: var(--accent); background: rgba(34,197,94,0.12); }
+    .trend.flat { color: var(--faint); background: rgba(100,116,139,0.12); }
 
+    /* ─── Queue Card ─── */
     .queue-card { grid-column: span 2; }
-    .queue-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .queue-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+    .section-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+    .queue-meta { font-size: 12px; color: var(--faint); margin-top: 4px; }
     .queue-bar { display: flex; gap: 3px; flex-wrap: wrap; }
     .slot {
-      width: 18px; height: 26px; border-radius: 4px; display: flex; align-items: center; justify-content: center;
-      font-size: 9px; font-family: 'SF Mono', monospace; font-weight: 600;
+      width: 17px; height: 26px; border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8px; font-family: 'Fira Code', monospace; font-weight: 600;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+      cursor: default;
     }
-    .slot.done { background: var(--emerald); color: #04150c; }
-    .slot.pending { background: #1e2a4a; color: var(--muted); }
-    .slot.failed { background: var(--rose); color: #20030a; }
-    .slot.next { background: var(--amber); color: #1c1202; outline: 2px solid var(--amber); outline-offset: 1px; }
+    .slot:hover { transform: scale(1.18); box-shadow: 0 0 10px rgba(34,211,238,0.3); }
+    .slot.done { background: linear-gradient(180deg, rgba(34,197,94,0.85), rgba(34,197,94,0.55)); color: #04150c; }
+    .slot.pending { background: #16203c; color: var(--faint); }
+    .slot.failed { background: linear-gradient(180deg, rgba(251,113,133,0.85), rgba(251,113,133,0.55)); color: #20030a; }
+    .slot.next {
+      background: linear-gradient(180deg, rgba(251,191,36,0.9), rgba(251,191,36,0.6)); color: #1c1202;
+      outline: 2px solid rgba(251,191,36,0.5); outline-offset: 1px;
+      animation: glowNext 2s infinite;
+    }
+    @keyframes glowNext { 0%,100% { box-shadow: 0 0 4px rgba(251,191,36,0.3);} 50% { box-shadow: 0 0 14px rgba(251,191,36,0.6);} }
+    @media (prefers-reduced-motion: reduce) { .slot.next { animation: none; } }
 
-    .legend { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
-    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend { display: flex; gap: 18px; margin-top: 16px; font-size: 12px; color: var(--faint); flex-wrap: wrap; }
+    .legend span { display: inline-flex; align-items: center; gap: 7px; }
     .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
 
+    /* ─── Charts ─── */
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+    .chart-box { position: relative; height: 270px; }
+    .chart-box canvas { border-radius: 8px; }
 
-    .section-title { font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
-    .chart-box { position: relative; height: 260px; }
+    /* ─── Table ─── */
     .table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .table th { text-align: left; color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 10px; border-bottom: 1px solid var(--border); }
-    .table td { padding: 9px 10px; border-bottom: 1px solid rgba(35,44,71,0.5); }
-    .table td.num { text-align: right; font-family: 'SF Mono', monospace; }
-    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
-    .badge.ok { background: rgba(52,211,153,0.15); color: var(--emerald); }
-    .badge.stale { background: rgba(251,191,36,0.15); color: var(--amber); }
-    .badge.err { background: rgba(251,113,133,0.15); color: var(--rose); }
+    .table th {
+      text-align: left; color: var(--faint); font-weight: 600; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.08em; padding: 9px 12px;
+      border-bottom: 1px solid var(--border); background: rgba(20,27,50,0.5);
+    }
+    .table td { padding: 11px 12px; border-bottom: 1px solid rgba(30,42,74,0.5); }
+    .table tr:last-child td { border-bottom: 0; }
+    .table tr { transition: background 150ms ease; }
+    .table tbody tr:hover { background: rgba(34,211,238,0.04); }
+    .table td.num { text-align: right; font-family: 'Fira Code', monospace; }
+    .badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .badge.ok { color: var(--accent); background: rgba(34,197,94,0.12); }
+    .badge.stale { color: var(--warn); background: rgba(251,191,36,0.12); }
+    .badge.err { color: var(--danger); background: rgba(251,113,133,0.12); }
 
+    /* ─── Status banners ─── */
     .stale-banner {
       background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3);
-      border-radius: 10px; padding: 12px 16px; font-size: 13px; color: var(--amber); margin-bottom: 16px;
+      border-radius: 12px; padding: 13px 18px; font-size: 13px; color: var(--warn);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
     }
-    footer { margin-top: 28px; color: var(--muted); font-size: 12px; text-align: center; }
+
+    /* ─── Skeleton ─── */
+    .sk { border-radius: 16px; background: linear-gradient(100deg, #0e1223 40%, #141a30 50%, #0e1223 60%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+    @keyframes shimmer { to { background-position: -200% 0; } }
+    @media (prefers-reduced-motion: reduce) { .sk { animation: none; } }
+
+    /* ─── Focus & misc ─── */
+    :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
+    footer { margin-top: 30px; color: var(--faint); font-size: 12px; text-align: center; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+    @media (max-width: 480px) {
+      body { padding: 16px; }
+      .kpi-value { font-size: 24px; }
+      .queue-card { grid-column: span 1; }
+    }
   </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div>
-      <h1><span class="dot">●</span> OgleTrends Automation</h1>
-      <div style="font-size:13px;color:var(--muted);margin-top:4px">
-        IG pipeline <span class="mono">@ogletrends</span> · Gumroad revenue
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </div>
+      <div>
+        <h1>OgleTrends Automation</h1>
+        <div class="subtitle">IG pipeline <span class="mono">@ogletrends</span> · Gumroad revenue</div>
       </div>
     </div>
-    <div class="status-pill">
+    <div class="status-pill" role="status">
       <span class="status-dot"></span>
       <span id="live-status">LIVE</span>
-      <span id="updated-at" class="mono" style="color:var(--muted)"></span>
+      <span class="mono" id="updated-at" style="color:var(--faint)"></span>
     </div>
   </header>
 
-  <div id="stale-banner" class="stale-banner" style="display:none"></div>
+  <div id="stale-banner" class="stale-banner" style="display:none" role="alert">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span id="stale-banner-text"></span>
+  </div>
 
-  <div class="grid">
+  <!-- KPI row -->
+  <div class="grid" id="kpi-grid">
     <div class="card">
-      <div class="kpi-label">Videos Published</div>
+      <div class="kpi-label">
+        <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg>
+        Videos Published
+      </div>
       <div class="kpi-value" id="kpi-published">—</div>
       <div class="kpi-sub" id="kpi-published-sub"></div>
     </div>
     <div class="card">
-      <div class="kpi-label">Followers</div>
+      <div class="kpi-label">
+        <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Followers
+      </div>
       <div class="kpi-value" id="kpi-followers">—</div>
       <div class="kpi-sub">@ogletrends</div>
     </div>
     <div class="card">
-      <div class="kpi-label">Today Revenue</div>
-      <div class="kpi-value" style="color:var(--emerald)" id="kpi-today-rev">—</div>
+      <div class="kpi-label">
+        <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        Today Revenue
+      </div>
+      <div class="kpi-value" id="kpi-today-rev" style="color:var(--accent)">—</div>
       <div class="kpi-sub" id="kpi-today-units"></div>
     </div>
     <div class="card">
-      <div class="kpi-label">14-Day Revenue</div>
+      <div class="kpi-label">
+        <svg class="kpi-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+        14-Day Revenue
+      </div>
       <div class="kpi-value" id="kpi-14d-rev">—</div>
       <div class="kpi-sub" id="kpi-aov"></div>
     </div>
   </div>
 
+  <!-- Queue -->
   <div class="grid">
-    <div class="card queue-card">
+    <div class="card queue-card" id="queue-card">
       <div class="queue-header">
         <div>
-          <div class="section-title" style="margin:0">Content Queue — 57 videos</div>
-          <div class="kpi-sub" style="margin-top:4px">Slots daily: 10:00 · 12:00 · 14:00 · 16:30 GST</div>
+          <div class="section-title">Content Queue</div>
+          <div class="queue-meta mono">57 videos · slots 10:00 · 12:00 · 14:00 · 16:30 GST</div>
         </div>
         <div id="queue-summary" class="mono" style="font-size:13px;color:var(--muted)"></div>
       </div>
-      <div class="queue-bar" id="queue-bar"></div>
+      <div class="queue-bar" id="queue-bar" aria-label="Content queue progress"></div>
       <div class="legend">
-        <span><span class="swatch" style="background:var(--emerald)"></span>Published</span>
-        <span><span class="swatch" style="background:var(--amber)"></span>Next up</span>
-        <span><span class="swatch" style="background:var(--rose)"></span>Failed</span>
-        <span><span class="swatch" style="background:#1e2a4a"></span>Pending</span>
+        <span><span class="swatch" style="background:var(--accent)"></span>Published</span>
+        <span><span class="swatch" style="background:var(--warn)"></span>Next up</span>
+        <span><span class="swatch" style="background:var(--danger)"></span>Failed</span>
+        <span><span class="swatch" style="background:#16203c"></span>Pending</span>
       </div>
     </div>
   </div>
 
+  <!-- Charts -->
   <div class="two-col">
     <div class="card">
-      <div class="section-title">Daily Revenue (14d)</div>
-      <div class="chart-box"><canvas id="chart-revenue"></canvas></div>
+      <div class="section-title">Daily Revenue</div>
+      <div class="kpi-sub" style="margin:4px 0 12px">last 14 days · GST</div>
+      <div class="chart-box"><canvas id="chart-revenue" role="img" aria-label="Daily revenue bar chart"></canvas></div>
     </div>
     <div class="card">
       <div class="section-title">Revenue by Product</div>
-      <div class="chart-box"><canvas id="chart-products"></canvas></div>
+      <div class="kpi-sub" style="margin:4px 0 12px">14-day mix</div>
+      <div class="chart-box"><canvas id="chart-products" role="img" aria-label="Revenue by product doughnut chart"></canvas></div>
     </div>
   </div>
 
+  <!-- Schedule -->
   <div class="card" style="margin-bottom:16px">
-    <div class="section-title">Publishing Schedule</div>
-    <table class="table">
-      <thead><tr><th>Slot</th><th>Time (GST)</th><th>Status</th></tr></thead>
-      <tbody id="schedule-body"></tbody>
-    </table>
+    <div class="section-title" style="margin-bottom:14px">Publishing Schedule</div>
+    <div style="overflow-x:auto">
+      <table class="table">
+        <thead><tr><th>Slot</th><th>Time (GST)</th><th>Status</th><th>Daily posts</th></tr></thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
   </div>
 
   <footer>
-    Data regenerated by local agent every few minutes · sanitized (no tokens, no buyer PII) ·
+    <span>Data regenerated every few minutes by local agent</span>
+    <span aria-hidden="true">·</span>
+    <span>Sanitized — no tokens, no buyer PII</span>
+    <span aria-hidden="true">·</span>
     <span id="source-info"></span>
   </footer>
 </div>
 
 <script>
 const COLORS = {
-  emerald: '#34d399', cyan: '#22d3ee', amber: '#fbbf24', rose: '#fb7185',
-  violet: '#a78bfa', slate: '#94a3b8',
+  accent: '#22c55e', cyan: '#22d3ee', amber: '#fbbf24', rose: '#fb7185',
+  violet: '#a78bfa', slate: '#94a3b8', blue: '#3b82f6',
 };
-
 let charts = {};
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function fmtMoney(v) { return '$' + (v ?? 0).toLocaleString(undefined, {maximumFractionDigits: 2}); }
-
+function fmtMoney(v) { return '$' + (v ?? 0).toLocaleString(undefined, { maximumFractionDigits: 2 }); }
 function statusBadge(s) {
   if (s === 'ok') return '<span class="badge ok">● live</span>';
   if (s === 'stale') return '<span class="badge stale">stale</span>';
   return '<span class="badge err">unavailable</span>';
 }
+function esc(s) { return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+/* count-up */
+function animateCount(el, target, prefix = '', suffix = '') {
+  if (reducedMotion || !window.gsap) { el.textContent = prefix + target.toLocaleString() + suffix; return; }
+  const obj = { v: 0 };
+  gsap.to(obj, { v: target, duration: 0.9, ease: 'power2.out', onUpdate: () => {
+    el.textContent = prefix + Math.round(obj.v).toLocaleString() + suffix;
+  }});
+}
 
 function render(data) {
-  // KPIs
   const pub = data.ig?.state?.published || [];
   const failed = data.ig?.state?.failed || [];
   const total = data.total_videos || 57;
   const next = total - pub.length - failed.length;
+  const acc = data.ig?.account;
+  const g = data.gumroad;
+
   document.getElementById('kpi-published').textContent = pub.length + ' / ' + total;
   document.getElementById('kpi-published-sub').textContent =
     (next > 0 ? 'Next up: video #' + (pub.length + 1) : 'Queue complete') + ' · ' + failed.length + ' failed';
-
-  const acc = data.ig?.account;
-  document.getElementById('kpi-followers').textContent =
-    acc?.followers ? acc.followers.toLocaleString() : '—';
-
-  const g = data.gumroad;
+  document.getElementById('kpi-followers').textContent = acc?.followers ? acc.followers.toLocaleString() : '—';
   document.getElementById('kpi-today-rev').textContent = fmtMoney(g?.today_revenue);
   document.getElementById('kpi-today-units').textContent = g?.today_units + ' units today';
   document.getElementById('kpi-14d-rev').textContent = fmtMoney(g?.total_revenue_14d);
@@ -228,24 +354,19 @@ function render(data) {
     pub.length + ' published · ' + failed.length + ' failed · ' + next + ' remaining';
 
   // Stale banner
-  const banner = document.getElementById('stale-banner');
   const src = data.sources || {};
-  const staleKeys = Object.entries(src).filter(([k,v]) => v === 'stale' || v === 'unavailable');
+  const staleKeys = Object.entries(src).filter(([, v]) => v === 'stale' || v === 'unavailable');
+  const banner = document.getElementById('stale-banner');
   if (staleKeys.length) {
-    banner.style.display = 'block';
-    banner.innerHTML = '⚠ Data source issue: ' + staleKeys.map(([k,v]) => k + ' = ' + v).join(', ') +
-      '. Showing last known data.';
-  } else {
-    banner.style.display = 'none';
-  }
+    banner.style.display = 'flex';
+    document.getElementById('stale-banner-text').textContent =
+      'Data source issue: ' + staleKeys.map(([k, v]) => k + ' = ' + v).join(', ') + '. Showing last known data.';
+  } else { banner.style.display = 'none'; }
 
-  // Timestamps
-  document.getElementById('updated-at').textContent =
-    'updated ' + (data.generated_at || '').replace('T', ' ').slice(0, 16);
-  document.getElementById('source-info').innerHTML =
-    'IG state: ' + statusBadge(src.ig_account) + ' Gumroad: ' + statusBadge(src.gumroad);
+  document.getElementById('updated-at').textContent = 'updated ' + (data.generated_at || '').replace('T', ' ').slice(0, 16);
+  document.getElementById('source-info').innerHTML = 'IG: ' + statusBadge(src.ig_account) + ' Gumroad: ' + statusBadge(src.gumroad);
 
-  // Schedule table — purely time-aware: what fires today vs already passed
+  // Schedule — purely time-aware
   const body = document.getElementById('schedule-body');
   body.innerHTML = '';
   const now = new Date();
@@ -256,44 +377,41 @@ function render(data) {
     const slotMinutes = h * 60 + m;
     const slotTime = s.time + ' ' + s.tz;
     let status, badge = '';
-    if (curMinutes < slotMinutes) {
-      status = 'Upcoming today'; badge = '<span class="badge stale">' + s.time + '</span>';
-    } else {
-      status = 'Fired today'; badge = '<span class="badge ok">✓</span>';
-    }
+    if (curMinutes < slotMinutes) { status = 'Upcoming today'; badge = '<span class="badge stale">' + s.time + '</span>'; }
+    else { status = 'Fired today'; badge = '<span class="badge ok">✓</span>'; }
     body.innerHTML += '<tr><td>Slot ' + (idx + 1) + '</td><td class="mono">' + slotTime +
-      '</td><td>' + badge + ' ' + status + '</td></tr>';
+      '</td><td>' + badge + ' ' + status + '</td><td class="num">' +
+      (pub.length > idx ? 'posted' : '—') + '</td></tr>';
   });
 
-  // Charts
-  const daily = (g?.daily || []).map(d => ({ day: d.day.slice(5), revenue: d.revenue }));
-  drawRevenue(daily);
-  const products = (g?.products || []).slice(0, 6);
-  drawProducts(products);
+  drawRevenue((g?.daily || []).map(d => ({ day: d.day.slice(5), revenue: d.revenue })));
+  drawProducts((g?.products || []).slice(0, 6));
 }
 
 function drawRevenue(daily) {
   const ctx = document.getElementById('chart-revenue');
   if (charts.revenue) charts.revenue.destroy();
+  const hasData = daily.length > 0;
   charts.revenue = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: daily.map(d => d.day),
+      labels: hasData ? daily.map(d => d.day) : ['No data'],
       datasets: [{
         label: 'Revenue',
-        data: daily.map(d => d.revenue),
-        backgroundColor: 'rgba(34,211,238,0.35)',
-        borderColor: COLORS.cyan,
-        borderWidth: 1.5,
-        borderRadius: 6,
+        data: hasData ? daily.map(d => d.revenue) : [0],
+        backgroundColor: hasData ? 'rgba(34,211,238,0.4)' : 'rgba(100,116,139,0.2)',
+        borderColor: COLORS.cyan, borderWidth: 1.5, borderRadius: 6,
       }],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.y } } },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: c => '$' + c.parsed.y } },
+      },
       scales: {
-        x: { ticks: { color: '#8b93ad' }, grid: { color: 'rgba(35,44,71,0.4)' } },
-        y: { ticks: { color: '#8b93ad', callback: v => '$' + v }, grid: { color: 'rgba(35,44,71,0.4)' } },
+        x: { ticks: { color: '#64748b', font: { family: 'Fira Code' } }, grid: { color: 'rgba(30,42,74,0.5)' } },
+        y: { ticks: { color: '#64748b', callback: v => '$' + v, font: { family: 'Fira Code' } }, grid: { color: 'rgba(30,42,74,0.5)' } },
       },
     },
   });
@@ -302,21 +420,23 @@ function drawRevenue(daily) {
 function drawProducts(products) {
   const ctx = document.getElementById('chart-products');
   if (charts.products) charts.products.destroy();
-  const palette = [COLORS.emerald, COLORS.cyan, COLORS.violet, COLORS.amber, COLORS.rose, COLORS.slate];
+  const palette = [COLORS.accent, COLORS.cyan, COLORS.violet, COLORS.amber, COLORS.rose, COLORS.slate];
+  const hasData = products.length > 0;
   charts.products = new Chart(ctx, {
     type: 'doughnut',
     data: {
-      labels: products.map(p => p.name),
+      labels: hasData ? products.map(p => p.name) : ['No data'],
       datasets: [{
-        data: products.map(p => p.revenue),
-        backgroundColor: products.map((_, i) => palette[i % palette.length]),
-        borderWidth: 0,
+        data: hasData ? products.map(p => p.revenue) : [1],
+        backgroundColor: hasData ? products.map((_, i) => palette[i % palette.length]) : ['rgba(100,116,139,0.2)'],
+        borderWidth: 0, hoverOffset: 6,
       }],
     },
     options: {
       responsive: true, maintainAspectRatio: false,
+      cutout: '68%',
       plugins: {
-        legend: { position: 'bottom', labels: { color: '#8b93ad', boxWidth: 10, font: { size: 11 } } },
+        legend: { position: 'bottom', labels: { color: '#94a3b8', boxWidth: 10, font: { family: 'Fira Sans', size: 11 } } },
         tooltip: { callbacks: { label: c => ' ' + c.label + ': $' + c.parsed } },
       },
     },
@@ -328,11 +448,21 @@ async function refresh() {
     const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
     const data = await res.json();
     document.getElementById('live-status').textContent = 'LIVE';
+    document.getElementById('live-status').style.color = '';
     render(data);
+    animateCards();
   } catch (e) {
     document.getElementById('live-status').textContent = 'OFFLINE';
     document.getElementById('live-status').style.color = '#fb7185';
   }
+}
+
+/* stagger reveal on first load */
+let revealed = false;
+function animateCards() {
+  if (revealed || reducedMotion || !window.gsap) { revealed = true; return; }
+  revealed = true;
+  gsap.from('.card', { opacity: 0, y: 14, duration: 0.45, stagger: { each: 0.05 }, ease: 'power2.out', delay: 0.1 });
 }
 
 refresh();
