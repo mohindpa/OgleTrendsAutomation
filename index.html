@@ -78,7 +78,7 @@
     @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1);} 50% { opacity: 0.45; transform: scale(0.82);} }
     @media (prefers-reduced-motion: reduce) { .status-dot { animation: none; } }
 
-    /* ─── Grid & Cards ─── */
+    /* ─── Grid + Cards ─── */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
     .card {
       background: linear-gradient(180deg, rgba(20,27,50,0.75), rgba(14,18,35,0.85));
@@ -169,7 +169,7 @@
     @keyframes shimmer { to { background-position: -200% 0; } }
     @media (prefers-reduced-motion: reduce) { .sk { animation: none; } }
 
-    /* ─── Focus & misc ─── */
+    /* ─── Focus + misc ─── */
     :focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; border-radius: 4px; }
     footer { margin-top: 30px; color: var(--faint); font-size: 12px; text-align: center; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
@@ -378,7 +378,7 @@ function render(data) {
     const slotTime = s.time + ' ' + s.tz;
     let status, badge = '';
     if (curMinutes < slotMinutes) { status = 'Upcoming today'; badge = '<span class="badge stale">' + s.time + '</span>'; }
-    else { status = 'Fired today'; badge = '<span class="badge ok">✓</span>'; }
+    else { status = 'Fired today'; badge = '<span class="badge ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>'; }
     body.innerHTML += '<tr><td>Slot ' + (idx + 1) + '</td><td class="mono">' + slotTime +
       '</td><td>' + badge + ' ' + status + '</td><td class="num">' +
       (pub.length > idx ? 'posted' : '—') + '</td></tr>';
