@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T10:56:52+04:00",
+  "generated_at": "2026-08-05T10:59:01+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -8,9 +8,7 @@
         2,
         3
       ],
-      "failed": [
-        2
-      ],
+      "failed": [],
       "last_updated": "2026-08-05T10:38:06",
       "source": "local"
     },
