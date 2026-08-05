@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OgleTrends Automation — Live Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #131a2e;
+      --border: #232c47;
+      --text: #e8ecf8;
+      --muted: #8b93ad;
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+      --rose: #fb7185;
+      --violet: #a78bfa;
+      --slate: #94a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+    .wrap { max-width: 1240px; margin: 0 auto; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
+    }
+    h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+    h1 .dot { color: var(--emerald); }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 999px; padding: 8px 14px; font-size: 13px; color: var(--muted);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .mono { font-family: 'SF Mono', ui-monospace, Menlo, monospace; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-bottom: 16px; }
+    .card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+    }
+    .kpi-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .kpi-value { font-size: 28px; font-weight: 700; font-family: 'SF Mono', ui-monospace, Menlo, monospace; }
+    .kpi-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    .queue-card { grid-column: span 2; }
+    .queue-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .queue-bar { display: flex; gap: 3px; flex-wrap: wrap; }
+    .slot {
+      width: 18px; height: 26px; border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      font-size: 9px; font-family: 'SF Mono', monospace; font-weight: 600;
+    }
+    .slot.done { background: var(--emerald); color: #04150c; }
+    .slot.pending { background: #1e2a4a; color: var(--muted); }
+    .slot.failed { background: var(--rose); color: #20030a; }
+    .slot.next { background: var(--amber); color: #1c1202; outline: 2px solid var(--amber); outline-offset: 1px; }
+
+    .legend { display: flex; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--muted); flex-wrap: wrap; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    .section-title { font-size: 14px; font-weight: 600; margin-bottom: 14px; color: var(--text); }
+    .chart-box { position: relative; height: 260px; }
+    .table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .table th { text-align: left; color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+    .table td { padding: 9px 10px; border-bottom: 1px solid rgba(35,44,71,0.5); }
+    .table td.num { text-align: right; font-family: 'SF Mono', monospace; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+    .badge.ok { background: rgba(52,211,153,0.15); color: var(--emerald); }
+    .badge.stale { background: rgba(251,191,36,0.15); color: var(--amber); }
+    .badge.err { background: rgba(251,113,133,0.15); color: var(--rose); }
+
+    .stale-banner {
+      background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.3);
+      border-radius: 10px; padding: 12px 16px; font-size: 13px; color: var(--amber); margin-bottom: 16px;
+    }
+    footer { margin-top: 28px; color: var(--muted); font-size: 12px; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span class="dot">●</span> OgleTrends Automation</h1>
+      <div style="font-size:13px;color:var(--muted);margin-top:4px">
+        IG pipeline <span class="mono">@ogletrends</span> · Gumroad revenue
+      </div>
+    </div>
+    <div class="status-pill">
+      <span class="status-dot"></span>
+      <span id="live-status">LIVE</span>
+      <span id="updated-at" class="mono" style="color:var(--muted)"></span>
+    </div>
+  </header>
+
+  <div id="stale-banner" class="stale-banner" style="display:none"></div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="kpi-label">Videos Published</div>
+      <div class="kpi-value" id="kpi-published">—</div>
+      <div class="kpi-sub" id="kpi-published-sub"></div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Followers</div>
+      <div class="kpi-value" id="kpi-followers">—</div>
+      <div class="kpi-sub">@ogletrends</div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">Today Revenue</div>
+      <div class="kpi-value" style="color:var(--emerald)" id="kpi-today-rev">—</div>
+      <div class="kpi-sub" id="kpi-today-units"></div>
+    </div>
+    <div class="card">
+      <div class="kpi-label">14-Day Revenue</div>
+      <div class="kpi-value" id="kpi-14d-rev">—</div>
+      <div class="kpi-sub" id="kpi-aov"></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card queue-card">
+      <div class="queue-header">
+        <div>
+          <div class="section-title" style="margin:0">Content Queue — 57 videos</div>
+          <div class="kpi-sub" style="margin-top:4px">Slots daily: 10:00 · 12:00 · 14:00 · 16:30 GST</div>
+        </div>
+        <div id="queue-summary" class="mono" style="font-size:13px;color:var(--muted)"></div>
+      </div>
+      <div class="queue-bar" id="queue-bar"></div>
+      <div class="legend">
+        <span><span class="swatch" style="background:var(--emerald)"></span>Published</span>
+        <span><span class="swatch" style="background:var(--amber)"></span>Next up</span>
+        <span><span class="swatch" style="background:var(--rose)"></span>Failed</span>
+        <span><span class="swatch" style="background:#1e2a4a"></span>Pending</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="section-title">Daily Revenue (14d)</div>
+      <div class="chart-box"><canvas id="chart-revenue"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="section-title">Revenue by Product</div>
+      <div class="chart-box"><canvas id="chart-products"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-bottom:16px">
+    <div class="section-title">Publishing Schedule</div>
+    <table class="table">
+      <thead><tr><th>Slot</th><th>Time (GST)</th><th>Status</th></tr></thead>
+      <tbody id="schedule-body"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Data regenerated by local agent every few minutes · sanitized (no tokens, no buyer PII) ·
+    <span id="source-info"></span>
+  </footer>
+</div>
+
+<script>
+const COLORS = {
+  emerald: '#34d399', cyan: '#22d3ee', amber: '#fbbf24', rose: '#fb7185',
+  violet: '#a78bfa', slate: '#94a3b8',
+};
+
+let charts = {};
+
+function fmtMoney(v) { return '$' + (v ?? 0).toLocaleString(undefined, {maximumFractionDigits: 2}); }
+
+function statusBadge(s) {
+  if (s === 'ok') return '<span class="badge ok">● live</span>';
+  if (s === 'stale') return '<span class="badge stale">stale</span>';
+  return '<span class="badge err">unavailable</span>';
+}
+
+function render(data) {
+  // KPIs
+  const pub = data.ig?.state?.published || [];
+  const failed = data.ig?.state?.failed || [];
+  const total = data.total_videos || 57;
+  const next = total - pub.length - failed.length;
+  document.getElementById('kpi-published').textContent = pub.length + ' / ' + total;
+  document.getElementById('kpi-published-sub').textContent =
+    (next > 0 ? 'Next up: video #' + (pub.length + 1) : 'Queue complete') + ' · ' + failed.length + ' failed';
+
+  const acc = data.ig?.account;
+  document.getElementById('kpi-followers').textContent =
+    acc?.followers ? acc.followers.toLocaleString() : '—';
+
+  const g = data.gumroad;
+  document.getElementById('kpi-today-rev').textContent = fmtMoney(g?.today_revenue);
+  document.getElementById('kpi-today-units').textContent = g?.today_units + ' units today';
+  document.getElementById('kpi-14d-rev').textContent = fmtMoney(g?.total_revenue_14d);
+  document.getElementById('kpi-aov').textContent = 'AOV ' + fmtMoney(g?.aov_14d) + ' · ' + (g?.total_units_14d ?? 0) + ' units';
+
+  // Queue bar
+  const bar = document.getElementById('queue-bar');
+  bar.innerHTML = '';
+  for (let i = 1; i <= total; i++) {
+    const el = document.createElement('div');
+    el.className = 'slot';
+    el.textContent = i;
+    if (pub.includes(i)) el.classList.add('done');
+    else if (failed.includes(i)) el.classList.add('failed');
+    else if (i === pub.length + 1) el.classList.add('next');
+    else el.classList.add('pending');
+    el.title = 'Video ' + i + (pub.includes(i) ? ' — published' : failed.includes(i) ? ' — failed' : '');
+    bar.appendChild(el);
+  }
+  document.getElementById('queue-summary').textContent =
+    pub.length + ' published · ' + failed.length + ' failed · ' + next + ' remaining';
+
+  // Stale banner
+  const banner = document.getElementById('stale-banner');
+  const src = data.sources || {};
+  const staleKeys = Object.entries(src).filter(([k,v]) => v === 'stale' || v === 'unavailable');
+  if (staleKeys.length) {
+    banner.style.display = 'block';
+    banner.innerHTML = '⚠ Data source issue: ' + staleKeys.map(([k,v]) => k + ' = ' + v).join(', ') +
+      '. Showing last known data.';
+  } else {
+    banner.style.display = 'none';
+  }
+
+  // Timestamps
+  document.getElementById('updated-at').textContent =
+    'updated ' + (data.generated_at || '').replace('T', ' ').slice(0, 16);
+  document.getElementById('source-info').innerHTML =
+    'IG state: ' + statusBadge(src.ig_account) + ' Gumroad: ' + statusBadge(src.gumroad);
+
+  // Schedule table — purely time-aware: what fires today vs already passed
+  const body = document.getElementById('schedule-body');
+  body.innerHTML = '';
+  const now = new Date();
+  const gstNow = new Date(now.getTime() + 4 * 3600 * 1000);
+  const curMinutes = gstNow.getUTCHours() * 60 + gstNow.getUTCMinutes();
+  (data.schedule || []).forEach((s, idx) => {
+    const [h, m] = s.time.split(':').map(Number);
+    const slotMinutes = h * 60 + m;
+    const slotTime = s.time + ' ' + s.tz;
+    let status, badge = '';
+    if (curMinutes < slotMinutes) {
+      status = 'Upcoming today'; badge = '<span class="badge stale">' + s.time + '</span>';
+    } else {
+      status = 'Fired today'; badge = '<span class="badge ok">✓</span>';
+    }
+    body.innerHTML += '<tr><td>Slot ' + (idx + 1) + '</td><td class="mono">' + slotTime +
+      '</td><td>' + badge + ' ' + status + '</td></tr>';
+  });
+
+  // Charts
+  const daily = (g?.daily || []).map(d => ({ day: d.day.slice(5), revenue: d.revenue }));
+  drawRevenue(daily);
+  const products = (g?.products || []).slice(0, 6);
+  drawProducts(products);
+}
+
+function drawRevenue(daily) {
+  const ctx = document.getElementById('chart-revenue');
+  if (charts.revenue) charts.revenue.destroy();
+  charts.revenue = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: daily.map(d => d.day),
+      datasets: [{
+        label: 'Revenue',
+        data: daily.map(d => d.revenue),
+        backgroundColor: 'rgba(34,211,238,0.35)',
+        borderColor: COLORS.cyan,
+        borderWidth: 1.5,
+        borderRadius: 6,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => '$' + c.parsed.y } } },
+      scales: {
+        x: { ticks: { color: '#8b93ad' }, grid: { color: 'rgba(35,44,71,0.4)' } },
+        y: { ticks: { color: '#8b93ad', callback: v => '$' + v }, grid: { color: 'rgba(35,44,71,0.4)' } },
+      },
+    },
+  });
+}
+
+function drawProducts(products) {
+  const ctx = document.getElementById('chart-products');
+  if (charts.products) charts.products.destroy();
+  const palette = [COLORS.emerald, COLORS.cyan, COLORS.violet, COLORS.amber, COLORS.rose, COLORS.slate];
+  charts.products = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: products.map(p => p.name),
+      datasets: [{
+        data: products.map(p => p.revenue),
+        backgroundColor: products.map((_, i) => palette[i % palette.length]),
+        borderWidth: 0,
+      }],
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { color: '#8b93ad', boxWidth: 10, font: { size: 11 } } },
+        tooltip: { callbacks: { label: c => ' ' + c.label + ': $' + c.parsed } },
+      },
+    },
+  });
+}
+
+async function refresh() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now(), { cache: 'no-store' });
+    const data = await res.json();
+    document.getElementById('live-status').textContent = 'LIVE';
+    render(data);
+  } catch (e) {
+    document.getElementById('live-status').textContent = 'OFFLINE';
+    document.getElementById('live-status').style.color = '#fb7185';
+  }
+}
+
+refresh();
+setInterval(refresh, 30000);
+</script>
+</body>
+</html>
