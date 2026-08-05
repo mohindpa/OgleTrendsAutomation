@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T19:11:44+04:00",
+  "generated_at": "2026-08-05T19:40:33+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -16,7 +16,7 @@
       "source": "local"
     },
     "account": {
-      "followers": 134934,
+      "followers": 134951,
       "media_count": 203,
       "username": "ogletrends"
     },
@@ -68,7 +68,7 @@
     }
   ],
   "sources": {
-    "ig_account": "stale",
-    "gumroad": "stale"
+    "ig_account": "ok",
+    "gumroad": "ok"
   }
 }
