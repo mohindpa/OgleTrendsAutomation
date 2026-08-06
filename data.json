@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-06T20:14:11+04:00",
+  "generated_at": "2026-08-06T20:47:57+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -20,36 +20,40 @@
       "source": "local"
     },
     "account": {
-      "followers": 135217,
+      "followers": 135257,
       "media_count": 208,
       "username": "ogletrends"
     },
     "stale": false
   },
   "gumroad": {
-    "today_revenue": 0.0,
-    "today_units": 0,
-    "total_revenue_14d": 66.96,
+    "today_revenue": 9.99,
+    "today_units": 1,
+    "total_revenue_14d": 51.96,
     "total_units_14d": 4,
-    "aov_14d": 16.74,
+    "aov_14d": 12.99,
     "daily": [
       {
         "day": "2026-08-04",
-        "revenue": 31.98
+        "revenue": 6.99
       },
       {
         "day": "2026-08-05",
         "revenue": 34.98
+      },
+      {
+        "day": "2026-08-06",
+        "revenue": 9.99
       }
     ],
     "products": [
       {
-        "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 49.98
+        "name": "Street Smart Kids: The Cheat Codes for Real Life",
+        "revenue": 26.97
       },
       {
-        "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 16.98
+        "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
+        "revenue": 24.99
       }
     ]
   },
@@ -72,7 +76,7 @@
     }
   ],
   "sources": {
-    "ig_account": "stale",
-    "gumroad": "stale"
+    "ig_account": "ok",
+    "gumroad": "ok"
   }
 }
