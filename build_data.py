@@ -156,9 +156,7 @@ def main():
         "ig": {"state": load_ig_state(), "account": None, "stale": False},
         "gumroad": None,
         "schedule": [
-            {"time": "10:00", "tz": "GST"},
             {"time": "12:00", "tz": "GST"},
-            {"time": "14:00", "tz": "GST"},
             {"time": "16:30", "tz": "GST"},
         ],
         "sources": {},
