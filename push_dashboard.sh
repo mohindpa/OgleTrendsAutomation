@@ -2,7 +2,7 @@
 # push_dashboard.sh — regenerate data.json and push to GitHub Pages repo.
 # Cron watchdog semantics: silent on success, prints on failure (exit 1).
 set -uo pipefail
-DASH="/Users/mohindpa/Documents/My Files/Curiosity Projects/INSSIST/ogletrends-dashboard"
+DASH="$(cd "$(dirname "$0")" && pwd)"
 export PATH="$HOME/.composio:$PATH"
 
 # 1. Regenerate data.json

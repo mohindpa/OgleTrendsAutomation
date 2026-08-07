@@ -21,7 +21,7 @@ import sys
 import datetime
 import urllib.request
 
-BASE = "/Users/mohindpa/Documents/My Files/Curiosity Projects/INSSIST"
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE_FILE = os.path.join(BASE, "ig_queue_state.json")
 OUT_FILE = os.path.join(BASE, "ogletrends-dashboard", "data.json")
 COMPOSIO = os.path.expanduser("~/.composio")
