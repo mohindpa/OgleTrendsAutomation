@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T23:50:10+04:00",
+  "generated_at": "2026-08-08T00:00:10+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -25,15 +25,15 @@
       "source": "local"
     },
     "account": {
-      "followers": 135548,
+      "followers": 135549,
       "media_count": 213,
       "username": "ogletrends"
     },
     "stale": false
   },
   "gumroad": {
-    "today_revenue": 39.98,
-    "today_units": 2,
+    "today_revenue": 0.0,
+    "today_units": 0,
     "total_revenue_14d": 351.83,
     "total_units_14d": 17,
     "aov_14d": 20.7,
