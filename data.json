@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T16:46:12+04:00",
+  "generated_at": "2026-08-07T16:50:14+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -25,7 +25,7 @@
       "source": "local"
     },
     "account": {
-      "followers": 135498,
+      "followers": 135500,
       "media_count": 213,
       "username": "ogletrends"
     },
@@ -34,14 +34,10 @@
   "gumroad": {
     "today_revenue": 24.99,
     "today_units": 1,
-    "total_revenue_14d": 343.83,
-    "total_units_14d": 17,
-    "aov_14d": 20.23,
+    "total_revenue_14d": 336.84,
+    "total_units_14d": 16,
+    "aov_14d": 21.05,
     "daily": [
-      {
-        "day": "2026-07-24",
-        "revenue": 6.99
-      },
       {
         "day": "2026-07-26",
         "revenue": 24.99
@@ -456,7 +452,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 43.95
+        "revenue": 36.96
       }
     ],
     "products_all": [
