@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T16:40:14+04:00",
+  "generated_at": "2026-08-07T16:46:12+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -25,7 +25,7 @@
       "source": "local"
     },
     "account": {
-      "followers": 135499,
+      "followers": 135498,
       "media_count": 213,
       "username": "ogletrends"
     },
@@ -34,10 +34,408 @@
   "gumroad": {
     "today_revenue": 24.99,
     "today_units": 1,
-    "total_revenue_14d": 69.96,
-    "total_units_14d": 4,
-    "aov_14d": 17.49,
+    "total_revenue_14d": 343.83,
+    "total_units_14d": 17,
+    "aov_14d": 20.23,
     "daily": [
+      {
+        "day": "2026-07-24",
+        "revenue": 6.99
+      },
+      {
+        "day": "2026-07-26",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-27",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-28",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-30",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-07-31",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-08-02",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-08-03",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-08-04",
+        "revenue": 31.98
+      },
+      {
+        "day": "2026-08-05",
+        "revenue": 34.98
+      },
+      {
+        "day": "2026-08-06",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-08-07",
+        "revenue": 24.99
+      }
+    ],
+    "daily_all": [
+      {
+        "day": "2026-04-24",
+        "revenue": 7.49
+      },
+      {
+        "day": "2026-05-02",
+        "revenue": 355.25
+      },
+      {
+        "day": "2026-05-03",
+        "revenue": 184.91
+      },
+      {
+        "day": "2026-05-04",
+        "revenue": 69.96
+      },
+      {
+        "day": "2026-05-05",
+        "revenue": 61.96
+      },
+      {
+        "day": "2026-05-07",
+        "revenue": 79.91
+      },
+      {
+        "day": "2026-05-08",
+        "revenue": 92.91
+      },
+      {
+        "day": "2026-05-09",
+        "revenue": 89.91
+      },
+      {
+        "day": "2026-05-10",
+        "revenue": 129.87
+      },
+      {
+        "day": "2026-05-11",
+        "revenue": 169.83
+      },
+      {
+        "day": "2026-05-12",
+        "revenue": 107.88
+      },
+      {
+        "day": "2026-05-13",
+        "revenue": 106.89
+      },
+      {
+        "day": "2026-05-14",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-05-15",
+        "revenue": 79.92
+      },
+      {
+        "day": "2026-05-16",
+        "revenue": 69.93
+      },
+      {
+        "day": "2026-05-17",
+        "revenue": 53.94
+      },
+      {
+        "day": "2026-05-18",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-05-19",
+        "revenue": 123.87
+      },
+      {
+        "day": "2026-05-20",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-05-21",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-05-22",
+        "revenue": 136.86
+      },
+      {
+        "day": "2026-05-23",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-05-24",
+        "revenue": 104.9
+      },
+      {
+        "day": "2026-05-25",
+        "revenue": 161.84
+      },
+      {
+        "day": "2026-05-26",
+        "revenue": 74.93
+      },
+      {
+        "day": "2026-05-27",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-05-28",
+        "revenue": 56.94
+      },
+      {
+        "day": "2026-05-29",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-05-30",
+        "revenue": 39.96
+      },
+      {
+        "day": "2026-05-31",
+        "revenue": 89.91
+      },
+      {
+        "day": "2026-06-01",
+        "revenue": 115.4
+      },
+      {
+        "day": "2026-06-02",
+        "revenue": 84.93
+      },
+      {
+        "day": "2026-06-03",
+        "revenue": 124.89
+      },
+      {
+        "day": "2026-06-04",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-06-05",
+        "revenue": 49.95
+      },
+      {
+        "day": "2026-06-06",
+        "revenue": 39.96
+      },
+      {
+        "day": "2026-06-07",
+        "revenue": 74.94
+      },
+      {
+        "day": "2026-06-08",
+        "revenue": 49.95
+      },
+      {
+        "day": "2026-06-09",
+        "revenue": 64.95
+      },
+      {
+        "day": "2026-06-10",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-06-11",
+        "revenue": 61.95
+      },
+      {
+        "day": "2026-06-12",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-06-13",
+        "revenue": 29.97
+      },
+      {
+        "day": "2026-06-14",
+        "revenue": 92.43
+      },
+      {
+        "day": "2026-06-15",
+        "revenue": 29.97
+      },
+      {
+        "day": "2026-06-16",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-06-17",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-06-18",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-06-19",
+        "revenue": 54.96
+      },
+      {
+        "day": "2026-06-20",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-06-21",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-06-22",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-06-23",
+        "revenue": 49.95
+      },
+      {
+        "day": "2026-06-24",
+        "revenue": 27.48
+      },
+      {
+        "day": "2026-06-26",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-06-27",
+        "revenue": 59.94
+      },
+      {
+        "day": "2026-06-28",
+        "revenue": 54.96
+      },
+      {
+        "day": "2026-06-29",
+        "revenue": 40.46
+      },
+      {
+        "day": "2026-06-30",
+        "revenue": 54.96
+      },
+      {
+        "day": "2026-07-01",
+        "revenue": 69.95
+      },
+      {
+        "day": "2026-07-02",
+        "revenue": 94.95
+      },
+      {
+        "day": "2026-07-03",
+        "revenue": 34.98
+      },
+      {
+        "day": "2026-07-04",
+        "revenue": 74.97
+      },
+      {
+        "day": "2026-07-05",
+        "revenue": 52.47
+      },
+      {
+        "day": "2026-07-06",
+        "revenue": 19.98
+      },
+      {
+        "day": "2026-07-08",
+        "revenue": 17.49
+      },
+      {
+        "day": "2026-07-09",
+        "revenue": 59.97
+      },
+      {
+        "day": "2026-07-10",
+        "revenue": 44.97
+      },
+      {
+        "day": "2026-07-11",
+        "revenue": 44.97
+      },
+      {
+        "day": "2026-07-12",
+        "revenue": 37.47
+      },
+      {
+        "day": "2026-07-13",
+        "revenue": 34.97
+      },
+      {
+        "day": "2026-07-14",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-07-15",
+        "revenue": 26.97
+      },
+      {
+        "day": "2026-07-16",
+        "revenue": 52.47
+      },
+      {
+        "day": "2026-07-17",
+        "revenue": 44.97
+      },
+      {
+        "day": "2026-07-18",
+        "revenue": 104.94
+      },
+      {
+        "day": "2026-07-19",
+        "revenue": 102.45
+      },
+      {
+        "day": "2026-07-21",
+        "revenue": 69.96
+      },
+      {
+        "day": "2026-07-24",
+        "revenue": 6.99
+      },
+      {
+        "day": "2026-07-26",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-27",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-28",
+        "revenue": 24.99
+      },
+      {
+        "day": "2026-07-30",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-07-31",
+        "revenue": 9.99
+      },
+      {
+        "day": "2026-08-02",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-08-03",
+        "revenue": 49.98
+      },
+      {
+        "day": "2026-08-04",
+        "revenue": 31.98
+      },
       {
         "day": "2026-08-05",
         "revenue": 34.98
@@ -54,13 +452,45 @@
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 49.98
+        "revenue": 299.88
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 19.98
+        "revenue": 43.95
       }
-    ]
+    ],
+    "products_all": [
+      {
+        "name": "Street Smart Kids: The Cheat Codes for Real Life",
+        "revenue": 4098.09
+      },
+      {
+        "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
+        "revenue": 1306.95
+      },
+      {
+        "name": "Street Smart Skills: with Real World Case Studies",
+        "revenue": 95.93
+      },
+      {
+        "name": "Street Smart Teens The Cheat Codes for Real Life",
+        "revenue": 32.97
+      }
+    ],
+    "all_time": {
+      "revenue": 5533.94,
+      "units": 634,
+      "refunds": 2,
+      "disputes": 3,
+      "refund_amount": 34.98,
+      "from": "2026-04-24",
+      "to": "2026-08-07"
+    },
+    "week_over_week": {
+      "current": 211.89,
+      "previous": 304.35,
+      "change_pct": -30.4
+    }
   },
   "schedule": [
     {
