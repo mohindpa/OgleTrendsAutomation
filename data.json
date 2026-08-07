@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-07T22:50:09+04:00",
+  "generated_at": "2026-08-07T23:00:09+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -25,18 +25,18 @@
       "source": "local"
     },
     "account": {
-      "followers": 135540,
+      "followers": 135541,
       "media_count": 213,
       "username": "ogletrends"
     },
     "stale": false
   },
   "gumroad": {
-    "today_revenue": 24.99,
-    "today_units": 1,
-    "total_revenue_14d": 336.84,
-    "total_units_14d": 16,
-    "aov_14d": 21.05,
+    "today_revenue": 39.98,
+    "today_units": 2,
+    "total_revenue_14d": 351.83,
+    "total_units_14d": 17,
+    "aov_14d": 20.7,
     "daily": [
       {
         "day": "2026-07-26",
@@ -80,7 +80,7 @@
       },
       {
         "day": "2026-08-07",
-        "revenue": 24.99
+        "revenue": 39.98
       }
     ],
     "daily_all": [
@@ -442,7 +442,7 @@
       },
       {
         "day": "2026-08-07",
-        "revenue": 24.99
+        "revenue": 39.98
       }
     ],
     "products": [
@@ -453,6 +453,10 @@
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
         "revenue": 36.96
+      },
+      {
+        "name": "Street Smart Skills: with Real World Case Studies",
+        "revenue": 14.99
       }
     ],
     "products_all": [
@@ -466,7 +470,7 @@
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
-        "revenue": 95.93
+        "revenue": 110.92
       },
       {
         "name": "Street Smart Teens The Cheat Codes for Real Life",
@@ -474,8 +478,8 @@
       }
     ],
     "all_time": {
-      "revenue": 5533.94,
-      "units": 634,
+      "revenue": 5548.93,
+      "units": 635,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -483,9 +487,9 @@
       "to": "2026-08-07"
     },
     "week_over_week": {
-      "current": 211.89,
+      "current": 226.88,
       "previous": 304.35,
-      "change_pct": -30.4
+      "change_pct": -25.5
     }
   },
   "schedule": [
@@ -500,6 +504,6 @@
   ],
   "sources": {
     "ig_account": "ok",
-    "gumroad": "stale"
+    "gumroad": "ok"
   }
 }
