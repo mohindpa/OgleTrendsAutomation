@@ -390,18 +390,29 @@ document.getElementById('from').addEventListener('change', e=>{ customFrom=e.tar
 document.getElementById('to').addEventListener('change', e=>{ customTo=e.target.value||null; if(customTo) rangeMode='custom'; renderAll(); });
 
 /* ── Load + intro animation ── */
-fetch('data.json').then(r=>r.json()).then(d=>{
-  DATA = d;
-  document.getElementById('from').min = d.gumroad.all_time?.from || '';
-  document.getElementById('to').max = d.gumroad.all_time?.to || '';
-  renderAll();
-  gsap.from('.hero-title',{y:24,opacity:0,duration:.6,ease:'power3.out'});
-  gsap.from('.hero-meta',{y:12,opacity:0,duration:.5,ease:'power2.out',stagger:.08,delay:.15});
-  gsap.from('.hero-bar',{scaleX:0,transformOrigin:'left',duration:.8,ease:'power2.out',delay:.3});
-  gsap.from('.card',{y:18,opacity:0,duration:.45,ease:'power2.out',stagger:.05,delay:.3});
-}).catch(e=>{
-  document.getElementById('kpis').innerHTML = '<div class="card"><p style="color:#e2493b;">Failed to load data.json — ' + e.message + '</p></div>';
-});
+let dataTimer = null;
+function loadData(animate){
+  fetch('data.json?cb='+Date.now()).then(r=>r.json()).then(d=>{
+    const first = !DATA;
+    DATA = d;
+    document.getElementById('from').min = d.gumroad.all_time?.from || '';
+    document.getElementById('to').max = d.gumroad.all_time?.to || '';
+    renderAll();
+    if(first && animate){
+      gsap.from('.hero-title',{y:24,opacity:0,duration:.6,ease:'power3.out'});
+      gsap.from('.hero-meta',{y:12,opacity:0,duration:.5,ease:'power2.out',stagger:.08,delay:.15});
+      gsap.from('.hero-bar',{scaleX:0,transformOrigin:'left',duration:.8,ease:'power2.out',delay:.3});
+      gsap.from('.card',{y:18,opacity:0,duration:.45,ease:'power2.out',stagger:.05,delay:.3});
+    }
+    // subtle pulse on the meta time so watchers see it's live
+    const mt = document.getElementById('meta-time');
+    if(mt){ mt.style.transition='color .4s'; mt.style.color='#16a06b'; setTimeout(()=>mt.style.color='', 1200); }
+  }).catch(e=>{
+    if(!DATA) document.getElementById('kpis').innerHTML = '<div class="card"><p style="color:#e2493b;">Failed to load data.json — ' + e.message + '</p></div>';
+  });
+}
+loadData(true);
+dataTimer = setInterval(()=>loadData(false), 60000);
 </script>
 </body>
 </html>
