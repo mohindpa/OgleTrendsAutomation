@@ -25,7 +25,12 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE_FILE = os.path.join(BASE, "ig_queue_state.json")
 OUT_FILE = os.path.join(BASE, "ogletrends-dashboard", "data.json")
 COMPOSIO = os.path.expanduser("~/.composio")
-ENV_FILE = os.path.expanduser("~/.hermes/.env")
+# Self-locating env: prefer $HERMES_HOME/.env (Hostinger box), fall back to ~/.hermes/.env (Mac) and ~/.env
+ENV_FILE = next((p for p in [
+    os.path.join(os.environ.get("HERMES_HOME", ""), ".env"),
+    os.path.expanduser("~/.hermes/.env"),
+    os.path.expanduser("~/.env"),
+] if p and os.path.exists(p)), os.path.expanduser("~/.hermes/.env"))
 
 TOTAL_VIDEOS = 57
 
@@ -52,8 +57,10 @@ def load_ig_state():
     # Only failures that are NOT also published (historical retry-success)
     failed = sorted(int(k) for k in st.get("failed", {}) if str(k).isdigit() and int(k) not in pub_set)
     mtime = datetime.datetime.fromtimestamp(os.path.getmtime(STATE_FILE))
+    posted_at = {int(k): v for k, v in st.get("posted_at", {}).items() if str(k).isdigit()}
     return {
         "published": published,
+        "posted_at": posted_at,
         "failed": failed,
         "last_updated": mtime.isoformat(timespec="seconds"),
         "source": "local",
@@ -209,8 +216,8 @@ def main():
         "ig": {"state": load_ig_state(), "account": None, "stale": False},
         "gumroad": None,
         "schedule": [
-            {"time": "12:00", "tz": "GST"},
-            {"time": "16:30", "tz": "GST"},
+            {"time": "18:00", "tz": "GST"},
+            {"time": "00:00", "tz": "GST"},
         ],
         "sources": {},
     }
