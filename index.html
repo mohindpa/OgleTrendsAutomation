@@ -6,7 +6,7 @@
 <title>OgleTrends — E-Book Automation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -14,14 +14,15 @@
 :root {
   --bg: #0e1116;
   --surface: rgba(255,255,255,0.03);
-  --border: rgba(255,255,255,0.05);
+  --border: rgba(255,255,255,0.06);
   --primary: #ffc72c;
   --secondary: #2f6bff;
   --tertiary: #16a06b;
+  --danger: #e2493b;
   --text: #f4f0e6;
   --dim: #a8b0bc;
   --faint: #5b6572;
-  --radius: 12px;
+  --radius: 14px;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 html { background: var(--bg); scroll-behavior:smooth; }
@@ -34,72 +35,154 @@ body {
   overflow-x:hidden;
 }
 #webgl { position:fixed; inset:0; z-index:0; pointer-events:none; }
-.glow { position:absolute; border-radius:9999px; filter:blur(80px); opacity:.14; pointer-events:none; z-index:0; }
-main { position:relative; z-index:10; max-width:1200px; margin:0 auto; padding:24px 20px 48px; }
-/* Glass card */
+.glow { position:absolute; border-radius:9999px; filter:blur(80px); opacity:.13; pointer-events:none; z-index:0; }
+main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:28px 22px 56px; }
+
+/* Sections */
+.section-title {
+  display:flex; align-items:center; gap:10px;
+  font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
+  margin:28px 0 12px;
+}
+.section-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(255,255,255,.08), transparent); }
+
+/* Cards */
 .card {
   position:relative;
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
-  background:linear-gradient(to bottom, rgba(255,255,255,.06), transparent);
+  background:linear-gradient(to bottom, rgba(255,255,255,.055), transparent);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
-  box-shadow:0 0 12px rgba(255,199,44,.04);
 }
-.shell { border-radius:16px; padding:1px; background:linear-gradient(rgba(255,199,44,.1), rgba(0,0,0,0)); }
+.shell { border-radius:16px; padding:1px; background:linear-gradient(rgba(255,199,44,.12), rgba(0,0,0,0)); }
 .shell > .card { border-radius:15px; }
 .label { font-size:11px; font-weight:400; color:var(--dim); letter-spacing:.01em; }
-.h2 { font-size:13px; font-weight:500; letter-spacing:-.01em; }
+.h2 { font-size:13px; font-weight:600; letter-spacing:-.01em; }
 .sub { font-size:10px; color:var(--faint); margin-top:2px; }
-.kpi { font-size:24px; font-weight:500; letter-spacing:-.02em; line-height:1.1; margin-top:6px; }
-.delta-up { color:#16a06b; font-size:11px; font-weight:500; }
-.delta-down { color:#e2493b; font-size:11px; font-weight:500; }
+.kpi { font-size:26px; font-weight:600; letter-spacing:-.02em; line-height:1.1; margin-top:6px; }
+.delta-up { color:#16a06b; font-size:11px; font-weight:600; }
+.delta-down { color:#e2493b; font-size:11px; font-weight:600; }
 .grid { display:grid; gap:16px; }
 .grid-4 { grid-template-columns:repeat(4,1fr); }
 .grid-3 { grid-template-columns:repeat(3,1fr); }
 .grid-2 { grid-template-columns:repeat(2,1fr); }
 .span-2 { grid-column:span 2; }
-@media (max-width:900px){ .grid-4{grid-template-columns:repeat(2,1fr);} .grid-3{grid-template-columns:1fr;} .grid-2{grid-template-columns:1fr;} .span-2{grid-column:span 1;} }
-/* Filter pills */
-.pill {
-  border:1px solid rgba(255,199,44,.3);
-  background:rgba(255,199,44,.08);
-  color:#ffd94d;
-  border-radius:9999px;
-  padding:4px 14px;
-  font-size:11px;
-  font-weight:500;
-  cursor:pointer;
-  transition:background .15s;
+@media (max-width:960px){ .grid-4{grid-template-columns:repeat(2,1fr);} .grid-3{grid-template-columns:1fr;} .grid-2{grid-template-columns:1fr;} .span-2{grid-column:span 1;} }
+
+/* Segmented period control (compact, no standalone row) */
+.seg {
+  display:inline-flex; gap:2px; padding:3px; border-radius:9999px;
+  border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.03);
 }
-.pill:hover { background:rgba(255,199,44,.2); }
-.pill.active { background:rgba(255,199,44,.35); }
-.pill-ghost { border-color:rgba(255,255,255,.1); background:rgba(255,255,255,.03); color:#D4D4D8; }
-.pill-ghost:hover { background:rgba(255,255,255,.08); }
-input[type=date] {
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.1);
-  border-radius:8px; color:#D4D4D8; font-size:11px; padding:4px 8px;
-  color-scheme:dark; outline:none;
+.seg button {
+  border:0; background:transparent; color:var(--dim); cursor:pointer;
+  font-family:inherit; font-size:11px; font-weight:500; padding:4px 12px; border-radius:9999px;
+  transition:background .15s,color .15s;
 }
-input[type=date]:focus { border-color:rgba(16,185,129,.4); }
-/* Table */
+.seg button:hover { color:var(--text); }
+.seg button.active { background:rgba(255,199,44,.22); color:#ffd94d; }
+.seg input[type=date] {
+  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
+  border-radius:9999px; color:#D4D4D8; font-size:11px; padding:3px 10px;
+  color-scheme:dark; outline:none; width:118px;
+}
+.seg input[type=date]:focus { border-color:rgba(255,199,44,.5); }
+
+/* Badges */
+.badge { border-radius:9999px; padding:4px 12px; font-size:11px; font-weight:600; border:1px solid; white-space:nowrap; }
+.badge-ok { border-color:rgba(22,160,107,.35); background:rgba(22,160,107,.1); color:#2fd18f; }
+.badge-warn { border-color:rgba(245,158,11,.35); background:rgba(245,158,11,.1); color:#fbbf24; }
+.badge-danger { border-color:rgba(226,73,59,.4); background:rgba(226,73,59,.12); color:#ff7a6b; }
+.badge-ghost { border-color:var(--border); background:rgba(255,255,255,.03); color:var(--dim); }
+.badge-gold { border-color:rgba(255,199,44,.35); background:rgba(255,199,44,.1); color:#ffc72c; }
+
+/* Uploads hero */
+.uploads-hero { display:grid; grid-template-columns: 300px 1fr; gap:16px; }
+@media (max-width:900px){ .uploads-hero{ grid-template-columns:1fr; } }
+.ring-wrap { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 0; }
+.ring-label { font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--faint); margin-bottom:10px; }
+.ring { position:relative; width:190px; height:190px; }
+.ring svg { transform:rotate(-90deg); }
+.ring .ring-bg { fill:none; stroke:rgba(255,255,255,.06); stroke-width:11; }
+.ring .ring-fg { fill:none; stroke:url(#ringGrad); stroke-width:11; stroke-linecap:round; transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
+.ring-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.ring-pct { font-size:34px; font-weight:700; letter-spacing:-.02em; line-height:1; }
+.ring-sub { font-size:11px; color:var(--dim); margin-top:4px; }
+.ring-facts { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; justify-content:center; }
+.fact { border:1px solid var(--border); background:rgba(255,255,255,.03); border-radius:10px; padding:6px 12px; text-align:center; min-width:72px; }
+.fact b { display:block; font-size:15px; font-weight:600; }
+.fact span { font-size:9px; color:var(--faint); text-transform:uppercase; letter-spacing:.08em; }
+
+.countdown-card { display:flex; flex-direction:column; gap:14px; }
+.countdown-head { display:flex; justify-content:space-between; align-items:baseline; }
+.countdown {
+  display:flex; align-items:baseline; gap:10px;
+  background:linear-gradient(90deg, rgba(255,199,44,.10), rgba(47,107,255,.08));
+  border:1px solid rgba(255,199,44,.22); border-radius:12px; padding:14px 18px;
+}
+.countdown .big { font-family:'JetBrains Mono',monospace; font-size:30px; font-weight:600; letter-spacing:-.02em; color:#ffd94d; }
+.countdown .lbl { font-size:11px; color:var(--dim); }
+.slot-strip { display:flex; gap:8px; flex-wrap:wrap; }
+.slot {
+  flex:1; min-width:130px; border:1px solid var(--border); border-radius:10px; padding:8px 12px;
+  display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.02);
+}
+.slot.next { border-color:rgba(255,199,44,.4); background:rgba(255,199,44,.07); }
+.slot .dot { width:8px; height:8px; border-radius:9999px; flex:none; }
+.slot.done .dot { background:var(--tertiary); }
+.slot.next .dot { background:var(--primary); box-shadow:0 0 8px rgba(255,199,44,.8); }
+.slot.pending .dot { background:var(--faint); }
+.slot .t { font-size:13px; font-weight:600; }
+.slot .d { font-size:9px; color:var(--faint); text-transform:uppercase; letter-spacing:.08em; }
+.health-row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; font-size:11px; color:var(--dim); }
+.health-row .mono { font-family:'JetBrains Mono',monospace; font-size:10px; }
+
+/* Queue map */
+.queue-map { display:grid; grid-template-columns:repeat(auto-fill,minmax(36px,1fr)); gap:6px; }
+.qcell {
+  aspect-ratio:1; border-radius:8px; border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.02); color:var(--faint);
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:600; font-family:'JetBrains Mono',monospace;
+  transition:transform .15s;
+}
+.qcell:hover { transform:translateY(-2px); }
+.qcell.done { background:rgba(255,199,44,.16); border-color:rgba(255,199,44,.45); color:#ffd94d; }
+.qcell.fail { background:rgba(226,73,59,.18); border-color:rgba(226,73,59,.5); color:#ff8a7d; }
+.qcell.nextup { border-color:#2f6bff; color:#8fb0ff; background:rgba(47,107,255,.12); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(47,107,255,.35);} 50%{ box-shadow:0 0 0 5px rgba(47,107,255,0);} }
+.legend { display:flex; gap:14px; flex-wrap:wrap; font-size:10px; color:var(--dim); }
+.legend .li { display:flex; align-items:center; gap:5px; }
+.legend .sw { width:9px; height:9px; border-radius:3px; display:inline-block; }
+
+/* Recent posts */
+.post-list { display:grid; gap:6px; }
+.post-row {
+  display:flex; align-items:center; gap:10px;
+  border:1px solid rgba(255,255,255,.05); border-radius:8px; padding:7px 10px;
+  font-size:11px; background:rgba(255,255,255,.015);
+}
+.post-row .num { font-family:'JetBrains Mono',monospace; font-weight:600; color:#ffd94d; min-width:28px; }
+.post-row .when { color:var(--dim); margin-left:auto; font-size:10px; }
+.post-row .mid { color:var(--faint); font-family:'JetBrains Mono',monospace; font-size:9px; }
+
+/* Tables / bars / charts */
 table { width:100%; border-collapse:collapse; font-size:11px; }
 th { text-align:left; padding:8px 10px; color:var(--faint); font-weight:500; font-size:10px; text-transform:uppercase; letter-spacing:.06em; border-bottom:1px solid rgba(255,255,255,.05); }
 td { padding:8px 10px; border-bottom:1px solid rgba(255,255,255,.03); color:#D4D4D8; }
 tr:hover td { background:rgba(255,255,255,.02); }
 .bar-track { height:8px; border-radius:9999px; background:rgba(255,255,255,.06); overflow:hidden; width:100%; }
 .bar-fill { height:100%; border-radius:9999px; transition:width .6s ease; }
-.mono { font-family:'SF Mono',Menlo,Consolas,monospace; }
+.mono { font-family:'JetBrains Mono',Menlo,Consolas,monospace; }
 .status-dot { display:inline-block; width:7px; height:7px; border-radius:9999px; margin-right:6px; }
 .chart-box { position:relative; height:220px; }
 .chart-box-sm { position:relative; height:160px; }
-footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,255,.05); text-align:center; font-size:10px; color:var(--faint); }
-.badge { border-radius:9999px; padding:4px 12px; font-size:11px; font-weight:500; border:1px solid; }
-.badge-ok { border-color:rgba(255,199,44,.3); background:rgba(255,199,44,.1); color:#ffc72c; }
-.badge-warn { border-color:rgba(245,158,11,.3); background:rgba(245,158,11,.1); color:var(--tertiary); }
+footer { margin-top:36px; padding-top:16px; border-top:1px solid rgba(255,255,255,.05); text-align:center; font-size:10px; color:var(--faint); }
 .mb-4 { margin-bottom:16px; } .mb-3 { margin-bottom:12px; } .mt-2 { margin-top:8px; }
-.flex { display:flex; } .between { justify-content:space-between; } .items-end { align-items:flex-end; } .wrap { flex-wrap:wrap; }
+.flex { display:flex; } .between { justify-content:space-between; } .items-end { align-items:flex-end; } .items-center { align-items:center; } .wrap { flex-wrap:wrap; }
+.gap-8 { gap:8px; } .gap-12 { gap:12px; }
 </style>
 </head>
 <body>
@@ -110,15 +193,15 @@ footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,25
 
 <main>
   <header id="header" class="mb-4">
-    <div class="flex between items-end wrap" style="gap:12px;">
+    <div class="flex between items-end wrap gap-12">
       <div>
-        <p class="hero-meta label" style="color:#ffc72c;text-transform:uppercase;letter-spacing:.18em;font-weight:500;">OgleTrends · Revenue Command</p>
-        <h1 class="hero-title" style="font-size:36px;font-weight:500;letter-spacing:-.025em;line-height:40px;margin-top:4px;">E-Book Automation</h1>
+        <p class="hero-meta label" style="color:#ffc72c;text-transform:uppercase;letter-spacing:.18em;font-weight:600;">OgleTrends · Automation Command</p>
+        <h1 class="hero-title" style="font-size:36px;font-weight:600;letter-spacing:-.025em;line-height:40px;margin-top:4px;">E-Book Automation</h1>
         <p class="hero-meta" style="font-size:12px;color:var(--faint);margin-top:4px;"><span id="meta-sales">—</span> sales all-time · <span id="meta-ig">—</span> IG posts · data <span id="meta-time">—</span></p>
       </div>
-      <div class="flex" style="gap:8px;">
+      <div class="flex wrap gap-8 items-center">
         <span class="badge badge-warn" id="badge-pace">● —% OF PACE</span>
-        <span class="badge" style="border-color:var(--border);background:rgba(255,255,255,.03);color:var(--dim);" id="badge-range">—</span>
+        <span class="badge badge-ghost" id="badge-range">—</span>
       </div>
     </div>
     <div class="hero-bar" style="margin-top:16px;height:4px;border-radius:9999px;background:rgba(255,255,255,.06);overflow:hidden;">
@@ -126,24 +209,90 @@ footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,25
     </div>
   </header>
 
-  <!-- Period filter -->
-  <div id="filters" class="mb-4 flex wrap" style="gap:8px;align-items:center;">
-    <span class="label" style="text-transform:uppercase;letter-spacing:.08em;">Period</span>
-    <button class="pill active" data-range="all">All time</button>
-    <button class="pill" data-range="30d">30 days</button>
-    <button class="pill" data-range="7d">7 days</button>
-    <button class="pill pill-ghost" data-range="custom">Custom</button>
-    <span style="display:inline-flex;gap:6px;margin-left:8px;align-items:center;">
-      <input type="date" id="from" />
-      <span style="font-size:11px;color:var(--faint);">→</span>
-      <input type="date" id="to" />
-    </span>
+  <!-- ══════════ UPLOADS PROGRESS (hero) ══════════ -->
+  <div class="section-title">Uploads progress</div>
+  <section class="uploads-hero mb-4">
+    <div class="shell"><div class="card">
+      <p class="ring-label">Content bank · <span id="bank-label">—</span></p>
+      <div class="ring-wrap">
+        <div class="ring">
+          <svg width="190" height="190" viewBox="0 0 190 190">
+            <defs>
+              <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ffc72c"/><stop offset="100%" stop-color="#2f6bff"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-bg" cx="95" cy="95" r="80"/>
+            <circle class="ring-fg" id="ringFg" cx="95" cy="95" r="80" stroke-dasharray="502.65" stroke-dashoffset="502.65"/>
+          </svg>
+          <div class="ring-center">
+            <span class="ring-pct" id="ringPct">0%</span>
+            <span class="ring-sub" id="ringCount">—</span>
+          </div>
+        </div>
+        <div class="ring-facts">
+          <div class="fact"><b id="factRemaining">—</b><span>to go</span></div>
+          <div class="fact"><b id="factRunway">—</b><span>days left</span></div>
+          <div class="fact"><b id="factCadence">—</b><span>per day</span></div>
+        </div>
+      </div>
+    </div></div>
+
+    <div class="shell"><div class="card countdown-card">
+      <div class="countdown-head">
+        <div>
+          <p class="h2">Next drop</p>
+          <p class="sub" id="nextSlotLabel">—</p>
+        </div>
+        <span class="badge badge-ghost" id="queueHealth">—</span>
+      </div>
+      <div class="countdown">
+        <span class="big mono" id="countdownVal">--:--:--</span>
+        <span class="lbl" id="countdownHint">until next post</span>
+      </div>
+      <div class="slot-strip" id="slotStrip"></div>
+      <div class="health-row">
+        <span>Queue updated <span class="mono" id="qUpdated">—</span></span>
+        <span>·</span>
+        <span>failed <span class="mono" id="qFailed">—</span></span>
+        <span>·</span>
+        <span id="sourceBadges"></span>
+      </div>
+      <div>
+        <div class="flex between items-center mb-3">
+          <p class="h2">Queue map</p>
+          <div class="legend">
+            <span class="li"><span class="sw" style="background:rgba(255,199,44,.5);"></span>posted</span>
+            <span class="li"><span class="sw" style="background:rgba(226,73,59,.6);"></span>failed</span>
+            <span class="li"><span class="sw" style="background:rgba(47,107,255,.6);"></span>next up</span>
+            <span class="li"><span class="sw" style="background:rgba(255,255,255,.12);"></span>queued</span>
+          </div>
+        </div>
+        <div class="queue-map" id="queueMap"></div>
+      </div>
+      <div>
+        <p class="h2 mb-3">Recent posts</p>
+        <div class="post-list" id="postList"></div>
+      </div>
+    </div></div>
+  </section>
+
+  <!-- ══════════ REVENUE ══════════ -->
+  <div class="section-title">Revenue</div>
+  <div class="flex between items-center wrap gap-8 mb-4">
+    <p class="h2" style="font-size:15px;">Store performance</p>
+    <div class="seg" id="filters">
+      <button data-range="all">All</button>
+      <button class="active" data-range="30d">30d</button>
+      <button data-range="7d">7d</button>
+      <button data-range="custom" id="customBtn">Custom</button>
+      <input type="date" id="from" style="display:none;" />
+      <input type="date" id="to" style="display:none;" />
+    </div>
   </div>
 
-  <!-- KPI row -->
   <div id="kpis" class="grid grid-4 mb-4"></div>
 
-  <!-- Money grid -->
   <section class="grid grid-3 mb-4">
     <div class="span-2"><div class="shell"><div class="card"><p class="h2">Daily target vs actual</p><p class="sub">Dashed = $500/day sprint target · <span id="chart-period">—</span></p><div class="chart-box mt-2"><canvas id="chart-daily"></canvas></div></div></div></div>
     <div class="shell"><div class="card"><p class="h2">Revenue by product</p><p class="sub">All-time, ranked</p><div id="product-bars" class="mt-2" style="display:grid;gap:12px;"></div></div></div>
@@ -152,23 +301,24 @@ footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,25
     <div class="shell"><div class="card"><p class="h2">Pacing calculator</p><p class="sub">Selected avg vs $500/day</p><div id="pacing" class="mt-2"></div></div></div>
   </section>
 
-  <!-- IG + risk grid -->
+  <!-- ══════════ ACCOUNT + RISK ══════════ -->
+  <div class="section-title">Account &amp; risk</div>
   <section class="grid grid-3">
-    <div class="shell"><div class="card"><p class="h2">Instagram posting status</p><p class="sub">Live queue from ig_queue_state</p><div id="ig-status" class="mt-2"></div></div></div>
-    <div class="shell"><div class="card"><p class="h2">Account pulse</p><p class="sub">Followers &amp; media count</p><div id="ig-account" class="mt-2"></div></div></div>
+    <div class="shell"><div class="card"><p class="h2">Instagram account pulse</p><p class="sub">Public stats, sanitized</p><div id="ig-account" class="mt-2"></div></div></div>
     <div class="shell"><div class="card"><p class="h2">Refund &amp; dispute monitor</p><p class="sub">All-time risk gates</p><div id="risk" class="mt-2"></div></div></div>
+    <div class="shell"><div class="card"><p class="h2">Pipeline health</p><p class="sub">Sources behind this dashboard</p><div id="pipeline" class="mt-2"></div></div></div>
   </section>
 
   <footer>
-    OgleTrends E-Book Automation · live Gumroad + IG data · refreshed every ~10 min · data sanitized for public dashboard
+    OgleTrends E-Book Automation · live Gumroad + IG data · auto-refreshes every 60s · data sanitized for public dashboard
   </footer>
 </main>
 
 <script>
-/* ── WebGL dot-matrix (Nexus spec: green dots, breathing pulse, pointer drift, DOM fallback) ── */
+/* ── WebGL dot-matrix background (DOM fallback) ── */
 (function(){
   const canvas = document.getElementById('webgl');
-  let renderer, scene, camera, points, raf;
+  let renderer, scene, camera, points;
   let mx=0, my=0;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   try {
@@ -186,12 +336,11 @@ footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,25
     scene.add(points);
     (function tick(){
       const t = performance.now()*0.00025;
-      const b = 1 + Math.sin(t*2)*0.03;
-      points.scale.set(b,b,b);
+      points.scale.setScalar(1 + Math.sin(t*2)*0.03);
       points.rotation.y += (mx-points.rotation.y)*0.02;
       points.rotation.x += (my-points.rotation.x)*0.02;
       renderer.render(scene,camera);
-      if(!reduced) raf = requestAnimationFrame(tick);
+      if(!reduced) requestAnimationFrame(tick);
     })();
     window.addEventListener('resize', ()=>{ renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); });
     window.addEventListener('pointermove', e=>{ mx=(e.clientX/innerWidth-.5)*.4; my=(e.clientY/innerHeight-.5)*.4; });
@@ -205,13 +354,39 @@ footer { margin-top:32px; padding-top:16px; border-top:1px solid rgba(255,255,25
 
 /* ── State ── */
 let DATA = null;
-let rangeMode = 'all'; // all | 30d | 7d | custom
+let rangeMode = '30d';
 let customFrom = null, customTo = null;
+let chartDaily = null, chartAov = null;
 const fmt = n => '$' + Number(n).toLocaleString('en-US', {maximumFractionDigits: n>=100?0:2});
-const pct = n => (n>=0?'+':'') + n.toFixed(1) + '%';
+const pct = n => (n>=0?'+':'') + Number(n).toFixed(1) + '%';
+const short = n => n>=1e6 ? (n/1e6).toFixed(1)+'M' : n>=1e3 ? (n/1e3).toFixed(1)+'K' : String(n);
 
+/* GST helpers (slots are GST; compute regardless of viewer timezone) */
+const GST_OFFSET = 4*3600*1000;
+function gstNow(){ return new Date(Date.now() + GST_OFFSET); }
+function slotDate(timeStr, gnow){
+  const [h,m] = timeStr.split(':').map(Number);
+  const d = new Date(gnow); d.setHours(h,m,0,0);
+  return d;
+}
+function nextSlotInfo(){
+  const gnow = gstNow();
+  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
+  const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
+  if(!slots.length) return null;
+  let best=null;
+  for(const s of slots){
+    let d = slotDate(s.time, gnow);
+    if(d <= gnow) d = new Date(d.getTime() + 86400000);
+    if(!best || d < best.when) best = {label:s.label, time:s.time, tz:s.tz, when:d};
+  }
+  return best;
+}
+function pad(n){ return String(n).padStart(2,'0'); }
+
+/* ── Period filter ── */
 function filterDays(){
-  const all = DATA.gumroad.daily_all;
+  const all = (DATA.gumroad&&DATA.gumroad.daily_all)||[];
   if(rangeMode==='all') return all;
   if(rangeMode==='30d') return all.slice(-30);
   if(rangeMode==='7d') return all.slice(-7);
@@ -219,123 +394,199 @@ function filterDays(){
 }
 function sum(days,k){ return days.reduce((s,d)=>s+(d[k]||0),0); }
 
-/* ── Renderers ── */
-function renderKpis(days){
-  const rev = sum(days,'revenue');
-  const units = days.reduce((s,d)=>s+(d.units||0),0);
-  const aov = units? rev/units : 0;
-  const today = days.length? days[days.length-1] : null;
-  const el = document.getElementById('kpis');
-  el.innerHTML = [
-    kpiCard('Revenue · period', fmt(rev), '💰', ''),
-    kpiCard('Units · period', String(units), '📦', 'color:var(--secondary)'),
-    kpiCard('Avg order value', fmt(aov), '🧾', 'color:var(--tertiary)'),
-    kpiCard('Latest day', today? fmt(today.revenue)+' · '+today.day.slice(5) : '—', '⚡', today&&today.revenue>=500?'color:#16a06b':'color:#e2493b'),
-  ].join('');
-}
-function kpiCard(label,val,icon,style){
-  return `<div class="card"><div class="flex between"><p class="label">${label}</p><span style="${style}">${icon}</span></div><p class="kpi">${val}</p></div>`;
-}
-
-function renderProducts(){
-  const ps = DATA.gumroad.products_all || [];
-  const max = Math.max(...ps.map(p=>p.revenue));
-  const colors = ['#ffc72c','#2f6bff','#16a06b','#a8b0bc'];
-  document.getElementById('product-bars').innerHTML = ps.map((p,i)=>`
-    <div>
-      <div class="flex between" style="font-size:11px;margin-bottom:3px;">
-        <span style="color:#D4D4D8;">${p.name.replace('Street Smart ','').replace('The Cheat Codes for Real Life','').trim()||p.name}</span>
-        <span style="color:var(--faint);">${fmt(p.revenue)} · ${((p.revenue/Math.max(1,sum(ps,'revenue')))*100).toFixed(0)}%</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill" style="width:${(p.revenue/max*100).toFixed(0)}%;background:${colors[i%4]};"></div></div>
-    </div>`).join('');
-}
-
-function renderWow(days){
-  const last7 = days.slice(-7), prev7 = days.slice(-14,-7);
-  const cur = sum(last7,'revenue'), prev = sum(prev7,'revenue');
-  const curU = sum(last7,'units'), prevU = sum(prev7,'units');
-  const d = (c,p)=>((c-p)/Math.max(1,p))*100;
-  const rows = [
-    ['Revenue', fmt(cur), fmt(prev), d(cur,prev)],
-    ['Units', String(curU), String(prevU), d(curU,prevU)],
-    ['AOV', fmt(cur/Math.max(1,curU)), fmt(prev/Math.max(1,prevU)), d(cur/Math.max(1,curU), prev/Math.max(1,prevU))],
-  ];
-  document.getElementById('wow-rows').innerHTML = rows.map(r=>`
-    <div class="flex between" style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;">
-      <div><p class="label">${r[0]}</p><p style="font-size:13px;font-weight:500;">${r[1]} <span style="font-size:11px;color:var(--faint);">← ${r[2]}</span></p></div>
-      <span class="${r[3]>=0?'delta-up':'delta-down'}">${r[3]>=0?'▲':'▼'} ${Math.abs(r[3]).toFixed(1)}%</span>
-    </div>`).join('');
-}
-
-function renderPacing(days){
-  const avg = days.length? sum(days,'revenue')/days.length : 0;
-  const target = 500;
-  const onTrack = avg>=target;
-  const daysTo = Math.ceil(5000/avg);
-  document.getElementById('pacing').innerHTML = `
-    <div class="flex between items-end" style="margin-bottom:10px;">
-      <div><p class="label">Period avg</p><p class="kpi" style="font-size:22px;">${fmt(avg)}<span style="font-size:12px;color:var(--faint);">/day</span></p></div>
-      <div><p class="label">Target</p><p class="kpi" style="font-size:22px;color:var(--tertiary);">${fmt(target)}<span style="font-size:12px;color:var(--faint);">/day</span></p></div>
-    </div>
-    <div class="bar-track" style="height:6px;margin-bottom:10px;"><div class="bar-fill" style="width:${Math.min(100,(avg/target*100)).toFixed(0)}%;background:${onTrack?'var(--primary)':'var(--tertiary)'};"></div></div>
-    <div style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;font-size:12px;color:${onTrack?'var(--primary)':'var(--tertiary)'};">
-      ${onTrack?'✓ ON TRACK — hits $5,000 in ~'+daysTo+' days.':'⚠ BEHIND — $5,000 takes ~'+daysTo+' days. Need '+(target-avg).toFixed(0)+'× lift.'}
-    </div>`;
-}
-
-function renderIG(){
-  const ig = DATA.ig;
-  const published = (ig.state.published||[]).length;
-  const failed = (ig.state.failed||[]).length;
+/* ── Renderers: UPLOADS ── */
+function renderUploads(){
+  const ig = DATA.ig||{};
+  const st = ig.state||{};
   const total = DATA.total_videos||57;
-  document.getElementById('ig-status').innerHTML = `
-    <div class="flex between" style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
-      <div><p class="label">Published</p><p style="font-size:16px;font-weight:500;color:#ffc72c;">${published}<span style="font-size:11px;color:var(--faint);"> / ${total}</span></p></div>
-      <div style="text-align:right;"><p class="label">Failed</p><p style="font-size:16px;font-weight:500;color:${failed?'#e2493b':'var(--dim)'};">${failed}</p></div>
-    </div>
-    <div class="bar-track"><div class="bar-fill" style="width:${(published/total*100).toFixed(0)}%;background:var(--primary);"></div></div>
-    <p style="font-size:10px;color:var(--faint);margin-top:6px;">last updated <span class="mono">${(ig.state.last_updated||'').slice(11,16)}</span> · source ${ig.state.source||'local'}</p>`;
-  const acc = ig.account;
-  document.getElementById('ig-account').innerHTML = acc? `
-    <div class="flex between" style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;margin-bottom:8px;">
-      <div><p class="label">Followers</p><p style="font-size:16px;font-weight:500;">${(acc.followers||0).toLocaleString()}</p></div>
-      <div style="text-align:right;"><p class="label">Media</p><p style="font-size:16px;font-weight:500;">${acc.media_count||0}</p></div>
-    </div>
-    <p style="font-size:11px;color:var(--dim);">@${acc.username||'ogletrends'} <span class="status-dot" style="background:#16a06b;"></span><span style="color:var(--faint);">live</span></p>`
-    : '<p style="font-size:11px;color:var(--faint);">Account info unavailable (stale)</p>';
+  const pub = st.published||[];
+  const failed = st.failed||[];
+  const postedAt = st.posted_at||{};
+  const pubSet = new Set(pub), failSet = new Set(failed);
+  const remaining = Math.max(0, total - pub.length);
+  const perDay = (DATA.schedule||[]).length || 2;
+  const runway = perDay>0 ? Math.ceil(remaining/perDay) : '—';
+
+  document.getElementById('bank-label').textContent = pub.length+' / '+total+' published';
+  document.getElementById('ringCount').textContent = pub.length+' of '+total;
+  document.getElementById('factRemaining').textContent = remaining;
+  document.getElementById('factRunway').textContent = runway;
+  document.getElementById('factCadence').textContent = perDay;
+
+  const pctDone = total? Math.round(pub.length/total*100) : 0;
+  const C = 2*Math.PI*80;
+  document.getElementById('ringPct').textContent = pctDone+'%';
+  const fg = document.getElementById('ringFg');
+  requestAnimationFrame(()=>{ fg.style.strokeDashoffset = C*(1 - pub.length/total); });
+
+  document.getElementById('qUpdated').textContent = (st.last_updated||'—').replace('T',' ').slice(5,16);
+  document.getElementById('qFailed').textContent = failed.length;
+
+  // queue health badge
+  const qh = document.getElementById('queueHealth');
+  if(failed.length){ qh.textContent='⚠ '+failed.length+' failed'; qh.className='badge badge-danger'; }
+  else if(remaining<=4){ qh.textContent='LOW STOCK'; qh.className='badge badge-warn'; }
+  else { qh.textContent='● HEALTHY'; qh.className='badge badge-ok'; }
+
+  // sources
+  const src = DATA.sources||{};
+  const sb = document.getElementById('sourceBadges');
+  sb.innerHTML = '';
+  for(const [k,v] of Object.entries(src)){
+    const b=document.createElement('span');
+    b.className = 'badge '+(v==='ok'?'badge-ok': v==='stale'?'badge-warn':'badge-danger');
+    b.textContent = k+(v==='ok'?' ●': v==='stale'?' ◐':' ✕');
+    b.style.marginRight='6px'; b.style.padding='2px 8px'; b.style.fontSize='10px';
+    sb.appendChild(b);
+  }
+
+  // queue map
+  const qm = document.getElementById('queueMap');
+  const nextUp = [...Array(total+1).keys()].slice(1).find(n => !pubSet.has(n) && !failSet.has(n));
+  qm.innerHTML='';
+  for(let n=1;n<=total;n++){
+    const c=document.createElement('div');
+    c.className='qcell'+(pubSet.has(n)?' done': failSet.has(n)?' fail': n===nextUp?' nextup':'');
+    c.textContent=n;
+    c.title = pubSet.has(n)?('Video #'+n+' — posted'+(postedAt[n]?' '+postedAt[n].replace('T',' ').slice(0,16)+' GST':' (pre-tracking)'))
+            : failSet.has(n)?('Video #'+n+' — FAILED')
+            : n===nextUp?('Video #'+n+' — next up')
+            : ('Video #'+n+' — queued');
+    qm.appendChild(c);
+  }
+
+  // recent posts
+  const pl = document.getElementById('postList');
+  const withTime = pub.filter(n=>postedAt[n]).sort((a,b)=> postedAt[b].localeCompare(postedAt[a]));
+  const withoutTime = pub.length - withTime.length;
+  pl.innerHTML='';
+  if(!withTime.length){
+    const d=document.createElement('div');
+    d.className='post-row';
+    d.innerHTML='<span class="when">Post timestamps start recording from the next drop (tonight 18:00 GST) — '+pub.length+' earlier posts are pre-tracking.</span>';
+    pl.appendChild(d);
+  } else {
+    withTime.slice(0,8).forEach(n=>{
+      const r=document.createElement('div');
+      r.className='post-row';
+      const t = postedAt[n].replace('T',' ');
+      r.innerHTML = '<span class="num">#'+n+'</span><span>'+t.slice(0,16)+' GST</span><span class="mid">'+(st.published&&st.published[n]?'media '+st.published[n]:'')+'</span>';
+      pl.appendChild(r);
+    });
+    if(withoutTime>0){
+      const d=document.createElement('div');
+      d.className='post-row';
+      d.innerHTML='<span class="when">+ '+withoutTime+' earlier posts (pre-tracking)</span>';
+      pl.appendChild(d);
+    }
+  }
 }
 
-function renderRisk(){
-  const at = DATA.gumroad.all_time||{};
-  const disputeRate = at.units? ((at.disputes||0)/at.units*100).toFixed(2)+'%' : '—';
-  document.getElementById('risk').innerHTML = `
-    <div class="grid grid-2" style="gap:8px;margin-bottom:8px;">
-      <div style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;">
-        <p class="label">Dispute rate</p><p style="font-size:16px;font-weight:500;color:${at.disputes>6?'#e2493b':'#16a06b'};">${disputeRate}</p>
-        <p style="font-size:10px;color:var(--faint);">gate &lt;1%</p>
-      </div>
-      <div style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;">
-        <p class="label">Refunds</p><p style="font-size:16px;font-weight:500;color:#ffc72c;">${at.refunds||0}</p>
-        <p style="font-size:10px;color:var(--faint);">${fmt(at.refund_amount||0)} lost</p>
-      </div>
-    </div>
-    <div style="border:1px solid var(--border);background:rgba(255,255,255,.02);border-radius:8px;padding:10px 12px;">
-      <p class="label">All-time</p>
-      <p style="font-size:13px;font-weight:500;margin-top:3px;">${fmt(at.revenue||0)} · ${at.units||0} units</p>
-      <p style="font-size:10px;color:var(--faint);">${at.from||'—'} → ${at.to||'—'}</p>
-    </div>`;
+/* ── Countdown tick ── */
+function tickCountdown(){
+  const info = nextSlotInfo();
+  const val = document.getElementById('countdownVal');
+  const lbl = document.getElementById('nextSlotLabel');
+  const hint = document.getElementById('countdownHint');
+  if(!info){ val.textContent='--:--:--'; lbl.textContent='no schedule'; return; }
+  const diff = info.when.getTime() - Date.now();
+  const s = Math.max(0, Math.floor(diff/1000));
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
+  val.textContent = pad(h)+':'+pad(m)+':'+pad(sec);
+  lbl.textContent = info.label+' · '+info.time+' '+info.tz;
+  hint.textContent = h>0 ? 'until next post' : 'minutes until next post';
+  renderSlotStrip(info);
+}
+function renderSlotStrip(next){
+  const gnow = gstNow();
+  const strip = document.getElementById('slotStrip');
+  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
+  const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
+  strip.innerHTML='';
+  slots.forEach(s=>{
+    const d = slotDate(s.time, gnow);
+    const isNext = next && d.getTime() === next.when.getTime();
+    const state = d.getTime() <= gnow.getTime() ? 'done' : (isNext ? 'next' : 'pending');
+    const div=document.createElement('div');
+    div.className='slot '+(state==='next'?'next':state==='done'?'done':'pending');
+    div.innerHTML='<span class="dot"></span><div><div class="t">'+s.label+'</div><div class="d">'+s.time+' '+s.tz+' · '+(state==='done'?'done':state==='next'?'next':'upcoming')+'</div></div>';
+    strip.appendChild(div);
+  });
 }
 
-/* ── Charts ── */
-let chartDaily=null, chartAov=null;
+/* ── Renderers: REVENUE ── */
+function renderKpis(days){
+  const g = DATA.gumroad||{};
+  const wow = g.week_over_week||{};
+  const k = document.getElementById('kpis');
+  k.innerHTML='';
+  const items = [
+    {t:'Today', v:fmt(g.today_revenue||0), s:g.today_units+' units today', d:null},
+    {t:'14-day revenue', v:fmt(g.total_revenue_14d||0), s:g.total_units_14d+' units', d:null},
+    {t:'AOV · 14d', v:fmt(g.aov_14d||0), s:'avg per sale', d:null},
+    {t:'Week over week', v:(wow.change_pct==null?'—':pct(wow.change_pct)), s:'$'+fmt(wow.current||0)+' vs $'+fmt(wow.previous||0), d:wow.change_pct},
+  ];
+  items.forEach(it=>{
+    const c=document.createElement('div');
+    c.className='shell';
+    c.innerHTML='<div class="card"><p class="label">'+it.t+'</p><p class="kpi">'+it.v+'</p>'+
+      (it.d!=null ? '<p class="'+(it.d>=0?'delta-up':'delta-down')+'">'+(it.d>=0?'▲':'▼')+' '+Math.abs(it.d).toFixed(1)+'% vs prev week</p>'
+                  : '<p class="sub">'+it.s+'</p>')+'</div>';
+    k.appendChild(c);
+  });
+  document.getElementById('meta-sales').textContent = (g.all_time&&g.all_time.units!=null)?g.all_time.units:'—';
+  document.getElementById('meta-ig').textContent = ((DATA.ig&&DATA.ig.state&&DATA.ig.state.published)||[]).length;
+}
+function renderProducts(){
+  const g = DATA.gumroad||{};
+  const items = (g.products_all||[]).slice(0,6);
+  const max = Math.max(1, ...items.map(i=>i.revenue));
+  const el = document.getElementById('product-bars');
+  el.innerHTML = items.length? '' : '<p class="sub">No data</p>';
+  items.forEach(it=>{
+    const row=document.createElement('div');
+    row.innerHTML='<div class="flex between" style="font-size:11px;margin-bottom:4px;"><span style="color:var(--dim);max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+it.name+'</span><span style="font-weight:600;">'+fmt(it.revenue)+'</span></div>'+
+      '<div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#ffc72c,#ff9f2c);" data-w="'+(it.revenue/max*100)+'"></div></div>';
+    el.appendChild(row);
+  });
+  requestAnimationFrame(()=>{ el.querySelectorAll('.bar-fill').forEach(b=>{ b.style.width = b.dataset.w+'%'; }); });
+}
+function renderWow(days){
+  const g = DATA.gumroad||{};
+  const wow = g.week_over_week||{};
+  const el = document.getElementById('wow-rows');
+  el.innerHTML='';
+  const rows=[
+    {k:'Current (last 7)', v:fmt(wow.current||0), d:(wow.change_pct!=null&&wow.change_pct>=0)},
+    {k:'Previous (prior 7)', v:fmt(wow.previous||0), d:null},
+  ];
+  rows.forEach(r=>{
+    const d=document.createElement('div');
+    d.className='flex between';
+    d.innerHTML='<span style="font-size:11px;color:var(--dim);">'+r.k+'</span><span style="font-size:13px;font-weight:600;">'+r.v+'</span>';
+    el.appendChild(d);
+  });
+  const d=document.createElement('div');
+  d.className='flex between items-center';
+  d.innerHTML='<span style="font-size:11px;color:var(--dim);">Change</span><span class="'+(wow.change_pct!=null&&wow.change_pct>=0?'delta-up':'delta-down')+'">'+(wow.change_pct==null?'—':(wow.change_pct>=0?'▲ +':'▼ ')+Math.abs(wow.change_pct).toFixed(1)+'%')+'</span>';
+  el.appendChild(d);
+}
+function renderPacing(days){
+  const el = document.getElementById('pacing');
+  const avg = days.length? sum(days,'revenue')/days.length : 0;
+  const pace = Math.min(100, Math.round(avg/500*100));
+  el.innerHTML =
+    '<div class="flex between" style="margin-bottom:6px;"><span style="font-size:11px;color:var(--dim);">Avg / day</span><span style="font-size:15px;font-weight:600;">'+fmt(avg)+'</span></div>'+
+    '<div class="flex between" style="margin-bottom:6px;"><span style="font-size:11px;color:var(--dim);">vs $500 target</span><span style="font-size:15px;font-weight:600;">'+pace+'%</span></div>'+
+    '<div class="bar-track" style="height:10px;"><div class="bar-fill" style="width:'+pace+'%;background:'+(pace>=100?'linear-gradient(90deg,#16a06b,#2fd18f)':'linear-gradient(90deg,#ffc72c,#ff9f2c)')+';"></div></div>';
+}
 function renderCharts(days){
   const labels = days.map(d=>d.day.slice(5));
   const revs = days.map(d=>d.revenue);
   const aovs = days.map(d=>d.units? +(d.revenue/d.units).toFixed(2) : 0);
   const tgt = labels.map(()=>500);
   document.getElementById('chart-period').textContent = days.length+' days';
-
+  const axis = { ticks:{color:'#A1A1AA',font:{size:9},maxTicksLimit:8}, grid:{color:'rgba(255,255,255,.04)'} };
   if(chartDaily) chartDaily.destroy();
   chartDaily = new Chart(document.getElementById('chart-daily'), {
     type:'bar',
@@ -344,59 +595,104 @@ function renderCharts(days){
       {type:'line', label:'Target $500', data:tgt, borderColor:'#2f6bff', borderDash:[6,4], borderWidth:1.5, pointRadius:0, fill:false},
     ]},
     options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#A1A1AA',font:{size:10},boxWidth:12}}}, scales:{
-      x:{ticks:{color:'#A1A1AA',font:{size:9},maxTicksLimit:10},grid:{display:false}},
-      y:{ticks:{color:'#A1A1AA',font:{size:9},callback:v=>'$'+v},grid:{color:'rgba(255,255,255,.04)'}},
+      x:{...axis, grid:{display:false}},
+      y:{...axis, ticks:{...axis.ticks, callback:v=>'$'+v}},
     }}
   });
-
   if(chartAov) chartAov.destroy();
   chartAov = new Chart(document.getElementById('chart-aov'), {
     type:'line',
     data:{ labels, datasets:[{label:'AOV', data:aovs, borderColor:'#16a06b', borderWidth:2, fill:true, backgroundColor:'rgba(22,160,107,.15)', tension:.35, pointRadius:0}]},
     options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{
-      x:{ticks:{color:'#A1A1AA',font:{size:9},maxTicksLimit:8},grid:{display:false}},
-      y:{ticks:{color:'#A1A1AA',font:{size:9},callback:v=>'$'+v},grid:{color:'rgba(255,255,255,.04)'}},
+      x:{...axis, grid:{display:false}},
+      y:{...axis, ticks:{...axis.ticks, callback:v=>'$'+v}},
     }}
   });
 }
 
+/* ── Renderers: ACCOUNT + RISK ── */
+function renderIG(){
+  const acc = (DATA.ig&&DATA.ig.account)||null;
+  const el = document.getElementById('ig-account');
+  if(!acc){ el.innerHTML='<p class="sub">Account data unavailable</p>'; return; }
+  el.innerHTML =
+    '<div class="flex between" style="margin-bottom:8px;"><span style="font-size:11px;color:var(--dim);">Username</span><span style="font-size:13px;font-weight:600;">@'+acc.username+'</span></div>'+
+    '<div class="flex between" style="margin-bottom:8px;"><span style="font-size:11px;color:var(--dim);">Followers</span><span style="font-size:18px;font-weight:600;">'+short(acc.followers||0)+'</span></div>'+
+    '<div class="flex between"><span style="font-size:11px;color:var(--dim);">Media count</span><span style="font-size:18px;font-weight:600;">'+(acc.media_count||'—')+'</span></div>';
+}
+function renderRisk(){
+  const g = DATA.gumroad||{};
+  const at = g.all_time||{};
+  const el = document.getElementById('risk');
+  const gates=[
+    {k:'Refunds (all-time)', v:at.refunds||0, w:(at.refunds||0)>=5},
+    {k:'Disputes (all-time)', v:at.disputes||0, w:(at.disputes||0)>=3},
+    {k:'Refunded amount', v:fmt(at.refund_amount||0), w:false},
+    {k:'Sales (all-time)', v:(at.units||0)+' · '+fmt(at.revenue||0), w:false},
+  ];
+  el.innerHTML = gates.map(gate=>
+    '<div class="flex between" style="margin-bottom:8px;"><span style="font-size:11px;color:var(--dim);">'+gate.k+'</span><span style="font-size:13px;font-weight:600;'+(gate.w?'color:#ff7a6b;':'')+'">'+gate.v+'</span></div>'
+  ).join('');
+}
+function renderPipeline(){
+  const src = DATA.sources||{};
+  const el = document.getElementById('pipeline');
+  const names = {ig_account:'IG account fetch', gumroad:'Gumroad sales API'};
+  const rows = Object.keys(src).length? Object.entries(src) : [['no sources','unavailable']];
+  el.innerHTML = rows.map(([k,v])=>{
+    const n = names[k]||k;
+    const dot = v==='ok' ? '<span class="status-dot" style="background:var(--tertiary);"></span>'
+             : v==='stale' ? '<span class="status-dot" style="background:#fbbf24;"></span>'
+             : '<span class="status-dot" style="background:var(--danger);"></span>';
+    const st = v==='ok' ? 'live' : v==='stale' ? 'stale (kept last good)' : 'unavailable';
+    return '<div class="flex between" style="margin-bottom:8px;"><span style="font-size:11px;color:var(--dim);">'+dot+n+'</span><span style="font-size:11px;'+(v==='ok'?'color:#2fd18f;':'color:#fbbf24;')+'">'+st+'</span></div>';
+  }).join('');
+}
+
+/* ── Render all ── */
 function renderAll(){
+  const g = DATA.gumroad||{};
   const days = filterDays();
-  const at = DATA.gumroad.all_time||{};
-  document.getElementById('meta-sales').textContent = at.units||'—';
-  document.getElementById('meta-ig').textContent = (DATA.ig.state.published||[]).length;
-  document.getElementById('meta-time').textContent = (DATA.generated_at||'').replace('T',' ').slice(0,16);
+  const at = g.all_time||{};
   const avg = days.length? sum(days,'revenue')/days.length : 0;
   const pace = Math.min(100, Math.round(avg/500*100));
   const bp = document.getElementById('badge-pace');
   bp.textContent = '● '+(pace>=100?'ON TRACK':pace+'% OF PACE');
   bp.className = 'badge '+(pace>=100?'badge-ok':'badge-warn');
   document.getElementById('pace-fill').style.width = pace+'%';
-  document.getElementById('badge-range').textContent = rangeMode==='all' ? (at.from||'—')+' → '+(at.to||'—') : (days.length?days[0].day+' → '+days[days.length-1].day:'—');
-  renderKpis(days); renderProducts(); renderWow(days); renderPacing(days); renderIG(); renderRisk(); renderCharts(days);
+  document.getElementById('badge-range').textContent = rangeMode==='all' ? (at.from||'—')+' → '+(at.to||'—') : (days.length?days[0].day.slice(5)+' → '+days[days.length-1].day.slice(5):'—');
+  document.getElementById('meta-time').textContent = (DATA.generated_at||'').replace('T',' ').slice(0,16);
+
+  renderUploads();
+  renderKpis(days); renderProducts(); renderWow(days); renderPacing(days); renderCharts(days);
+  renderIG(); renderRisk(); renderPipeline();
+  tickCountdown();
 }
 
 /* ── Filters ── */
-document.querySelectorAll('#filters .pill').forEach(btn=>{
+document.querySelectorAll('#filters button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    document.querySelectorAll('#filters .pill').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     rangeMode = btn.dataset.range;
-    if(rangeMode!=='custom'){ customFrom=null; customTo=null; document.getElementById('from').value=''; document.getElementById('to').value=''; }
+    const showCustom = rangeMode==='custom';
+    document.getElementById('from').style.display = showCustom?'':'none';
+    document.getElementById('to').style.display = showCustom?'':'none';
+    if(!showCustom){ customFrom=null; customTo=null; }
     renderAll();
   });
 });
-document.getElementById('from').addEventListener('change', e=>{ customFrom=e.target.value||null; if(customFrom) rangeMode='custom'; renderAll(); });
-document.getElementById('to').addEventListener('change', e=>{ customTo=e.target.value||null; if(customTo) rangeMode='custom'; renderAll(); });
+document.getElementById('from').addEventListener('change', e=>{ customFrom=e.target.value||null; renderAll(); });
+document.getElementById('to').addEventListener('change', e=>{ customTo=e.target.value||null; renderAll(); });
 
-/* ── Load + intro animation ── */
-let dataTimer = null;
+/* ── Load + polling (cache-busted) ── */
+let firstLoad = true;
 function loadData(animate){
   fetch('data.json?cb='+Date.now()).then(r=>r.json()).then(d=>{
     const first = !DATA;
     DATA = d;
-    document.getElementById('from').min = d.gumroad.all_time?.from || '';
-    document.getElementById('to').max = d.gumroad.all_time?.to || '';
+    document.getElementById('from').min = (d.gumroad&&d.gumroad.all_time&&d.gumroad.all_time.from)||'';
+    document.getElementById('to').max = (d.gumroad&&d.gumroad.all_time&&d.gumroad.all_time.to)||'';
     renderAll();
     if(first && animate){
       gsap.from('.hero-title',{y:24,opacity:0,duration:.6,ease:'power3.out'});
@@ -404,7 +700,6 @@ function loadData(animate){
       gsap.from('.hero-bar',{scaleX:0,transformOrigin:'left',duration:.8,ease:'power2.out',delay:.3});
       gsap.from('.card',{y:18,opacity:0,duration:.45,ease:'power2.out',stagger:.05,delay:.3});
     }
-    // subtle pulse on the meta time so watchers see it's live
     const mt = document.getElementById('meta-time');
     if(mt){ mt.style.transition='color .4s'; mt.style.color='#16a06b'; setTimeout(()=>mt.style.color='', 1200); }
   }).catch(e=>{
@@ -412,7 +707,8 @@ function loadData(animate){
   });
 }
 loadData(true);
-dataTimer = setInterval(()=>loadData(false), 60000);
+setInterval(()=>loadData(false), 60000);
+setInterval(tickCountdown, 1000);
 </script>
 </body>
 </html>
