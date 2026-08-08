@@ -363,22 +363,26 @@ const short = n => n>=1e6 ? (n/1e6).toFixed(1)+'M' : n>=1e3 ? (n/1e3).toFixed(1)
 
 /* GST helpers (slots are GST; compute regardless of viewer timezone) */
 const GST_OFFSET = 4*3600*1000;
-function gstNow(){ return new Date(Date.now() + GST_OFFSET); }
-function slotDate(timeStr, gnow){
+function gstFields(){
+  const g = new Date(Date.now() + GST_OFFSET);
+  return { y:g.getUTCFullYear(), mo:g.getUTCMonth(), d:g.getUTCDate() };
+}
+// Real UTC epoch (ms) of the next occurrence of "HH:MM" GST today
+function slotEpoch(timeStr){
   const [h,m] = timeStr.split(':').map(Number);
-  const d = new Date(gnow); d.setHours(h,m,0,0);
-  return d;
+  const f = gstFields();
+  return Date.UTC(f.y, f.mo, f.d, h, m) - GST_OFFSET;
 }
 function nextSlotInfo(){
-  const gnow = gstNow();
+  const now = Date.now();
   const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
   const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
   if(!slots.length) return null;
   let best=null;
   for(const s of slots){
-    let d = slotDate(s.time, gnow);
-    if(d <= gnow) d = new Date(d.getTime() + 86400000);
-    if(!best || d < best.when) best = {label:s.label, time:s.time, tz:s.tz, when:d};
+    let e = slotEpoch(s.time);
+    if(e <= now) e += 86400000;
+    if(!best || e < best.when) best = {label:s.label, time:s.time, tz:s.tz, when:e};
   }
   return best;
 }
@@ -498,15 +502,15 @@ function tickCountdown(){
   renderSlotStrip(info);
 }
 function renderSlotStrip(next){
-  const gnow = gstNow();
+  const now = Date.now();
   const strip = document.getElementById('slotStrip');
   const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
   const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
   strip.innerHTML='';
   slots.forEach(s=>{
-    const d = slotDate(s.time, gnow);
-    const isNext = next && d.getTime() === next.when.getTime();
-    const state = d.getTime() <= gnow.getTime() ? 'done' : (isNext ? 'next' : 'pending');
+    const d = slotEpoch(s.time);
+    const isNext = next && d === next.when;
+    const state = d <= now ? 'done' : (isNext ? 'next' : 'pending');
     const div=document.createElement('div');
     div.className='slot '+(state==='next'?'next':state==='done'?'done':'pending');
     div.innerHTML='<span class="dot"></span><div><div class="t">'+s.label+'</div><div class="d">'+s.time+' '+s.tz+' · '+(state==='done'?'done':state==='next'?'next':'upcoming')+'</div></div>';
