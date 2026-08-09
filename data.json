@@ -1,47 +1,76 @@
 {
-  "generated_at": "2026-08-09T19:40:26+04:00",
-  "total_videos": 57,
+  "generated_at": "2026-08-09T19:49:10+04:00",
+  "total_videos": 274,
   "ig": {
-    "state": {
-      "published": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        47
-      ],
-      "posted_at": {
-        "15": "2026-08-08T18:01:13",
-        "16": "2026-08-09T00:02:08",
-        "17": "2026-08-09T12:01:24",
-        "18": "2026-08-09T16:31:23",
-        "19": "2026-08-09T18:02:57"
+    "accounts": {
+      "ogletrends": {
+        "name": "Ogle Trends",
+        "username": "ogletrends",
+        "composio_account": "instagram_footer-jeep",
+        "videos": 57,
+        "state": {
+          "published": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            47
+          ],
+          "posted_at": {
+            "15": "2026-08-08T18:01:13",
+            "16": "2026-08-09T00:02:08",
+            "17": "2026-08-09T12:01:24",
+            "18": "2026-08-09T16:31:23",
+            "19": "2026-08-09T18:02:57"
+          },
+          "failed": [],
+          "last_updated": "2026-08-09T19:36:38",
+          "source": "local"
+        },
+        "account": {
+          "followers": 135997,
+          "media_count": 217,
+          "username": "ogletrends"
+        },
+        "stale": false
       },
-      "failed": [],
-      "last_updated": "2026-08-09T18:02:57",
-      "source": "local"
+      "streetsmartkidsusa": {
+        "name": "Street Smart Kids USA",
+        "username": "streetsmartkidsusa",
+        "composio_account": "instagram_rho-hunt",
+        "videos": 217,
+        "state": {
+          "published": [],
+          "failed": {},
+          "source": "missing"
+        },
+        "account": {
+          "followers": 70541,
+          "media_count": 165,
+          "username": "streetsmartkidsusa"
+        },
+        "stale": false
+      }
     },
-    "account": {
-      "followers": 70555,
-      "media_count": 165,
-      "username": "streetsmartkidsusa"
-    },
-    "stale": false
+    "total": {
+      "published": 20,
+      "failed": 0
+    }
   },
   "gumroad": {
     "today_revenue": 69.96,
@@ -527,7 +556,8 @@
     }
   ],
   "sources": {
-    "ig_account": "ok",
+    "ig_account_ogletrends": "ok",
+    "ig_account_streetsmartkidsusa": "ok",
     "gumroad": "ok"
   }
 }

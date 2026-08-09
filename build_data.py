@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """
-build_data.py — Generate sanitized data.json for the OgleTrends dashboard.
+build_data.py — Generate sanitized data.json for the OgleTrends dashboard (multi-account).
 
 Reads:
-  1. IG queue state   (ig_queue_state.json — published/failed video numbers)
-  2. IG account info  (via composio CLI — followers, media count)
-  3. Gumroad sales    (API — revenue, units, AOV, product mix; NO emails)
+  1. IG queue state per account   (IG/<account>/state.json)
+  2. IG account info per account  (via composio CLI with --account selector)
+  3. Gumroad sales                (API — revenue, units, AOV, product mix; NO emails)
 
 Writes:
   data.json  (safe for public GitHub Pages — no tokens, no buyer PII)
+
+Multi-account model: `ig.accounts` is a dict keyed by account name; each entry
+has its own state + account info. `ig.total` summarizes across accounts.
+Gumroad is shared (both accounts sell the same books) — shown once, clearly.
 
 Run every ~5-10 min via cron. On failure of a source, keeps last good data
 and marks the source as stale rather than wiping the dashboard.
@@ -22,17 +26,15 @@ import datetime
 import urllib.request
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATE_FILE = os.path.join(BASE, "ig_queue_state.json")
+IG_BASE = os.path.join(os.path.dirname(BASE), "IG")
+ACCOUNTS_FILE = os.path.join(IG_BASE, "accounts.json")
 OUT_FILE = os.path.join(BASE, "ogletrends-dashboard", "data.json")
 COMPOSIO = os.path.expanduser("~/.composio")
-# Self-locating env: prefer $HERMES_HOME/.env (Hostinger box), fall back to ~/.hermes/.env (Mac) and ~/.env
 ENV_FILE = next((p for p in [
     os.path.join(os.environ.get("HERMES_HOME", ""), ".env"),
     os.path.expanduser("~/.hermes/.env"),
     os.path.expanduser("~/.env"),
 ] if p and os.path.exists(p)), os.path.expanduser("~/.hermes/.env"))
-
-TOTAL_VIDEOS = 57
 
 
 def load_env():
@@ -46,17 +48,24 @@ def load_env():
     return env
 
 
-def load_ig_state():
+def load_accounts():
+    if os.path.exists(ACCOUNTS_FILE):
+        with open(ACCOUNTS_FILE) as f:
+            return json.load(f)
+    return {}
+
+
+def load_ig_state(account_dir):
     """Return {published:[...], failed:[...], last_updated} from queue state."""
-    if not os.path.exists(STATE_FILE):
+    state_file = os.path.join(account_dir, "state.json")
+    if not os.path.exists(state_file):
         return {"published": [], "failed": {}, "source": "missing"}
-    with open(STATE_FILE) as f:
+    with open(state_file) as f:
         st = json.load(f)
     published = sorted(int(k) for k in st.get("published", {}) if str(k).isdigit())
     pub_set = set(published)
-    # Only failures that are NOT also published (historical retry-success)
     failed = sorted(int(k) for k in st.get("failed", {}) if str(k).isdigit() and int(k) not in pub_set)
-    mtime = datetime.datetime.fromtimestamp(os.path.getmtime(STATE_FILE))
+    mtime = datetime.datetime.fromtimestamp(os.path.getmtime(state_file))
     posted_at = {int(k): v for k, v in st.get("posted_at", {}).items() if str(k).isdigit()}
     return {
         "published": published,
@@ -67,10 +76,11 @@ def load_ig_state():
     }
 
 
-def ig_account_info():
-    """Followers + media count via composio CLI; None on failure (keep stale)."""
+def ig_account_info(composio_account):
+    """Followers + media count via composio CLI with explicit account selector."""
     try:
-        cmd = ["composio", "execute", "INSTAGRAM_GET_USER_INFO", "--skip-tool-params-check", "-d", "{}"]
+        cmd = ["composio", "execute", "INSTAGRAM_GET_USER_INFO", "--account",
+               composio_account, "--skip-tool-params-check", "-d", "{}"]
         env = dict(os.environ)
         env["PATH"] = f"{COMPOSIO}:{env.get('PATH', '')}"
         out = subprocess.run(cmd, capture_output=True, text=True, timeout=60, env=env)
@@ -113,7 +123,6 @@ def gumroad_sales(access_token, days=14):
     now = datetime.datetime.now(datetime.timezone.utc)
     cutoff = now - datetime.timedelta(days=days)
 
-    # GST day window (today = since 20:00 UTC yesterday)
     gst_now = now + datetime.timedelta(hours=4)
     today_start_utc = (gst_now.replace(hour=0, minute=0, second=0, microsecond=0)
                        - datetime.timedelta(hours=4))
@@ -136,7 +145,7 @@ def gumroad_sales(access_token, days=14):
             dt = datetime.datetime.fromisoformat(ts.replace("Z", "+00:00"))
         except ValueError:
             continue
-        price = float(s.get("price") or 0) / 100.0  # cents -> dollars
+        price = float(s.get("price") or 0) / 100.0
         paid = s.get("paid")
         if not paid:
             continue
@@ -159,7 +168,6 @@ def gumroad_sales(access_token, days=14):
             today_rev += price
             today_units += 1
 
-    # Week-over-week from full daily series (last 7 vs prev 7)
     all_days = sorted(by_day_all.keys())
     def window_sum(days_list):
         return sum(by_day_all.get(d, 0.0) for d in days_list)
@@ -199,43 +207,55 @@ def gumroad_sales(access_token, days=14):
 def main():
     env = load_env()
     token = env.get("GUMROAD_ACCESS_TOKEN", "")
+    accounts = load_accounts()
 
-    # Previous data.json for stale-keeping
-    prev = {"sources": {}}
+    prev = {"sources": {}, "ig": {}}
     if os.path.exists(OUT_FILE):
         try:
             with open(OUT_FILE) as f:
                 prev = json.load(f)
         except Exception:
-            prev = {"sources": {}}
+            prev = {"sources": {}, "ig": {}}
 
     result = {
         "generated_at": datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=4)))
                         .isoformat(timespec="seconds"),
-        "total_videos": TOTAL_VIDEOS,
-        "ig": {"state": load_ig_state(), "account": None, "stale": False},
+        "total_videos": sum(a.get("videos", 0) for a in accounts.values()),
+        "ig": {"accounts": {}, "total": {"published": 0, "failed": 0}},
         "gumroad": None,
-        "schedule": [
-            {"time": "18:00", "tz": "GST"},
-            {"time": "00:00", "tz": "GST"},
-        ],
+        "schedule": [{"time": "18:00", "tz": "GST"}, {"time": "00:00", "tz": "GST"}],
         "sources": {},
     }
 
-    # IG account info — best effort
-    acc = ig_account_info()
-    if acc:
-        result["ig"]["account"] = acc
-        result["sources"]["ig_account"] = "ok"
-    else:
-        prev_acc = (prev.get("ig") or {}).get("account")
-        if prev_acc:
-            result["ig"]["account"] = prev_acc
-            result["sources"]["ig_account"] = "stale"
+    # Per-account IG state + account info
+    for name, cfg in accounts.items():
+        adir = os.path.join(IG_BASE, name)
+        state = load_ig_state(adir)
+        acc = ig_account_info(cfg.get("composio_account", ""))
+        entry = {
+            "name": cfg.get("display_name", name),
+            "username": name,
+            "composio_account": cfg.get("composio_account"),
+            "videos": cfg.get("videos", 0),
+            "state": state,
+            "account": acc,
+            "stale": acc is None,
+        }
+        result["ig"]["accounts"][name] = entry
+        result["ig"]["total"]["published"] += len(state.get("published", []))
+        result["ig"]["total"]["failed"] += len(state.get("failed", []))
+        if acc:
+            result["sources"]["ig_account_" + name] = "ok"
         else:
-            result["sources"]["ig_account"] = "unavailable"
+            prev_acc = ((prev.get("ig") or {}).get("accounts") or {}).get(name, {}).get("account")
+            if prev_acc:
+                entry["account"] = prev_acc
+                entry["stale"] = True
+                result["sources"]["ig_account_" + name] = "stale"
+            else:
+                result["sources"]["ig_account_" + name] = "unavailable"
 
-    # Gumroad — required; on failure keep stale
+    # Gumroad — shared, required; on failure keep stale
     try:
         g = gumroad_sales(token, days=14)
         result["gumroad"] = g
@@ -253,7 +273,7 @@ def main():
     with open(OUT_FILE, "w") as f:
         json.dump(result, f, indent=2)
     print("wrote", OUT_FILE)
-    print("published:", len(result["ig"]["state"]["published"]),
+    print("accounts:", list(result["ig"]["accounts"].keys()),
           "| gumroad source:", result["sources"].get("gumroad"))
 
 
