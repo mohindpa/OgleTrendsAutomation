@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T02:10:28+04:00",
+  "generated_at": "2026-08-10T02:20:28+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -47,7 +47,7 @@
           "source": "local"
         },
         "account": {
-          "followers": 136075,
+          "followers": 136076,
           "media_count": 219,
           "username": "ogletrends"
         },
@@ -109,13 +109,19 @@
         "composio_account": "instagram_rho-hunt",
         "videos": 217,
         "state": {
-          "published": [],
+          "published": [
+            1
+          ],
+          "posted_at": {
+            "1": "2026-08-10T02:19:36"
+          },
           "failed": [],
-          "source": "missing"
+          "last_updated": "2026-08-10T02:19:36",
+          "source": "local"
         },
         "account": {
-          "followers": 70745,
-          "media_count": 165,
+          "followers": 70747,
+          "media_count": 166,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -172,7 +178,7 @@
       }
     },
     "total": {
-      "published": 22,
+      "published": 23,
       "failed": 0
     }
   },
