@@ -201,8 +201,9 @@ footer { margin-top:36px; padding-top:16px; border-top:1px solid rgba(255,255,25
   .grid-4 { grid-template-columns:repeat(2,1fr); gap:10px; }
   .kpi { font-size:20px; }
   .ring { width:150px; height:150px; }
+  .ring svg { width:100%; height:100%; }          /* scale SVG to container, don't stay 190px */
   .ring-pct { font-size:28px; }
-  .fact { min-width:0; flex:1 1 auto; padding:6px 8px; }
+  .fact { min-width:80px; flex:1 1 30%; padding:6px 8px; }  /* fixed floor — no overlap */
   .countdown { flex-wrap:wrap; padding:12px; }
   .countdown .big { font-size:24px; }
   .slot { min-width:100%; }
