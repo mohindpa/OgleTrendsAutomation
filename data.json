@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T19:30:26+04:00",
+  "generated_at": "2026-08-09T19:40:26+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -37,18 +37,18 @@
       "source": "local"
     },
     "account": {
-      "followers": 70531,
+      "followers": 70555,
       "media_count": 165,
       "username": "streetsmartkidsusa"
     },
     "stale": false
   },
   "gumroad": {
-    "today_revenue": 59.97,
-    "today_units": 3,
-    "total_revenue_14d": 516.74,
-    "total_units_14d": 26,
-    "aov_14d": 19.87,
+    "today_revenue": 69.96,
+    "today_units": 4,
+    "total_revenue_14d": 526.73,
+    "total_units_14d": 27,
+    "aov_14d": 19.51,
     "daily": [
       {
         "day": "2026-07-27",
@@ -96,7 +96,7 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 59.97
+        "revenue": 69.96
       }
     ],
     "daily_all": [
@@ -466,7 +466,7 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 59.97
+        "revenue": 69.96
       }
     ],
     "products": [
@@ -476,7 +476,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 76.92
+        "revenue": 86.91
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -486,7 +486,7 @@
     "products_all": [
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 4138.05
+        "revenue": 4148.04
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
@@ -502,8 +502,8 @@
       }
     ],
     "all_time": {
-      "revenue": 5738.83,
-      "units": 663,
+      "revenue": 5748.82,
+      "units": 664,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -511,9 +511,9 @@
       "to": "2026-08-09"
     },
     "week_over_week": {
-      "current": 356.81,
+      "current": 366.8,
       "previous": 191.91,
-      "change_pct": 85.9
+      "change_pct": 91.1
     }
   },
   "schedule": [
