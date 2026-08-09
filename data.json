@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T14:30:25+04:00",
+  "generated_at": "2026-08-09T14:40:25+04:00",
   "total_videos": 57,
   "ig": {
     "state": {
@@ -528,6 +528,6 @@
   ],
   "sources": {
     "ig_account": "ok",
-    "gumroad": "stale"
+    "gumroad": "ok"
   }
 }
