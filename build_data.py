@@ -59,7 +59,7 @@ def load_ig_state(account_dir):
     """Return {published:[...], failed:[...], last_updated} from queue state."""
     state_file = os.path.join(account_dir, "state.json")
     if not os.path.exists(state_file):
-        return {"published": [], "failed": {}, "source": "missing"}
+        return {"published": [], "failed": [], "source": "missing"}
     with open(state_file) as f:
         st = json.load(f)
     published = sorted(int(k) for k in st.get("published", {}) if str(k).isdigit())

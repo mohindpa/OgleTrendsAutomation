@@ -433,8 +433,8 @@ function renderUploads(){
   const ig = activeIg();
   const st = ig.state||{};
   const total = ig.videos||DATA.total_videos||57;
-  const pub = st.published||[];
-  const failed = st.failed||[];
+  const pub = Array.isArray(st.published)? st.published : [];
+  const failed = Array.isArray(st.failed)? st.failed : [];
   const postedAt = st.posted_at||{};
   const pubSet = new Set(pub), failSet = new Set(failed);
   const remaining = Math.max(0, total - pub.length);
@@ -525,7 +525,8 @@ function tickCountdown(){
   const lbl = document.getElementById('nextSlotLabel');
   const hint = document.getElementById('countdownHint');
   if(!info){ val.textContent='--:--:--'; lbl.textContent='no schedule'; return; }
-  const diff = info.when.getTime() - Date.now();
+  const when = (info.when instanceof Date) ? info.when.getTime() : info.when;  // when is an epoch number
+  const diff = when - Date.now();
   const s = Math.max(0, Math.floor(diff/1000));
   const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = s%60;
   val.textContent = pad(h)+':'+pad(m)+':'+pad(sec);
