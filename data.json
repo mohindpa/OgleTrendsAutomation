@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T01:20:28+04:00",
+  "generated_at": "2026-08-10T01:30:28+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -47,7 +47,7 @@
           "source": "local"
         },
         "account": {
-          "followers": 136068,
+          "followers": 136073,
           "media_count": 219,
           "username": "ogletrends"
         },
@@ -114,7 +114,7 @@
           "source": "missing"
         },
         "account": {
-          "followers": 70731,
+          "followers": 70734,
           "media_count": 165,
           "username": "streetsmartkidsusa"
         },
@@ -177,11 +177,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 9.99,
-    "today_units": 1,
-    "total_revenue_14d": 536.72,
-    "total_units_14d": 28,
-    "aov_14d": 19.17,
+    "today_revenue": 34.98,
+    "today_units": 2,
+    "total_revenue_14d": 561.71,
+    "total_units_14d": 29,
+    "aov_14d": 19.37,
     "daily": [
       {
         "day": "2026-07-27",
@@ -229,7 +229,7 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 79.95
+        "revenue": 104.94
       }
     ],
     "daily_all": [
@@ -599,13 +599,13 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 79.95
+        "revenue": 104.94
       }
     ],
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 424.83
+        "revenue": 449.82
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
@@ -623,7 +623,7 @@
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 1456.89
+        "revenue": 1481.88
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -635,8 +635,8 @@
       }
     ],
     "all_time": {
-      "revenue": 5758.81,
-      "units": 665,
+      "revenue": 5783.8,
+      "units": 669,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -644,9 +644,9 @@
       "to": "2026-08-09"
     },
     "week_over_week": {
-      "current": 376.79,
+      "current": 401.78,
       "previous": 191.91,
-      "change_pct": 96.3
+      "change_pct": 109.4
     }
   },
   "schedule": [
