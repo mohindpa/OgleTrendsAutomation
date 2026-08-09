@@ -382,9 +382,16 @@ function buildAccountSwitcher(){
     const pub = ((a.state||{}).published||[]).length;
     const tot = a.videos||0;
     const active = k===ACTIVE_ACCOUNT;
-    return '<button onclick="setAccount(\''+k+'\')" style="cursor:pointer;font-size:11px;padding:6px 12px;border-radius:9999px;border:1px solid '+(active?'#ffc72c':'rgba(255,255,255,.14)')+';background:'+(active?'rgba(255,199,44,.12)':'rgba(255,255,255,.04)')+';color:'+(active?'#ffc72c':'var(--text2)')+';font-weight:600;letter-spacing:.04em;">'+a.username+' <span style="opacity:.7">'+pub+'/'+tot+'</span></button>';
+    return '<button data-account="'+k+'" style="cursor:pointer;font-size:11px;padding:6px 12px;border-radius:9999px;border:1px solid '+(active?'#ffc72c':'rgba(255,255,255,.14)')+';background:'+(active?'rgba(255,199,44,.12)':'rgba(255,255,255,.04)')+';color:'+(active?'#ffc72c':'var(--text2)')+';font-weight:600;letter-spacing:.04em;">'+a.username+' <span style="opacity:.7">'+pub+'/'+tot+'</span></button>';
   }).join('');
 }
+/* Event delegation — robust on mobile, no inline handlers */
+document.addEventListener('click', function(e){
+  const btn = e.target.closest ? e.target.closest('#account-switcher button') : null;
+  if(btn && btn.dataset.account){
+    setAccount(btn.dataset.account);
+  }
+});
 function setAccount(k){
   ACTIVE_ACCOUNT = k;
   buildAccountSwitcher();
@@ -621,6 +628,11 @@ function renderPacing(days){
     '<div class="bar-track" style="height:10px;"><div class="bar-fill" style="width:'+pace+'%;background:'+(pace>=100?'linear-gradient(90deg,#16a06b,#2fd18f)':'linear-gradient(90deg,#ffc72c,#ff9f2c)')+';"></div></div>';
 }
 function renderCharts(days){
+  if(typeof Chart === 'undefined'){                     // CDN blocked — degrade gracefully
+    const box = document.getElementById('chart-daily');
+    if(box) box.parentElement.innerHTML = '<p class="sub">Charts unavailable (chart.js blocked on this network)</p>';
+    return;
+  }
   const labels = days.map(d=>d.day.slice(5));
   const revs = days.map(d=>d.revenue);
   const aovs = days.map(d=>d.units? +(d.revenue/d.units).toFixed(2) : 0);
@@ -720,9 +732,16 @@ function renderAll(){
   document.getElementById('meta-time').textContent = (DATA.generated_at||'').replace('T',' ').slice(0,16);
 
   renderUploads();
-  renderKpis(days); renderProducts(); renderWow(days); renderPacing(days); renderCharts(days);
+  renderKpis(days); renderProducts(); renderWow(days); renderPacing(days);
+  safeRender('charts', () => renderCharts(days));      // Chart.js CDN may be blocked — never kill the page
   renderIG(); renderRisk(); renderPipeline();
-  tickCountdown();
+  safeRender('countdown', tickCountdown);              // countdown must always run
+}
+
+/* Fail-soft wrapper: one broken renderer never kills the others. */
+function safeRender(name, fn){
+  try { fn(); }
+  catch(e){ console.error('render '+name+' failed:', e); }
 }
 
 /* ── Filters ── */
@@ -758,7 +777,7 @@ function loadData(animate){
     const metaIG = document.getElementById('meta-ig');
     if(metaIG) metaIG.textContent = (igTotal.published||0)+' posts across '+(Object.keys(accs).length||0)+' accounts';
     renderAll();
-    if(first && animate){
+    if(first && animate && typeof gsap !== 'undefined'){
       gsap.from('.hero-title',{y:24,opacity:0,duration:.6,ease:'power3.out'});
       gsap.from('.hero-meta',{y:12,opacity:0,duration:.5,ease:'power2.out',stagger:.08,delay:.15});
       gsap.from('.hero-bar',{scaleX:0,transformOrigin:'left',duration:.8,ease:'power2.out',delay:.3});
