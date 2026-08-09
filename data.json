@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T00:30:28+04:00",
+  "generated_at": "2026-08-10T00:40:28+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -114,7 +114,7 @@
           "source": "missing"
         },
         "account": {
-          "followers": 70710,
+          "followers": 70716,
           "media_count": 165,
           "username": "streetsmartkidsusa"
         },
@@ -177,11 +177,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 0.0,
-    "today_units": 0,
-    "total_revenue_14d": 526.73,
-    "total_units_14d": 27,
-    "aov_14d": 19.51,
+    "today_revenue": 9.99,
+    "today_units": 1,
+    "total_revenue_14d": 536.72,
+    "total_units_14d": 28,
+    "aov_14d": 19.17,
     "daily": [
       {
         "day": "2026-07-27",
@@ -229,7 +229,7 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 69.96
+        "revenue": 79.95
       }
     ],
     "daily_all": [
@@ -599,7 +599,7 @@
       },
       {
         "day": "2026-08-09",
-        "revenue": 69.96
+        "revenue": 79.95
       }
     ],
     "products": [
@@ -609,7 +609,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 86.91
+        "revenue": 96.9
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -619,7 +619,7 @@
     "products_all": [
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 4148.04
+        "revenue": 4158.03
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
@@ -635,8 +635,8 @@
       }
     ],
     "all_time": {
-      "revenue": 5748.82,
-      "units": 664,
+      "revenue": 5758.81,
+      "units": 665,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -644,9 +644,9 @@
       "to": "2026-08-09"
     },
     "week_over_week": {
-      "current": 366.8,
+      "current": 376.79,
       "previous": 191.91,
-      "change_pct": 91.1
+      "change_pct": 96.3
     }
   },
   "schedule": [
