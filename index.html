@@ -437,9 +437,9 @@ function setAccount(k){
 
 /* GST helpers (slots are GST; compute regardless of viewer timezone) */
 const GST_OFFSET = 4*3600*1000;
-function gstFields(){
-  const g = new Date(Date.now() + GST_OFFSET);
-  return { y:g.getUTCFullYear(), mo:g.getUTCMonth(), d:g.getUTCDate() };
+function gstFields(at){
+  const g = new Date((at||Date.now()) + GST_OFFSET);
+  return { y:g.getUTCFullYear(), mo:g.getUTCMonth(), d:g.getUTCDate(), w:g.getUTCDay() };
 }
 // Real UTC epoch (ms) of the next occurrence of "HH:MM" GST today
 function slotEpoch(timeStr){
@@ -449,14 +449,17 @@ function slotEpoch(timeStr){
 }
 function nextSlotInfo(){
   const now = Date.now();
-  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
-  const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
+  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop', '12:00':'Noon drop', '16:30':'Afternoon drop', '21:00':'Night drop', '03:00':'Late drop' };
+  const ig = activeIg();
+  const slots = (ig.slots && ig.slots.length ? ig.slots : (DATA.schedule||[])).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST', days:s.days||[0,1,2,3,4,5,6]}));
   if(!slots.length) return null;
   let best=null;
   for(const s of slots){
+    // next occurrence: matching GST weekday AND still in the future
     let e = slotEpoch(s.time);
-    if(e <= now) e += 86400000;
-    if(!best || e < best.when) best = {label:s.label, time:s.time, tz:s.tz, when:e};
+    let guard = 0;
+    while((e <= now || !s.days.includes(gstFields(e).w)) && guard < 8){ e += 86400000; guard++; }
+    if(!best || e < best.when) best = {label:s.label, time:s.time, tz:s.tz, days:s.days, when:e};
   }
   return best;
 }
@@ -581,16 +584,22 @@ function tickCountdown(){
 function renderSlotStrip(next){
   const now = Date.now();
   const strip = document.getElementById('slotStrip');
-  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop' };
-  const slots = (DATA.schedule||[]).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST'}));
+  const slotLabels = { '18:00':'Evening drop', '00:00':'Midnight drop', '12:00':'Noon drop', '16:30':'Afternoon drop', '21:00':'Night drop', '03:00':'Late drop' };
+  const ig = activeIg();
+  const DAYNAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const slots = (ig.slots && ig.slots.length ? ig.slots : (DATA.schedule||[])).map(s=>({label:slotLabels[s.time]||s.time, time:s.time, tz:s.tz||'GST', days:s.days||[0,1,2,3,4,5,6]}));
   strip.innerHTML='';
   slots.forEach(s=>{
-    const d = slotEpoch(s.time);
-    const isNext = next && d === next.when;
-    const state = d <= now ? 'done' : (isNext ? 'next' : 'pending');
+    // next occurrence for this slot (matching weekday, in the future)
+    let e = slotEpoch(s.time);
+    let guard = 0;
+    while((e <= now || !s.days.includes(gstFields(e).w)) && guard < 8){ e += 86400000; guard++; }
+    const isNext = next && e === next.when;
+    const dayTxt = s.days.length===7 ? 'daily' : s.days.map(d=>DAYNAMES[d]).join('/');
+    const state = e <= now ? 'done' : (isNext ? 'next' : 'pending');
     const div=document.createElement('div');
     div.className='slot '+(state==='next'?'next':state==='done'?'done':'pending');
-    div.innerHTML='<span class="dot"></span><div><div class="t">'+s.label+'</div><div class="d">'+s.time+' '+s.tz+' · '+(state==='done'?'done':state==='next'?'next':'upcoming')+'</div></div>';
+    div.innerHTML='<span class="dot"></span><div><div class="t">'+s.label+'</div><div class="d">'+s.time+' '+s.tz+' · '+dayTxt+' · '+(state==='done'?'done':state==='next'?'next':'upcoming')+'</div></div>';
     strip.appendChild(div);
   });
 }

@@ -224,6 +224,7 @@ def main():
         "ig": {"accounts": {}, "total": {"published": 0, "failed": 0}},
         "gumroad": None,
         "schedule": [{"time": "18:00", "tz": "GST"}, {"time": "00:00", "tz": "GST"}],
+        "slots": accounts.get("ogletrends", {}).get("slots", []),  # placeholder, replaced per-account below
         "sources": {},
     }
 
@@ -239,6 +240,7 @@ def main():
             "videos": cfg.get("videos", 0),
             "state": state,
             "account": acc,
+            "slots": cfg.get("slots", []),
             "stale": acc is None,
         }
         result["ig"]["accounts"][name] = entry
