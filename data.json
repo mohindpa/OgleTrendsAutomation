@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-09T23:30:27+04:00",
+  "generated_at": "2026-08-09T23:40:27+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -710,6 +710,6 @@
   "sources": {
     "ig_account_ogletrends": "ok",
     "ig_account_streetsmartkidsusa": "ok",
-    "gumroad": "stale"
+    "gumroad": "ok"
   }
 }
