@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-10T14:30:31+04:00",
+  "generated_at": "2026-08-10T14:40:31+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -130,7 +130,7 @@
           "source": "local"
         },
         "account": {
-          "followers": 70997,
+          "followers": 70999,
           "media_count": 170,
           "username": "streetsmartkidsusa"
         },
@@ -736,6 +736,6 @@
   "sources": {
     "ig_account_ogletrends": "ok",
     "ig_account_streetsmartkidsusa": "ok",
-    "gumroad": "ok"
+    "gumroad": "stale"
   }
 }
