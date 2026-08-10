@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home4/iopcer8y/streetsmartskill.com/admin/
-    - /bin/cp -R * $DEPLOYPATH
