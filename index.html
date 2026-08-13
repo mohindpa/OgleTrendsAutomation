@@ -83,6 +83,8 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 .h2 { font-size:13px; font-weight:600; letter-spacing:-.01em; }
 .sub { font-size:10px; color:var(--faint); margin-top:2px; }
 .kpi { font-size:26px; font-weight:600; letter-spacing:-.02em; line-height:1.1; margin-top:6px; }
+.rev-big { font-size:48px; font-weight:700; letter-spacing:-.03em; line-height:1; color:#FFFFFF; }
+.rev-big .cur { font-size:22px; font-weight:600; color:var(--dim); letter-spacing:0; }
 .delta-up { color:var(--tertiary); font-size:11px; font-weight:600; }
 .delta-down { color:var(--danger); font-size:11px; font-weight:600; }
 .grid { display:grid; gap:16px; }
@@ -253,6 +255,18 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
         <div id="account-switcher" class="flex gap-4 items-center" style="gap:6px;"></div>
         <span class="badge badge-warn" id="badge-pace">● —% OF PACE</span>
         <span class="badge badge-ghost" id="badge-range">—</span>
+      </div>
+    </div>
+    <div class="hero-rev" style="margin-top:20px;display:flex;align-items:flex-end;gap:28px;flex-wrap:wrap;">
+      <div>
+        <p class="label" style="letter-spacing:.12em;text-transform:uppercase;">Total revenue · till date</p>
+        <p class="rev-big" id="rev-alltime">$—</p>
+      </div>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-end;">
+        <div><p class="label">Units</p><p style="font-size:24px;font-weight:600;color:var(--dim);" id="rev-alltime-units">—</p></div>
+        <div><p class="label">Refunds</p><p style="font-size:24px;font-weight:600;color:var(--dim);" id="rev-alltime-refunds">—</p></div>
+        <div><p class="label">Disputes</p><p style="font-size:24px;font-weight:600;color:var(--dim);" id="rev-alltime-disputes">—</p></div>
+        <div><p class="label">Since</p><p style="font-size:24px;font-weight:600;color:var(--dim);" id="rev-alltime-since">—</p></div>
       </div>
     </div>
     <div class="hero-bar" style="margin-top:16px;height:4px;border-radius:9999px;background:rgba(255,255,255,.06);overflow:hidden;">
@@ -638,6 +652,15 @@ function renderKpis(days){
     k.appendChild(c);
   });
   document.getElementById('meta-sales').textContent = (g.all_time&&g.all_time.units!=null)?g.all_time.units:'—';
+  // Big revenue hero (top of page)
+  const at = g.all_time||{};
+  const revEl = document.getElementById('rev-alltime');
+  if(revEl) revEl.textContent = fmt(at.revenue||0);
+  const setIf = (id, v) => { const e=document.getElementById(id); if(e) e.textContent = v; };
+  setIf('rev-alltime-units', at.units!=null ? at.units : '—');
+  setIf('rev-alltime-refunds', at.refunds!=null ? at.refunds+' · '+fmt(at.refund_amount||0) : '—');
+  setIf('rev-alltime-disputes', at.disputes!=null ? at.disputes : '—');
+  setIf('rev-alltime-since', at.from ? at.from.slice(0,10) : '—');
   // meta-ig totals across accounts (set in loadData; keep in sync here)
   const igTotal = (DATA.ig && DATA.ig.total) || {};
   const nAcc = Object.keys((DATA.ig && DATA.ig.accounts) || {}).length;
