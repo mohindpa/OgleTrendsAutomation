@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-14T01:50:59+04:00",
+  "generated_at": "2026-08-14T02:00:59+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -61,11 +61,11 @@
             "30": "2026-08-14T00:02:41"
           },
           "failed": [],
-          "last_updated": "2026-08-14T01:45:59",
+          "last_updated": "2026-08-14T02:00:59",
           "source": "local"
         },
         "account": {
-          "followers": 136792,
+          "followers": 136793,
           "media_count": 228,
           "username": "ogletrends"
         },
@@ -158,7 +158,7 @@
             "13": "2026-08-14T00:02:03"
           },
           "failed": [],
-          "last_updated": "2026-08-14T01:45:59",
+          "last_updated": "2026-08-14T02:00:59",
           "source": "local"
         },
         "account": {
@@ -227,14 +227,10 @@
   "gumroad": {
     "today_revenue": 0.0,
     "today_units": 0,
-    "total_revenue_14d": 646.64,
-    "total_units_14d": 36,
-    "aov_14d": 17.96,
+    "total_revenue_14d": 621.65,
+    "total_units_14d": 35,
+    "aov_14d": 17.76,
     "daily": [
-      {
-        "day": "2026-07-30",
-        "revenue": 24.99
-      },
       {
         "day": "2026-07-31",
         "revenue": 9.99
@@ -677,7 +673,7 @@
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 484.8
+        "revenue": 459.81
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
