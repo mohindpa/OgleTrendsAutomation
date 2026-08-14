@@ -863,19 +863,19 @@ document.querySelectorAll('#filters button').forEach(btn=>{
 document.getElementById('from').addEventListener('change', e=>{ customFrom=e.target.value||null; renderAll(); });
 document.getElementById('to').addEventListener('change', e=>{ customTo=e.target.value||null; renderAll(); });
 
-/* ── Load + polling (cache-busted) ── */
+/* ── Load + polling (cache-busted; cPanel Mod_Security blocks ?cb= → plain fallback) ── */
 let firstLoad = true;
 function loadData(animate){
-  fetch('data.json?cb='+Date.now()).then(r=>r.json()).then(d=>{
+  // cPanel WAF returns 406 for data.json?cb=... — GH Pages allows it.
+  // Try cache-busted first, fall back to plain URL on failure.
+  const apply = d => {
     const first = !DATA;
     DATA = d;
-    // ensure ACTIVE_ACCOUNT valid after data refresh
     const accs = (d.ig && d.ig.accounts) || {};
     if(!ACTIVE_ACCOUNT || !accs[ACTIVE_ACCOUNT]) ACTIVE_ACCOUNT = Object.keys(accs)[0] || null;
     buildAccountSwitcher();
     document.getElementById('from').min = (d.gumroad&&d.gumroad.all_time&&d.gumroad.all_time.from)||'';
     document.getElementById('to').max = (d.gumroad&&d.gumroad.all_time&&d.gumroad.all_time.to)||'';
-    // meta-ig: total across accounts
     const igTotal = (d.ig && d.ig.total) || {};
     const metaIG = document.getElementById('meta-ig');
     if(metaIG) metaIG.textContent = (igTotal.published||0)+' posts across '+(Object.keys(accs).length||0)+' accounts';
@@ -888,9 +888,18 @@ function loadData(animate){
     }
     const mt = document.getElementById('meta-time');
     if(mt){ mt.style.transition='color .4s'; mt.style.color='#34D399'; setTimeout(()=>mt.style.color='', 1200); }
-  }).catch(e=>{
-    if(!DATA) document.getElementById('kpis').innerHTML = '<div class="card"><p style="color:#e2493b;">Failed to load data.json — ' + e.message + '</p></div>';
-  });
+  };
+  fetch('data.json?cb='+Date.now())
+    .then(r=>{ if(!r.ok) throw new Error('busted HTTP '+r.status); return r.json(); })
+    .then(apply)
+    .catch(()=> fetch('data.json')
+      .then(r=>{ if(!r.ok) throw new Error('plain HTTP '+r.status); return r.json(); })
+      .then(apply)
+      .catch(e=>{
+        console.error('loadData failed:', e);
+        if(!DATA) document.getElementById('kpis').innerHTML = '<div class="card"><p style="color:#e2493b;">Failed to load data.json — ' + e.message + '</p></div>';
+      })
+    );
 }
 loadData(true);
 setInterval(()=>loadData(false), 60000);
