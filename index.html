@@ -7,9 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 <style>
 :root {
   /* Capital Overview Dashboard — DESIGN.md tokens */
@@ -380,40 +380,61 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 </main>
 
 <script>
-/* ── WebGL dot-matrix background (DOM fallback) ── */
+/* ── WebGL dot-matrix background (DOM fallback; lazy — doesn't block paint) ── */
 (function(){
   const canvas = document.getElementById('webgl');
   let renderer, scene, camera, points;
   let mx=0, my=0;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  try {
-    renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 1, 2000);
-    camera.position.z = 120;
-    const N = 2000, pos = new Float32Array(N*3);
-    for(let i=0;i<N;i++){ pos[i*3]=(Math.random()-.5)*300; pos[i*3+1]=(Math.random()-.5)*200; pos[i*3+2]=(Math.random()-.5)*120; }
-    const g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.BufferAttribute(pos,3));
-    points = new THREE.Points(g, new THREE.PointsMaterial({color:0x818cf8,size:0.5,transparent:true,opacity:0.35}));
-    scene.add(points);
-    (function tick(){
-      const t = performance.now()*0.00025;
-      points.scale.setScalar(1 + Math.sin(t*2)*0.03);
-      points.rotation.y += (mx-points.rotation.y)*0.02;
-      points.rotation.x += (my-points.rotation.x)*0.02;
-      renderer.render(scene,camera);
-      if(!reduced) requestAnimationFrame(tick);
-    })();
-    window.addEventListener('resize', ()=>{ renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); });
-    window.addEventListener('pointermove', e=>{ mx=(e.clientX/innerWidth-.5)*.4; my=(e.clientY/innerHeight-.5)*.4; });
-  } catch(e) {
-    canvas.style.display='none';
-    const d=document.createElement('div');
-    d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(129,140,248,.5) 1px, transparent 1.5px);background-size:28px 28px;';
-    document.body.appendChild(d);
+  // Skip WebGL on phones — the 600KB three.js cost isn't worth a background there
+  const isMobile = window.matchMedia('(max-width: 640px)').matches;
+  const start = () => {
+    try {
+      if(typeof THREE === 'undefined') throw new Error('three not loaded');
+      renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 1, 2000);
+      camera.position.z = 120;
+      const N = 2000, pos = new Float32Array(N*3);
+      for(let i=0;i<N;i++){ pos[i*3]=(Math.random()-.5)*300; pos[i*3+1]=(Math.random()-.5)*200; pos[i*3+2]=(Math.random()-.5)*120; }
+      const g = new THREE.BufferGeometry();
+      g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+      points = new THREE.Points(g, new THREE.PointsMaterial({color:0x818cf8,size:0.5,transparent:true,opacity:0.35}));
+      scene.add(points);
+      (function tick(){
+        const t = performance.now()*0.00025;
+        points.scale.setScalar(1 + Math.sin(t*2)*0.03);
+        points.rotation.y += (mx-points.rotation.y)*0.02;
+        points.rotation.x += (my-points.rotation.x)*0.02;
+        renderer.render(scene,camera);
+        if(!reduced) requestAnimationFrame(tick);
+      })();
+      window.addEventListener('resize', ()=>{ renderer.setSize(innerWidth,innerHeight); camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); });
+      window.addEventListener('pointermove', e=>{ mx=(e.clientX/innerWidth-.5)*.4; my=(e.clientY/innerHeight-.5)*.4; });
+    } catch(e) {
+      canvas.style.display='none';
+      const d=document.createElement('div');
+      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(129,140,248,.5) 1px, transparent 1.5px);background-size:28px 28px;';
+      document.body.appendChild(d);
+    }
+  };
+  if(isMobile || reduced || typeof THREE !== 'undefined'){
+    // mobile: skip WebGL, use DOM fallback immediately
+    if(isMobile || reduced){
+      canvas.style.display='none';
+      const d=document.createElement('div');
+      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(129,140,248,.5) 1px, transparent 1.5px);background-size:28px 28px;';
+      document.body.appendChild(d);
+    } else { start(); }
+  } else {
+    // deferred three.js: wait for it after load, max ~3s
+    let tries = 0;
+    const wait = setInterval(() => {
+      tries++;
+      if(typeof THREE !== 'undefined' || tries > 30){ clearInterval(wait); if(typeof THREE !== 'undefined') start(); else { canvas.style.display='none'; } }
+    }, 100);
   }
 })();
 
