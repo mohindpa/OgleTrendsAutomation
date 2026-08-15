@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T00:40:33+04:00",
+  "generated_at": "2026-08-16T00:50:33+04:00",
   "total_videos": 274,
   "ig": {
     "accounts": {
@@ -69,7 +69,7 @@
             "34": "2026-08-16T00:02:35"
           },
           "failed": [],
-          "last_updated": "2026-08-16T00:30:33",
+          "last_updated": "2026-08-16T00:45:33",
           "source": "local"
         },
         "account": {
@@ -174,11 +174,11 @@
             "17": "2026-08-16T00:02:36"
           },
           "failed": [],
-          "last_updated": "2026-08-16T00:30:33",
+          "last_updated": "2026-08-16T00:45:33",
           "source": "local"
         },
         "account": {
-          "followers": 73260,
+          "followers": 73261,
           "media_count": 182,
           "username": "streetsmartkidsusa"
         },
@@ -241,11 +241,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 0.0,
-    "today_units": 0,
-    "total_revenue_14d": 694.12,
-    "total_units_14d": 38,
-    "aov_14d": 18.27,
+    "today_revenue": 24.99,
+    "today_units": 1,
+    "total_revenue_14d": 719.11,
+    "total_units_14d": 39,
+    "aov_14d": 18.44,
     "daily": [
       {
         "day": "2026-08-02",
@@ -301,7 +301,7 @@
       },
       {
         "day": "2026-08-15",
-        "revenue": 57.47
+        "revenue": 82.46
       }
     ],
     "daily_all": [
@@ -695,13 +695,13 @@
       },
       {
         "day": "2026-08-15",
-        "revenue": 57.47
+        "revenue": 82.46
       }
     ],
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 527.28
+        "revenue": 552.27
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
@@ -719,7 +719,7 @@
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 1659.3
+        "revenue": 1684.29
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -731,8 +731,8 @@
       }
     ],
     "all_time": {
-      "revenue": 6026.16,
-      "units": 707,
+      "revenue": 6051.15,
+      "units": 711,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -740,9 +740,9 @@
       "to": "2026-08-15"
     },
     "week_over_week": {
-      "current": 347.3,
+      "current": 372.29,
       "previous": 346.82,
-      "change_pct": 0.1
+      "change_pct": 7.3
     }
   },
   "schedule": [
