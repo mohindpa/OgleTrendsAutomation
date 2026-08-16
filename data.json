@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T17:30:03+04:00",
+  "generated_at": "2026-08-16T17:40:03+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -108,7 +108,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137196,
+          "followers": 137197,
           "media_count": 234,
           "username": "ogletrends"
         },
@@ -266,7 +266,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 73523,
+          "followers": 73528,
           "media_count": 184,
           "username": "streetsmartkidsusa"
         },
@@ -391,7 +391,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 3,
+          "followers": 4,
           "media_count": 4,
           "username": "healthykids_jones"
         },
@@ -466,11 +466,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 119.94,
-    "today_units": 6,
-    "total_revenue_14d": 789.07,
-    "total_units_14d": 43,
-    "aov_14d": 18.35,
+    "today_revenue": 144.93,
+    "today_units": 7,
+    "total_revenue_14d": 814.06,
+    "total_units_14d": 44,
+    "aov_14d": 18.5,
     "daily": [
       {
         "day": "2026-08-02",
@@ -530,7 +530,7 @@
       },
       {
         "day": "2026-08-16",
-        "revenue": 94.95
+        "revenue": 119.94
       }
     ],
     "daily_all": [
@@ -928,13 +928,13 @@
       },
       {
         "day": "2026-08-16",
-        "revenue": 94.95
+        "revenue": 119.94
       }
     ],
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 602.25
+        "revenue": 627.24
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
@@ -956,7 +956,7 @@
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 1759.26
+        "revenue": 1784.25
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -968,8 +968,8 @@
       }
     ],
     "all_time": {
-      "revenue": 6146.1,
-      "units": 725,
+      "revenue": 6171.09,
+      "units": 729,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -977,9 +977,9 @@
       "to": "2026-08-16"
     },
     "week_over_week": {
-      "current": 362.3,
+      "current": 387.29,
       "previous": 401.78,
-      "change_pct": -9.8
+      "change_pct": -3.6
     }
   },
   "schedule": [
