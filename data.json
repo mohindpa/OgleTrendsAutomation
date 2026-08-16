@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T18:00:03+04:00",
+  "generated_at": "2026-08-16T18:10:03+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -46,6 +46,7 @@
             34,
             35,
             36,
+            37,
             47
           ],
           "posted_at": {
@@ -70,15 +71,15 @@
             "33": "2026-08-15T18:04:00",
             "34": "2026-08-16T00:02:35",
             "35": "2026-08-16T12:01:49",
-            "36": "2026-08-16T16:31:41"
+            "36": "2026-08-16T16:31:41",
+            "37": "2026-08-16T18:01:46"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:00:03",
+          "last_updated": "2026-08-16T18:03:13",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            37,
             38,
             39,
             40,
@@ -99,17 +100,17 @@
             56,
             57
           ],
-          "count": 20,
-          "size_mb": 600.5,
+          "count": 19,
+          "size_mb": 576.8,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 50,
+          "refill_progress": 48,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 137199,
-          "media_count": 234,
+          "followers": 137200,
+          "media_count": 235,
           "username": "ogletrends"
         },
         "slots": [
@@ -189,7 +190,8 @@
             16,
             17,
             18,
-            19
+            19,
+            20
           ],
           "posted_at": {
             "1": "2026-08-10T02:19:36",
@@ -210,15 +212,15 @@
             "16": "2026-08-15T18:01:16",
             "17": "2026-08-16T00:02:36",
             "18": "2026-08-16T12:01:35",
-            "19": "2026-08-16T16:32:03"
+            "19": "2026-08-16T16:32:03",
+            "20": "2026-08-16T18:02:19"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:00:03",
+          "last_updated": "2026-08-16T18:04:36",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            20,
             21,
             22,
             23,
@@ -257,17 +259,17 @@
             56,
             57
           ],
-          "count": 38,
-          "size_mb": 911.7,
+          "count": 37,
+          "size_mb": 869.2,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 95,
+          "refill_progress": 92,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 73533,
-          "media_count": 184,
+          "followers": 73539,
+          "media_count": 185,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -331,20 +333,21 @@
           "published": [
             1,
             2,
-            3
+            3,
+            4
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
             "2": "2026-08-16T15:00:59",
-            "3": "2026-08-16T16:31:26"
+            "3": "2026-08-16T16:31:26",
+            "4": "2026-08-16T18:02:02"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:00:03",
+          "last_updated": "2026-08-16T18:03:29",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            4,
             5,
             6,
             7,
@@ -382,17 +385,17 @@
             39,
             40
           ],
-          "count": 37,
-          "size_mb": 1611.2,
+          "count": 36,
+          "size_mb": 1559.8,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 92,
+          "refill_progress": 90,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 4,
-          "media_count": 4,
+          "media_count": 5,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -461,7 +464,7 @@
       }
     },
     "total": {
-      "published": 59,
+      "published": 62,
       "failed": 0
     }
   },
