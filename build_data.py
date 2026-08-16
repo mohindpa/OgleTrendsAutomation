@@ -76,6 +76,34 @@ def load_ig_state(account_dir):
     }
 
 
+def load_server_buffer(account_dir, videos_total):
+    """Count videos actually on disk (server buffer) + refill progress.
+    Rules (A9): buffer target 50, refill at 10, trim beyond 50."""
+    vdir = os.path.join(account_dir, "videos")
+    on_disk = set()
+    size_mb = 0
+    if os.path.isdir(vdir):
+        for f in os.listdir(vdir):
+            if f.endswith(".mp4"):
+                try:
+                    on_disk.add(int(f.split(".")[0]))
+                    size_mb += os.path.getsize(os.path.join(vdir, f)) / 1e6
+                except (ValueError, OSError):
+                    continue
+    target = 50
+    refill_at = 10
+    return {
+        "on_disk": sorted(on_disk),
+        "count": len(on_disk),
+        "size_mb": round(size_mb, 1),
+        "target": target,
+        "refill_at": refill_at,
+        "refill_progress": round(min(100, len(on_disk) / target * 100)),
+        "needs_refill": len(on_disk) <= refill_at,
+        "over_target": max(0, len(on_disk) - target),
+    }
+
+
 def ig_account_info(composio_account):
     """Followers + media count via composio CLI with explicit account selector."""
     try:
@@ -239,6 +267,7 @@ def main():
             "composio_account": cfg.get("composio_account"),
             "videos": cfg.get("videos", 0),
             "state": state,
+            "server_buffer": load_server_buffer(adir, cfg.get("videos", 0)),
             "account": acc,
             "slots": cfg.get("slots", []),
             "stale": acc is None,

@@ -245,12 +245,28 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   const PASS_HASH = '5df3628a263877dbec8a06fbe2498385627a18e3591cf1a63301169275b75d9a'; // Hello@@432!
   const AUTH_KEY = 'ogle_admin_auth';
   let authed = false;
-  try { authed = localStorage.getItem(AUTH_KEY) === '1'; } catch(e){}
+  // Auth from localStorage (persistent) OR sessionStorage (this tab).
+  // sessionStorage makes the gate re-appear on a fresh browser session —
+  // fixes "login page not showing" after a stale persistent auth.
+  try {
+    authed = localStorage.getItem(AUTH_KEY) === '1' || sessionStorage.getItem(AUTH_KEY) === '1';
+  } catch(e){}
   const hidden = document.createElement('style');
   hidden.textContent = 'main,#webgl,.glow{display:none!important}';
   document.head.appendChild(hidden);
   if(authed){ document.head.removeChild(hidden); }
   else {
+    // Add a tiny logout helper for when someone needs to re-login
+    try {
+      if(!document.getElementById('auth-logout')){
+        const lo = document.createElement('button');
+        lo.id = 'auth-logout';
+        lo.textContent = 'Log out';
+        lo.style.cssText = 'position:fixed;bottom:12px;right:12px;z-index:10000;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:#9CA3AF;font-size:10px;padding:5px 10px;border-radius:6px;cursor:pointer;';
+        lo.addEventListener('click', ()=>{ try{localStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(AUTH_KEY);}catch(e){} location.reload(); });
+        document.body.appendChild(lo);
+      }
+    } catch(e){}
     const g = document.createElement('div');
     g.id='auth-gate';
     g.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(900px 500px at 80% -10%, rgba(129,140,248,.12), transparent 60%),radial-gradient(700px 400px at 10% 110%, rgba(52,211,153,.07), transparent 60%),#0B0B10;';
@@ -279,7 +295,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
     const attempt=async ()=>{
       const [uh, ph] = await Promise.all([sha256(user.value.trim()), sha256(pw.value)]);
       if(uh===USER_HASH && ph===PASS_HASH){
-        try{localStorage.setItem(AUTH_KEY,'1');}catch(e){}
+        try{localStorage.setItem(AUTH_KEY,'1'); sessionStorage.setItem(AUTH_KEY,'1');}catch(e){}
         location.reload();
       } else {
         err.textContent='Invalid email or password. Please try again.';
@@ -361,6 +377,16 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
           <div class="fact"><b id="factRemaining">—</b><span>to go</span></div>
           <div class="fact"><b id="factRunway">—</b><span>days left</span></div>
           <div class="fact"><b id="factCadence">—</b><span>per day</span></div>
+          <div class="fact"><b id="factOnServer">—</b><span>on server</span></div>
+        </div>
+        <div style="width:100%;margin-top:12px;" id="refillWrap">
+          <div class="flex between" style="font-size:10px;color:var(--faint);margin-bottom:4px;">
+            <span>Server buffer · <span id="refillCount">—</span>/<span id="refillTarget">50</span></span>
+            <span id="refillLabel">—</span>
+          </div>
+          <div class="bar-track" style="height:6px;">
+            <div id="refillFill" style="height:100%;width:0%;border-radius:9999px;background:linear-gradient(90deg,#818CF8,#34D399);transition:width .8s ease;"></div>
+          </div>
         </div>
       </div>
     </div></div>
@@ -605,6 +631,24 @@ function renderUploads(){
   document.getElementById('factRemaining').textContent = remaining;
   document.getElementById('factRunway').textContent = runway;
   document.getElementById('factCadence').textContent = perDay;
+
+  // Server buffer (A9): videos on disk + refill progress
+  const buf = ig.server_buffer || {};
+  const bufCount = buf.count != null ? buf.count : (buf.on_disk || []).length;
+  const bufTarget = buf.target || 50;
+  document.getElementById('factOnServer').textContent = bufCount;
+  const rc = document.getElementById('refillCount');
+  const rt = document.getElementById('refillTarget');
+  const rf = document.getElementById('refillFill');
+  const rl = document.getElementById('refillLabel');
+  if(rc) rc.textContent = bufCount;
+  if(rt) rt.textContent = bufTarget;
+  if(rf) rf.style.width = (buf.refill_progress != null ? buf.refill_progress : Math.min(100, bufCount/bufTarget*100)) + '%';
+  if(rl){
+    if(buf.needs_refill) rl.textContent = '⚠️ REFILL';
+    else if(bufCount <= bufTarget*0.5) rl.textContent = bufCount + ' of ' + bufTarget;
+    else rl.textContent = 'OK';
+  }
 
   const pctDone = total? Math.round(pub.length/total*100) : 0;
   const C = 2*Math.PI*80;
