@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-17T02:20:10+04:00",
+  "generated_at": "2026-08-17T02:30:10+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -79,7 +79,7 @@
             "39": "2026-08-17T00:01:52"
           },
           "failed": [],
-          "last_updated": "2026-08-17T02:15:10",
+          "last_updated": "2026-08-17T02:30:10",
           "source": "local"
         },
         "server_buffer": {
@@ -111,7 +111,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137254,
+          "followers": 137257,
           "media_count": 237,
           "username": "ogletrends"
         },
@@ -222,7 +222,7 @@
             "22": "2026-08-17T00:00:42"
           },
           "failed": [],
-          "last_updated": "2026-08-17T02:15:10",
+          "last_updated": "2026-08-17T02:30:10",
           "source": "local"
         },
         "server_buffer": {
@@ -272,7 +272,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 73753,
+          "followers": 73759,
           "media_count": 187,
           "username": "streetsmartkidsusa"
         },
@@ -351,7 +351,7 @@
             "6": "2026-08-17T00:02:00"
           },
           "failed": [],
-          "last_updated": "2026-08-17T02:15:10",
+          "last_updated": "2026-08-17T02:30:10",
           "source": "local"
         },
         "server_buffer": {
