@@ -90,7 +90,7 @@ def load_server_buffer(account_dir, videos_total):
                     size_mb += os.path.getsize(os.path.join(vdir, f)) / 1e6
                 except (ValueError, OSError):
                     continue
-    target = 50
+    target = 40
     refill_at = 10
     return {
         "on_disk": sorted(on_disk),
