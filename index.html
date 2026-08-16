@@ -12,20 +12,20 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 <style>
 :root {
-  /* Capital Overview Dashboard — DESIGN.md tokens */
-  --bg: #0B0B10;
-  --surface: #18181C;
-  --surface-2: #1C1C21;
-  --primary: #818CF8;
-  --secondary: #1F2937;
-  --tertiary: #34D399;
+  /* Authentication-Architecture DESIGN.md tokens */
+  --bg: #0A0A0A;
+  --surface: #000000;
+  --surface-2: #18181B;
+  --primary: #10B981;
+  --secondary: #34D399;
+  --tertiary: #6EE7B7;
   --danger: #F87171;
   --warn: #FBBF24;
-  --border: rgba(55,65,81,0.5);
-  --border-soft: rgba(31,41,55,0.6);
-  --text: #FFFFFF;
-  --dim: #9CA3AF;
-  --faint: #6B7280;
+  --border: rgba(229,231,235,0.14);
+  --border-soft: rgba(255,255,255,0.08);
+  --text: #E5E5E5;
+  --dim: #737373;
+  --faint: #525252;
   --radius-lg: 16px;
   --radius-md: 12px;
   --radius-sm: 8px;
@@ -39,7 +39,7 @@ body {
   min-height:100vh;
   -webkit-font-smoothing:antialiased;
   background:
-    radial-gradient(1100px 500px at 85% -10%, rgba(129,140,248,0.08), transparent 60%),
+    radial-gradient(1100px 500px at 85% -10%, rgba(16,185,129,0.07), transparent 60%),
     radial-gradient(900px 420px at -10% 30%, rgba(52,211,153,0.05), transparent 60%),
     var(--bg);
   overflow-x:hidden;
@@ -54,14 +54,14 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--faint);
   margin:28px 0 12px;
 }
-.section-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(129,140,248,.25), transparent); }
+.section-title::after { content:''; flex:1; height:1px; background:linear-gradient(90deg, rgba(16,185,129,.25), transparent); }
 
 /* Cards — glass surface + gradient hairline shell (DESIGN.md technique) */
 .shell {
   border-radius:var(--radius-lg);
   padding:1px;
-  background:linear-gradient(135deg, rgba(129,140,248,.35), rgba(52,211,153,.18) 40%, rgba(255,255,255,.06));
-  box-shadow: 0 0 50px -12px rgba(0,0,0,.8), 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+  background:linear-gradient(135deg, rgba(16,185,129,.35), rgba(52,211,153,.18) 40%, rgba(255,255,255,.06));
+  box-shadow: 0 0 0 1px rgba(0,0,0,.06), 0 1px 1px -0.5px rgba(0,0,0,.06), 0 3px 3px -1.5px rgba(0,0,0,.06), 0 6px 6px -3px rgba(0,0,0,.06), 0 12px 12px -6px rgba(0,0,0,.06), 0 24px 24px -12px rgba(0,0,0,.06);
 }
 .shell > .card { border-radius:calc(var(--radius-lg) - 1px); }
 .card {
@@ -69,7 +69,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   border:1px solid var(--border-soft);
   border-radius:var(--radius-lg);
   padding:20px 24px;
-  background:rgba(24,24,28,.92);
+  background:rgba(24,24,27,.92);
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 }
@@ -105,13 +105,13 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   transition:background .15s,color .15s;
 }
 .seg button:hover { color:var(--text); }
-.seg button.active { background:rgba(129,140,248,.22); color:#C7D2FE; }
+.seg button.active { background:rgba(16,185,129,.22); color:#A7F3D0; }
 .seg input[type=date] {
   background:rgba(255,255,255,.05); border:1px solid var(--border);
   border-radius:var(--radius-sm); color:#D4D4D8; font-size:11px; padding:3px 10px;
   color-scheme:dark; outline:none; width:118px;
 }
-.seg input[type=date]:focus { border-color:rgba(129,140,248,.5); }
+.seg input[type=date]:focus { border-color:rgba(16,185,129,.5); }
 
 /* Badges */
 .badge { border-radius:9999px; padding:4px 12px; font-size:11px; font-weight:600; border:1px solid; white-space:nowrap; }
@@ -119,7 +119,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 .badge-warn { border-color:rgba(251,191,36,.35); background:rgba(251,191,36,.1); color:var(--warn); }
 .badge-danger { border-color:rgba(248,113,113,.4); background:rgba(248,113,113,.12); color:var(--danger); }
 .badge-ghost { border-color:var(--border); background:rgba(255,255,255,.03); color:var(--dim); }
-.badge-gold { border-color:rgba(129,140,248,.35); background:rgba(129,140,248,.1); color:#A5B4FC; }
+.badge-gold { border-color:rgba(16,185,129,.35); background:rgba(16,185,129,.1); color:#6EE7B7; }
 
 /* Uploads hero */
 .uploads-hero { display:grid; grid-template-columns: 300px 1fr; gap:16px; }
@@ -129,7 +129,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 .ring { position:relative; width:190px; height:190px; }
 .ring svg { transform:rotate(-90deg); }
 .ring .ring-bg { fill:none; stroke:rgba(255,255,255,.06); stroke-width:11; }
-.ring .ring-fg { fill:none; stroke:url(#ringGrad); stroke-width:11; stroke-linecap:round; transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); filter:drop-shadow(0 0 6px rgba(129,140,248,.45)); }
+.ring .ring-fg { fill:none; stroke:url(#ringGrad); stroke-width:11; stroke-linecap:round; transition:stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); filter:drop-shadow(0 0 6px rgba(16,185,129,.45)); }
 .ring-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .ring-pct { font-size:34px; font-weight:700; letter-spacing:-.02em; line-height:1; }
 .ring-sub { font-size:11px; color:var(--dim); margin-top:4px; }
@@ -142,20 +142,20 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 .countdown-head { display:flex; justify-content:space-between; align-items:baseline; }
 .countdown {
   display:flex; align-items:baseline; gap:10px;
-  background:linear-gradient(90deg, rgba(129,140,248,.12), rgba(52,211,153,.08));
-  border:1px solid rgba(129,140,248,.25); border-radius:var(--radius-md); padding:14px 18px;
+  background:linear-gradient(90deg, rgba(16,185,129,.12), rgba(52,211,153,.08));
+  border:1px solid rgba(16,185,129,.25); border-radius:var(--radius-md); padding:14px 18px;
 }
-.countdown .big { font-family:'JetBrains Mono',monospace; font-size:30px; font-weight:600; letter-spacing:-.02em; color:#C7D2FE; }
+.countdown .big { font-family:'JetBrains Mono',monospace; font-size:30px; font-weight:600; letter-spacing:-.02em; color:#A7F3D0; }
 .countdown .lbl { font-size:11px; color:var(--dim); }
 .slot-strip { display:flex; gap:8px; flex-wrap:wrap; }
 .slot {
   flex:1; min-width:130px; border:1px solid var(--border); border-radius:var(--radius-sm); padding:8px 12px;
   display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.02);
 }
-.slot.next { border-color:rgba(129,140,248,.5); background:rgba(129,140,248,.08); }
+.slot.next { border-color:rgba(16,185,129,.5); background:rgba(16,185,129,.08); }
 .slot .dot { width:8px; height:8px; border-radius:9999px; flex:none; }
 .slot.done .dot { background:var(--tertiary); }
-.slot.next .dot { background:var(--primary); box-shadow:0 0 8px rgba(129,140,248,.8); }
+.slot.next .dot { background:var(--primary); box-shadow:0 0 8px rgba(16,185,129,.8); }
 .slot.pending .dot { background:var(--faint); }
 .slot .t { font-size:13px; font-weight:600; }
 .slot .d { font-size:9px; color:var(--faint); text-transform:uppercase; letter-spacing:.08em; }
@@ -174,8 +174,8 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 .qcell:hover { transform:translateY(-2px); }
 .qcell.done { background:rgba(52,211,153,.14); border-color:rgba(52,211,153,.4); color:#6EE7B7; }
 .qcell.fail { background:rgba(248,113,113,.18); border-color:rgba(248,113,113,.5); color:#FCA5A5; }
-.qcell.nextup { border-color:var(--primary); color:#A5B4FC; background:rgba(129,140,248,.12); animation:pulse 2s infinite; }
-@keyframes pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(129,140,248,.35);} 50%{ box-shadow:0 0 0 5px rgba(129,140,248,0);} }
+.qcell.nextup { border-color:var(--primary); color:#6EE7B7; background:rgba(16,185,129,.12); animation:pulse 2s infinite; }
+@keyframes pulse { 0%,100%{ box-shadow:0 0 0 0 rgba(16,185,129,.35);} 50%{ box-shadow:0 0 0 5px rgba(16,185,129,0);} }
 .legend { display:flex; gap:14px; flex-wrap:wrap; font-size:10px; color:var(--dim); }
 .legend .li { display:flex; align-items:center; gap:5px; }
 .legend .sw { width:9px; height:9px; border-radius:3px; display:inline-block; }
@@ -186,7 +186,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   display:flex; align-items:center; gap:10px;
   border:1px solid rgba(255,255,255,.05); border-radius:var(--radius-sm); padding:7px 10px;
 }
-.post-row .num { font-family:'JetBrains Mono',monospace; font-weight:600; color:#C7D2FE; min-width:28px; }
+.post-row .num { font-family:'JetBrains Mono',monospace; font-weight:600; color:#A7F3D0; min-width:28px; }
 .post-row .mid { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--dim); }
 
 /* Product bars */
@@ -251,6 +251,21 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   try {
     authed = localStorage.getItem(AUTH_KEY) === '1' || sessionStorage.getItem(AUTH_KEY) === '1';
   } catch(e){}
+  // Dashboard header: show signed-in state + logout button when authed
+  try {
+    const st = document.getElementById('auth-status');
+    const lo = document.getElementById('dash-logout');
+    if (authed) {
+      if (st) st.style.display = '';
+      if (lo) {
+        lo.style.display = '';
+        lo.addEventListener('click', () => {
+          try { localStorage.removeItem(AUTH_KEY); sessionStorage.removeItem(AUTH_KEY); } catch(e){}
+          location.reload();
+        });
+      }
+    }
+  } catch(e){}
   const hidden = document.createElement('style');
   hidden.textContent = 'main,#webgl,.glow{display:none!important}';
   document.head.appendChild(hidden);
@@ -269,23 +284,23 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
     } catch(e){}
     const g = document.createElement('div');
     g.id='auth-gate';
-    g.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(900px 500px at 80% -10%, rgba(129,140,248,.12), transparent 60%),radial-gradient(700px 400px at 10% 110%, rgba(52,211,153,.07), transparent 60%),#0B0B10;';
+    g.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:radial-gradient(900px 500px at 80% -10%, rgba(16,185,129,.12), transparent 60%),radial-gradient(700px 400px at 10% 110%, rgba(52,211,153,.07), transparent 60%),#0A0A0A;';
     g.innerHTML='<div style="width:100%;max-width:400px;padding:24px;box-sizing:border-box;">'+
-      '<div style="background:rgba(24,24,28,.92);border:1px solid rgba(129,140,248,.25);border-radius:16px;padding:36px 32px;box-shadow:0 0 60px -15px rgba(129,140,248,.35),0 20px 25px -5px rgba(0,0,0,.3);">'+
+      '<div style="background:rgba(24,24,27,.92);border:1px solid rgba(16,185,129,.25);border-radius:16px;padding:36px 32px;box-shadow:0 0 60px -15px rgba(16,185,129,.35),0 20px 25px -5px rgba(0,0,0,.3);">'+
         '<div style="text-align:center;margin-bottom:28px;">'+
-          '<div style="width:48px;height:48px;margin:0 auto 14px;border-radius:12px;background:linear-gradient(135deg,#818CF8,#34D399);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#0B0B10;">OS</div>'+
-          '<div style="font-size:20px;font-weight:700;letter-spacing:-.02em;color:#fff;">OgleTrends Admin</div>'+
-          '<div style="font-size:12px;color:#9CA3AF;margin-top:4px;">Sign in to your dashboard</div>'+
+          '<div style="width:48px;height:48px;margin:0 auto 14px;border-radius:12px;background:linear-gradient(135deg,#10B981,#34D399);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#0A0A0A;">OS</div>'+
+          '<div style="font-size:20px;font-weight:700;letter-spacing:-.02em;color:#E5E5E5;">OgleTrends Admin</div>'+
+          '<div style="font-size:12px;color:#737373;margin-top:4px;">Sign in to your dashboard</div>'+
         '</div>'+
-        '<label style="display:block;font-size:11px;color:#9CA3AF;margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;">Email</label>'+
-        '<input type="email" id="auth-user" autocomplete="username" placeholder="you@example.com" style="width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(55,65,81,.6);background:#212126;color:#fff;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:16px;" />'+
-        '<label style="display:block;font-size:11px;color:#9CA3AF;margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;">Password</label>'+
-        '<input type="password" id="auth-pw" autocomplete="current-password" placeholder="••••••••" style="width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(55,65,81,.6);background:#212126;color:#fff;font-size:14px;outline:none;box-sizing:border-box;" />'+
+        '<label style="display:block;font-size:11px;color:#737373;margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;">Email</label>'+
+        '<input type="email" id="auth-user" autocomplete="username" placeholder="you@example.com" style="width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(229,231,235,.14);background:#18181B;color:#E5E5E5;font-size:14px;outline:none;box-sizing:border-box;margin-bottom:16px;" />'+
+        '<label style="display:block;font-size:11px;color:#737373;margin-bottom:6px;letter-spacing:.06em;text-transform:uppercase;">Password</label>'+
+        '<input type="password" id="auth-pw" autocomplete="current-password" placeholder="••••••••" style="width:100%;padding:11px 14px;border-radius:8px;border:1px solid rgba(229,231,235,.14);background:#18181B;color:#E5E5E5;font-size:14px;outline:none;box-sizing:border-box;" />'+
         '<div id="auth-err" style="color:#F87171;font-size:12px;margin-top:10px;min-height:16px;"></div>'+
-        '<button id="auth-btn" style="width:100%;margin-top:8px;padding:12px;border-radius:8px;border:0;background:linear-gradient(135deg,#818CF8,#6d7cf5);color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;">Sign In</button>'+
-        '<div style="font-size:10px;color:#6B7280;margin-top:20px;text-align:center;">Restricted access · authorized users only</div>'+
+        '<button id="auth-btn" style="width:100%;margin-top:8px;padding:12px;border-radius:8px;border:0;background:linear-gradient(135deg,#10B981,#34D399);color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;">Sign In</button>'+
+        '<div style="font-size:10px;color:#525252;margin-top:20px;text-align:center;">Restricted access · authorized users only</div>'+
       '</div>'+
-      '<div style="text-align:center;font-size:10px;color:#4B5563;margin-top:16px;">OgleTrends · E-Book Automation Command</div>'+
+      '<div style="text-align:center;font-size:10px;color:#525252;margin-top:16px;">OgleTrends · E-Book Automation Command</div>'+
     '</div>';
     document.body.appendChild(g);
     const user=document.getElementById('auth-user');
@@ -317,19 +332,21 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
 })();
 </script>
 <canvas id="webgl"></canvas>
-<div class="glow" style="left:-120px;top:-80px;width:360px;height:360px;background:#818CF8;"></div>
+<div class="glow" style="left:-120px;top:-80px;width:360px;height:360px;background:#10B981;"></div>
 <div class="glow" style="right:-100px;top:30%;width:300px;height:300px;background:#34D399;"></div>
-<div class="glow" style="bottom:-140px;left:35%;width:320px;height:320px;background:#818CF8;"></div>
+<div class="glow" style="bottom:-140px;left:35%;width:320px;height:320px;background:#10B981;"></div>
 
 <main>
   <header id="header" class="mb-4">
     <div class="flex between items-end wrap gap-12">
       <div>
-        <p class="hero-meta label" style="color:#818CF8;text-transform:uppercase;letter-spacing:.18em;font-weight:600;">OgleTrends · Automation Command</p>
+        <p class="hero-meta label" style="color:#10B981;text-transform:uppercase;letter-spacing:.18em;font-weight:600;">OgleTrends · Automation Command</p>
         <h1 class="hero-title" style="font-size:36px;font-weight:600;letter-spacing:-.025em;line-height:40px;margin-top:4px;">E-Book Automation</h1>
         <p class="hero-meta" style="font-size:12px;color:var(--faint);margin-top:4px;"><span id="meta-sales">—</span> sales all-time · <span id="meta-ig">—</span> IG posts · data <span id="meta-time">—</span></p>
       </div>
       <div class="flex wrap gap-8 items-center">
+        <span id="auth-status" class="badge badge-ok" style="display:none;">✓ signed in</span>
+        <button id="dash-logout" style="display:none;cursor:pointer;font-size:11px;padding:6px 14px;border-radius:9999px;border:1px solid rgba(248,113,113,.4);background:rgba(248,113,113,.1);color:#F87171;font-weight:600;font-family:inherit;">Log out</button>
         <div id="account-switcher" class="flex gap-4 items-center" style="gap:6px;"></div>
         <span class="badge badge-warn" id="badge-pace">● —% OF PACE</span>
         <span class="badge badge-ghost" id="badge-range">—</span>
@@ -348,7 +365,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
       </div>
     </div>
     <div class="hero-bar" style="margin-top:16px;height:4px;border-radius:9999px;background:rgba(255,255,255,.06);overflow:hidden;">
-      <div id="pace-fill" style="height:100%;width:0%;border-radius:9999px;background:linear-gradient(90deg,#818CF8,#34D399);transition:width 1s ease;"></div>
+      <div id="pace-fill" style="height:100%;width:0%;border-radius:9999px;background:linear-gradient(90deg,#10B981,#34D399);transition:width 1s ease;"></div>
     </div>
   </header>
 
@@ -362,7 +379,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
           <svg width="190" height="190" viewBox="0 0 190 190">
             <defs>
               <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#818CF8"/><stop offset="100%" stop-color="#34D399"/>
+                <stop offset="0%" stop-color="#10B981"/><stop offset="100%" stop-color="#6EE7B7"/>
               </linearGradient>
             </defs>
             <circle class="ring-bg" cx="95" cy="95" r="80"/>
@@ -385,7 +402,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
             <span id="refillLabel">—</span>
           </div>
           <div class="bar-track" style="height:6px;">
-            <div id="refillFill" style="height:100%;width:0%;border-radius:9999px;background:linear-gradient(90deg,#818CF8,#34D399);transition:width .8s ease;"></div>
+            <div id="refillFill" style="height:100%;width:0%;border-radius:9999px;background:linear-gradient(90deg,#10B981,#6EE7B7);transition:width .8s ease;"></div>
           </div>
         </div>
       </div>
@@ -463,7 +480,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
   </section>
 
   <footer>
-    OgleTrends E-Book Automation · live Gumroad + IG data · auto-refreshes every 60s · data sanitized for public dashboard · <span style="color:#818CF8;font-weight:600;">v2 redesign</span>
+    OgleTrends E-Book Automation · live Gumroad + IG data · auto-refreshes every 60s · data sanitized for public dashboard · <span style="color:#10B981;font-weight:600;">v3 emerald</span>
   </footer>
 </main>
 
@@ -489,7 +506,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
       for(let i=0;i<N;i++){ pos[i*3]=(Math.random()-.5)*300; pos[i*3+1]=(Math.random()-.5)*200; pos[i*3+2]=(Math.random()-.5)*120; }
       const g = new THREE.BufferGeometry();
       g.setAttribute('position', new THREE.BufferAttribute(pos,3));
-      points = new THREE.Points(g, new THREE.PointsMaterial({color:0x818cf8,size:0.5,transparent:true,opacity:0.35}));
+      points = new THREE.Points(g, new THREE.PointsMaterial({color:0x10b981,size:0.5,transparent:true,opacity:0.35}));
       scene.add(points);
       (function tick(){
         const t = performance.now()*0.00025;
@@ -504,7 +521,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
     } catch(e) {
       canvas.style.display='none';
       const d=document.createElement('div');
-      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(129,140,248,.5) 1px, transparent 1.5px);background-size:28px 28px;';
+      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(16,185,129,.5) 1px, transparent 1.5px);background-size:28px 28px;';
       document.body.appendChild(d);
     }
   };
@@ -513,7 +530,7 @@ main { position:relative; z-index:10; max-width:1240px; margin:0 auto; padding:2
     if(isMobile || reduced){
       canvas.style.display='none';
       const d=document.createElement('div');
-      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(129,140,248,.5) 1px, transparent 1.5px);background-size:28px 28px;';
+      d.style.cssText='position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle, rgba(16,185,129,.5) 1px, transparent 1.5px);background-size:28px 28px;';
       document.body.appendChild(d);
     } else { start(); }
   } else {
@@ -555,7 +572,7 @@ function buildAccountSwitcher(){
     const pub = ((a.state||{}).published||[]).length;
     const tot = a.videos||0;
     const active = k===ACTIVE_ACCOUNT;
-    return '<button data-account="'+k+'" style="cursor:pointer;font-size:11px;padding:6px 12px;border-radius:9999px;border:1px solid '+(active?'#818CF8':'rgba(255,255,255,.14)')+';background:'+(active?'rgba(129,140,248,.12)':'rgba(255,255,255,.04)')+';color:'+(active?'#A5B4FC':'var(--text2)')+';font-weight:600;letter-spacing:.04em;">'+a.username+' <span style="opacity:.7">'+pub+'/'+tot+'</span></button>';
+    return '<button data-account="'+k+'" style="cursor:pointer;font-size:11px;padding:6px 12px;border-radius:9999px;border:1px solid '+(active?'#10B981':'rgba(255,255,255,.14)')+';background:'+(active?'rgba(16,185,129,.12)':'rgba(255,255,255,.04)')+';color:'+(active?'#6EE7B7':'var(--text2)')+';font-weight:600;letter-spacing:.04em;">'+a.username+' <span style="opacity:.7">'+pub+'/'+tot+'</span></button>';
   }).join('');
 }
 /* Event delegation — robust on mobile, no inline handlers */
@@ -802,7 +819,7 @@ function renderProducts(){
   items.forEach(it=>{
     const row=document.createElement('div');
     row.innerHTML='<div class="flex between" style="font-size:11px;margin-bottom:4px;"><span style="color:var(--dim);max-width:70%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+it.name+'</span><span style="font-weight:600;">'+fmt(it.revenue)+'</span></div>'+
-      '<div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#818CF8,#34D399);" data-w="'+(it.revenue/max*100)+'"></div></div>';
+      '<div class="bar-track"><div class="bar-fill" style="width:0%;background:linear-gradient(90deg,#10B981,#34D399);" data-w="'+(it.revenue/max*100)+'"></div></div>';
     el.appendChild(row);
   });
   requestAnimationFrame(()=>{ el.querySelectorAll('.bar-fill').forEach(b=>{ b.style.width = b.dataset.w+'%'; }); });
@@ -834,7 +851,7 @@ function renderPacing(days){
   el.innerHTML =
     '<div class="flex between" style="margin-bottom:6px;"><span style="font-size:11px;color:var(--dim);">Avg / day</span><span style="font-size:15px;font-weight:600;">'+fmt(avg)+'</span></div>'+
     '<div class="flex between" style="margin-bottom:6px;"><span style="font-size:11px;color:var(--dim);">vs $500 target</span><span style="font-size:15px;font-weight:600;">'+pace+'%</span></div>'+
-    '<div class="bar-track" style="height:10px;"><div class="bar-fill" style="width:'+pace+'%;background:'+(pace>=100?'linear-gradient(90deg,#34D399,#6EE7B7)':'linear-gradient(90deg,#818CF8,#34D399)')+';"></div></div>';
+    '<div class="bar-track" style="height:10px;"><div class="bar-fill" style="width:'+pace+'%;background:'+(pace>=100?'linear-gradient(90deg,#34D399,#6EE7B7)':'linear-gradient(90deg,#10B981,#34D399)')+';"></div></div>';
 }
 function renderCharts(days){
   if(typeof Chart === 'undefined'){                     // CDN blocked — degrade gracefully
@@ -852,7 +869,7 @@ function renderCharts(days){
   chartDaily = new Chart(document.getElementById('chart-daily'), {
     type:'bar',
     data:{ labels, datasets:[
-      {type:'bar', label:'Revenue', data:revs, backgroundColor:'rgba(129,140,248,.85)', borderRadius:4, maxBarThickness:26},
+      {type:'bar', label:'Revenue', data:revs, backgroundColor:'rgba(16,185,129,.85)', borderRadius:4, maxBarThickness:26},
       {type:'line', label:'Target $500', data:tgt, borderColor:'#34D399', borderDash:[6,4], borderWidth:1.5, pointRadius:0, fill:false},
     ]},
     options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{labels:{color:'#A1A1AA',font:{size:10},boxWidth:12}}}, scales:{
@@ -885,7 +902,7 @@ function renderIG(){
     const pub = ((a.state||{}).published||[]).length;
     const tot = a.videos||0;
     const isActive = k===ACTIVE_ACCOUNT;
-    return '<div class="flex between" style="margin-bottom:6px;'+(isActive?'background:rgba(129,140,248,.08);border-radius:8px;padding:5px 8px;margin-left:-8px;margin-right:-8px;':'')+'"><span style="font-size:12px;font-weight:600;">@'+k+(isActive?' <span style="color:#818CF8;font-size:9px;letter-spacing:.08em;">● ACTIVE</span>':'')+'</span><span style="font-size:12px;color:var(--text2);">'+short(acc.followers||0)+' followers · '+pub+'/'+tot+' posted</span></div>';
+    return '<div class="flex between" style="margin-bottom:6px;'+(isActive?'background:rgba(16,185,129,.08);border-radius:8px;padding:5px 8px;margin-left:-8px;margin-right:-8px;':'')+'"><span style="font-size:12px;font-weight:600;">@'+k+(isActive?' <span style="color:#10B981;font-size:9px;letter-spacing:.08em;">● ACTIVE</span>':'')+'</span><span style="font-size:12px;color:var(--text2);">'+short(acc.followers||0)+' followers · '+pub+'/'+tot+' posted</span></div>';
   }).join('');
   // detail for active account
   const a = accs[ACTIVE_ACCOUNT] || accs[keys[0]];
