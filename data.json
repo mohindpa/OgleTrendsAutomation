@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T16:40:03+04:00",
+  "generated_at": "2026-08-16T16:50:03+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -73,7 +73,7 @@
             "36": "2026-08-16T16:31:41"
           },
           "failed": [],
-          "last_updated": "2026-08-16T16:33:07",
+          "last_updated": "2026-08-16T16:45:03",
           "source": "local"
         },
         "server_buffer": {
@@ -108,7 +108,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137185,
+          "followers": 137191,
           "media_count": 234,
           "username": "ogletrends"
         },
@@ -213,7 +213,7 @@
             "19": "2026-08-16T16:32:03"
           },
           "failed": [],
-          "last_updated": "2026-08-16T16:32:59",
+          "last_updated": "2026-08-16T16:45:03",
           "source": "local"
         },
         "server_buffer": {
@@ -266,7 +266,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 73500,
+          "followers": 73503,
           "media_count": 184,
           "username": "streetsmartkidsusa"
         },
@@ -339,7 +339,7 @@
             "3": "2026-08-16T16:31:26"
           },
           "failed": [],
-          "last_updated": "2026-08-16T16:32:45",
+          "last_updated": "2026-08-16T16:45:03",
           "source": "local"
         },
         "server_buffer": {
@@ -466,11 +466,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 94.95,
-    "today_units": 5,
-    "total_revenue_14d": 764.08,
-    "total_units_14d": 42,
-    "aov_14d": 18.19,
+    "today_revenue": 119.94,
+    "today_units": 6,
+    "total_revenue_14d": 789.07,
+    "total_units_14d": 43,
+    "aov_14d": 18.35,
     "daily": [
       {
         "day": "2026-08-02",
@@ -530,7 +530,7 @@
       },
       {
         "day": "2026-08-16",
-        "revenue": 69.96
+        "revenue": 94.95
       }
     ],
     "daily_all": [
@@ -928,13 +928,13 @@
       },
       {
         "day": "2026-08-16",
-        "revenue": 69.96
+        "revenue": 94.95
       }
     ],
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 577.26
+        "revenue": 602.25
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
@@ -956,7 +956,7 @@
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 1734.27
+        "revenue": 1759.26
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -968,8 +968,8 @@
       }
     ],
     "all_time": {
-      "revenue": 6121.11,
-      "units": 721,
+      "revenue": 6146.1,
+      "units": 725,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -977,9 +977,9 @@
       "to": "2026-08-16"
     },
     "week_over_week": {
-      "current": 337.31,
+      "current": 362.3,
       "previous": 401.78,
-      "change_pct": -16.0
+      "change_pct": -9.8
     }
   },
   "schedule": [
