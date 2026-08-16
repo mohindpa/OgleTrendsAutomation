@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T18:50:04+04:00",
+  "generated_at": "2026-08-16T19:00:04+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -75,7 +75,7 @@
             "37": "2026-08-16T18:01:46"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:45:04",
+          "last_updated": "2026-08-16T19:00:04",
           "source": "local"
         },
         "server_buffer": {
@@ -216,7 +216,7 @@
             "20": "2026-08-16T18:02:19"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:45:04",
+          "last_updated": "2026-08-16T19:00:04",
           "source": "local"
         },
         "server_buffer": {
@@ -268,7 +268,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 73555,
+          "followers": 73563,
           "media_count": 185,
           "username": "streetsmartkidsusa"
         },
@@ -343,7 +343,7 @@
             "4": "2026-08-16T18:02:02"
           },
           "failed": [],
-          "last_updated": "2026-08-16T18:45:04",
+          "last_updated": "2026-08-16T19:00:04",
           "source": "local"
         },
         "server_buffer": {
