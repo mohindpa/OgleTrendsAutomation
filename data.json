@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T12:00:41+04:00",
+  "generated_at": "2026-08-16T12:10:42+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -44,6 +44,7 @@
             32,
             33,
             34,
+            35,
             47
           ],
           "posted_at": {
@@ -66,15 +67,15 @@
             "31": "2026-08-14T18:02:12",
             "32": "2026-08-15T00:02:25",
             "33": "2026-08-15T18:04:00",
-            "34": "2026-08-16T00:02:35"
+            "34": "2026-08-16T00:02:35",
+            "35": "2026-08-16T12:01:49"
           },
           "failed": [],
-          "last_updated": "2026-08-16T11:45:41",
+          "last_updated": "2026-08-16T12:03:02",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            35,
             36,
             37,
             38,
@@ -97,17 +98,17 @@
             56,
             57
           ],
-          "count": 22,
-          "size_mb": 633.8,
+          "count": 21,
+          "size_mb": 614.9,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 55,
+          "refill_progress": 52,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 137146,
-          "media_count": 232,
+          "followers": 137149,
+          "media_count": 233,
           "username": "ogletrends"
         },
         "slots": [
@@ -185,7 +186,8 @@
             14,
             15,
             16,
-            17
+            17,
+            18
           ],
           "posted_at": {
             "1": "2026-08-10T02:19:36",
@@ -204,15 +206,15 @@
             "14": "2026-08-14T18:01:41",
             "15": "2026-08-15T00:01:21",
             "16": "2026-08-15T18:01:16",
-            "17": "2026-08-16T00:02:36"
+            "17": "2026-08-16T00:02:36",
+            "18": "2026-08-16T12:01:35"
           },
           "failed": [],
-          "last_updated": "2026-08-16T12:00:41",
+          "last_updated": "2026-08-16T12:03:37",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            18,
             19,
             20,
             21,
@@ -253,17 +255,17 @@
             56,
             57
           ],
-          "count": 40,
-          "size_mb": 965.3,
+          "count": 39,
+          "size_mb": 939.5,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 100,
+          "refill_progress": 98,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 73426,
-          "media_count": 182,
+          "followers": 73428,
+          "media_count": 183,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -324,15 +326,18 @@
         "composio_account": "instagram_paroli-glider",
         "videos": 253,
         "state": {
-          "published": [],
-          "posted_at": {},
+          "published": [
+            1
+          ],
+          "posted_at": {
+            "1": "2026-08-16T12:01:38"
+          },
           "failed": [],
-          "last_updated": "2026-08-16T06:16:26",
+          "last_updated": "2026-08-16T12:02:54",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            1,
             2,
             3,
             4,
@@ -373,17 +378,17 @@
             39,
             40
           ],
-          "count": 40,
-          "size_mb": 1764.6,
+          "count": 39,
+          "size_mb": 1735.5,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 100,
+          "refill_progress": 98,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 2,
-          "media_count": 1,
+          "media_count": 2,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -452,7 +457,7 @@
       }
     },
     "total": {
-      "published": 52,
+      "published": 55,
       "failed": 0
     }
   },
