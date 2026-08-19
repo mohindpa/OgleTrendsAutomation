@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T21:20:08+04:00",
+  "generated_at": "2026-08-19T21:30:08+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -91,7 +91,7 @@
             "45": "2026-08-19T18:02:48"
           },
           "failed": [],
-          "last_updated": "2026-08-19T21:15:08",
+          "last_updated": "2026-08-19T21:30:08",
           "source": "local"
         },
         "server_buffer": {
@@ -117,7 +117,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137529,
+          "followers": 137532,
           "media_count": 242,
           "username": "ogletrends"
         },
@@ -236,7 +236,7 @@
             "26": "2026-08-19T18:01:13"
           },
           "failed": [],
-          "last_updated": "2026-08-19T21:15:08",
+          "last_updated": "2026-08-19T21:30:08",
           "source": "local"
         },
         "server_buffer": {
@@ -282,7 +282,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74534,
+          "followers": 74542,
           "media_count": 190,
           "username": "streetsmartkidsusa"
         },
@@ -379,7 +379,7 @@
             "15": "2026-08-19T18:01:20"
           },
           "failed": [],
-          "last_updated": "2026-08-19T21:15:08",
+          "last_updated": "2026-08-19T21:30:08",
           "source": "local"
         },
         "server_buffer": {
@@ -496,13 +496,13 @@
   "gumroad": {
     "today_revenue": 0.0,
     "today_units": 0,
-    "total_revenue_14d": 762.07,
-    "total_units_14d": 43,
-    "aov_14d": 17.72,
+    "total_revenue_14d": 737.08,
+    "total_units_14d": 42,
+    "aov_14d": 17.55,
     "daily": [
       {
         "day": "2026-08-05",
-        "revenue": 34.98
+        "revenue": 9.99
       },
       {
         "day": "2026-08-06",
@@ -966,7 +966,7 @@
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 552.27
+        "revenue": 527.28
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
