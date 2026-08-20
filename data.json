@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-20T15:00:22+04:00",
+  "generated_at": "2026-08-20T15:10:22+04:00",
   "total_videos": 527,
   "ig": {
     "accounts": {
@@ -366,7 +366,8 @@
             13,
             14,
             15,
-            16
+            16,
+            17
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -384,15 +385,15 @@
             "13": "2026-08-19T00:01:52",
             "14": "2026-08-19T15:01:11",
             "15": "2026-08-19T18:01:20",
-            "16": "2026-08-20T00:01:40"
+            "16": "2026-08-20T00:01:40",
+            "17": "2026-08-20T15:01:35"
           },
           "failed": [],
-          "last_updated": "2026-08-20T15:00:22",
+          "last_updated": "2026-08-20T15:03:15",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            17,
             18,
             19,
             20,
@@ -417,17 +418,17 @@
             39,
             40
           ],
-          "count": 24,
-          "size_mb": 830.9,
+          "count": 23,
+          "size_mb": 774.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 60,
+          "refill_progress": 57,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 20,
-          "media_count": 17,
+          "media_count": 18,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -496,7 +497,7 @@
       }
     },
     "total": {
-      "published": 94,
+      "published": 95,
       "failed": 0
     }
   },
