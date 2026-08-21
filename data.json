@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T17:50:39+04:00",
+  "generated_at": "2026-08-21T18:00:39+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -290,7 +290,7 @@
             "33": "2026-08-21T14:01:15"
           },
           "failed": [],
-          "last_updated": "2026-08-21T17:45:39",
+          "last_updated": "2026-08-21T18:00:39",
           "source": "local"
         },
         "server_buffer": {
@@ -436,7 +436,7 @@
             "20": "2026-08-21T15:01:32"
           },
           "failed": [],
-          "last_updated": "2026-08-21T17:45:39",
+          "last_updated": "2026-08-21T18:00:39",
           "source": "local"
         },
         "server_buffer": {
