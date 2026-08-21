@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-21T17:30:39+04:00",
+  "generated_at": "2026-08-21T17:40:39+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -105,7 +105,7 @@
             "53": "2026-08-21T14:02:38"
           },
           "failed": [],
-          "last_updated": "2026-08-21T17:15:38",
+          "last_updated": "2026-08-21T17:30:39",
           "source": "local"
         },
         "server_buffer": {
