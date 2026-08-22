@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T17:10:12+04:00",
+  "generated_at": "2026-08-22T17:20:12+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -113,7 +113,7 @@
             "57": "2026-08-22T14:02:18"
           },
           "failed": [],
-          "last_updated": "2026-08-22T17:00:12",
+          "last_updated": "2026-08-22T17:15:12",
           "source": "local"
         },
         "server_buffer": {
@@ -161,7 +161,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137728,
+          "followers": 137729,
           "media_count": 253,
           "username": "ogletrends"
         },
@@ -302,7 +302,7 @@
             "37": "2026-08-22T14:00:51"
           },
           "failed": [],
-          "last_updated": "2026-08-22T17:00:12",
+          "last_updated": "2026-08-22T17:15:12",
           "source": "local"
         },
         "server_buffer": {
@@ -337,7 +337,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74818,
+          "followers": 74820,
           "media_count": 200,
           "username": "streetsmartkidsusa"
         },
@@ -450,7 +450,7 @@
             "23": "2026-08-22T15:02:13"
           },
           "failed": [],
-          "last_updated": "2026-08-22T17:00:12",
+          "last_updated": "2026-08-22T17:15:12",
           "source": "local"
         },
         "server_buffer": {
@@ -482,7 +482,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 25,
+          "followers": 26,
           "media_count": 24,
           "username": "healthykids_jones"
         },
@@ -559,13 +559,13 @@
   "gumroad": {
     "today_revenue": 9.99,
     "today_units": 1,
-    "total_revenue_14d": 689.6,
-    "total_units_14d": 40,
-    "aov_14d": 17.24,
+    "total_revenue_14d": 679.61,
+    "total_units_14d": 39,
+    "aov_14d": 17.43,
     "daily": [
       {
         "day": "2026-08-08",
-        "revenue": 59.97
+        "revenue": 49.98
       },
       {
         "day": "2026-08-09",
@@ -1045,7 +1045,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 169.83
+        "revenue": 159.84
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
