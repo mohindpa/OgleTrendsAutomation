@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-22T22:00:16+04:00",
+  "generated_at": "2026-08-22T22:10:18+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -115,7 +115,7 @@
             "58": "2026-08-22T18:02:14"
           },
           "failed": [],
-          "last_updated": "2026-08-22T21:45:16",
+          "last_updated": "2026-08-22T22:00:16",
           "source": "local"
         },
         "server_buffer": {
@@ -339,7 +339,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74833,
+          "followers": 74834,
           "media_count": 201,
           "username": "streetsmartkidsusa"
         },
@@ -562,14 +562,10 @@
   "gumroad": {
     "today_revenue": 9.99,
     "today_units": 1,
-    "total_revenue_14d": 654.62,
-    "total_units_14d": 38,
-    "aov_14d": 17.23,
+    "total_revenue_14d": 629.63,
+    "total_units_14d": 37,
+    "aov_14d": 17.02,
     "daily": [
-      {
-        "day": "2026-08-08",
-        "revenue": 24.99
-      },
       {
         "day": "2026-08-09",
         "revenue": 104.94
@@ -1044,7 +1040,7 @@
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 469.8
+        "revenue": 444.81
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
