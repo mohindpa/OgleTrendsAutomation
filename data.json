@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-23T19:30:12+04:00",
+  "generated_at": "2026-08-23T19:40:12+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -579,13 +579,13 @@
   "gumroad": {
     "today_revenue": 44.97,
     "today_units": 3,
-    "total_revenue_14d": 614.63,
-    "total_units_14d": 37,
-    "aov_14d": 16.61,
+    "total_revenue_14d": 604.64,
+    "total_units_14d": 36,
+    "aov_14d": 16.8,
     "daily": [
       {
         "day": "2026-08-09",
-        "revenue": 44.97
+        "revenue": 34.98
       },
       {
         "day": "2026-08-10",
@@ -1069,7 +1069,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 169.83
+        "revenue": 159.84
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
