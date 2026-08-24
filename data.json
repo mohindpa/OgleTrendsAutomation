@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T15:10:06+04:00",
+  "generated_at": "2026-08-24T15:20:07+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -137,7 +137,7 @@
             "69": "2026-08-24T14:05:08"
           },
           "failed": [],
-          "last_updated": "2026-08-24T15:00:06",
+          "last_updated": "2026-08-24T15:15:07",
           "source": "local"
         },
         "server_buffer": {
@@ -173,8 +173,8 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137930,
-          "media_count": 264,
+          "followers": 137943,
+          "media_count": 265,
           "username": "ogletrends"
         },
         "slots": [
@@ -227,7 +227,7 @@
             ]
           }
         ],
-        "stale": true
+        "stale": false
       },
       "streetsmartkidsusa": {
         "name": "Street Smart Kids USA",
@@ -338,7 +338,7 @@
             "49": "2026-08-24T14:07:58"
           },
           "failed": [],
-          "last_updated": "2026-08-24T15:00:06",
+          "last_updated": "2026-08-24T15:15:07",
           "source": "local"
         },
         "server_buffer": {
@@ -361,8 +361,8 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74915,
-          "media_count": 211,
+          "followers": 74913,
+          "media_count": 212,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -415,7 +415,7 @@
             ]
           }
         ],
-        "stale": true
+        "stale": false
       },
       "healthykids_jones": {
         "name": "Healthy Kids Jones",
@@ -492,7 +492,7 @@
             "32": "2026-08-24T03:01:36"
           },
           "failed": [],
-          "last_updated": "2026-08-24T15:05:06",
+          "last_updated": "2026-08-24T15:15:07",
           "source": "local"
         },
         "server_buffer": {
@@ -613,7 +613,7 @@
             ]
           }
         ],
-        "stale": true
+        "stale": false
       }
     },
     "total": {
@@ -1223,9 +1223,9 @@
     }
   ],
   "sources": {
-    "ig_account_ogletrends": "stale",
-    "ig_account_streetsmartkidsusa": "stale",
-    "ig_account_healthykids_jones": "stale",
+    "ig_account_ogletrends": "ok",
+    "ig_account_streetsmartkidsusa": "ok",
+    "ig_account_healthykids_jones": "ok",
     "gumroad": "ok"
   }
 }
