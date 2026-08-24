@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T18:10:09+04:00",
+  "generated_at": "2026-08-24T18:20:10+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -78,7 +78,8 @@
             66,
             67,
             68,
-            69
+            69,
+            70
           ],
           "posted_at": {
             "15": "2026-08-08T18:01:13",
@@ -134,12 +135,11 @@
             "66": "2026-08-24T00:01:48",
             "67": "2026-08-24T03:01:30",
             "68": "2026-08-24T10:01:43",
-            "69": "2026-08-24T14:05:08"
+            "69": "2026-08-24T14:05:08",
+            "70": "2026-08-24T18:15:00"
           },
-          "failed": [
-            70
-          ],
-          "last_updated": "2026-08-24T18:01:50",
+          "failed": [],
+          "last_updated": "2026-08-24T18:16:53",
           "source": "local"
         },
         "server_buffer": {
@@ -175,8 +175,8 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137957,
-          "media_count": 266,
+          "followers": 137961,
+          "media_count": 267,
           "username": "ogletrends"
         },
         "slots": [
@@ -342,7 +342,7 @@
             "50": "2026-08-24T18:01:01"
           },
           "failed": [],
-          "last_updated": "2026-08-24T18:02:25",
+          "last_updated": "2026-08-24T18:15:09",
           "source": "local"
         },
         "server_buffer": {
@@ -396,7 +396,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74914,
+          "followers": 74913,
           "media_count": 213,
           "username": "streetsmartkidsusa"
         },
@@ -529,7 +529,7 @@
             "33": "2026-08-24T18:01:00"
           },
           "failed": [],
-          "last_updated": "2026-08-24T18:02:34",
+          "last_updated": "2026-08-24T18:15:09",
           "source": "local"
         },
         "server_buffer": {
@@ -653,8 +653,8 @@
       }
     },
     "total": {
-      "published": 152,
-      "failed": 1
+      "published": 153,
+      "failed": 0
     }
   },
   "gumroad": {
