@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T14:10:05+04:00",
+  "generated_at": "2026-08-24T14:20:06+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -137,12 +137,11 @@
             "69": "2026-08-24T14:05:08"
           },
           "failed": [],
-          "last_updated": "2026-08-24T14:05:08",
+          "last_updated": "2026-08-24T14:15:05",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            69,
             70,
             71,
             72,
@@ -165,11 +164,11 @@
             89,
             90
           ],
-          "count": 22,
-          "size_mb": 1298.0,
+          "count": 21,
+          "size_mb": 1236.2,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 55,
+          "refill_progress": 52,
           "needs_refill": false,
           "over_target": 0
         },
@@ -339,12 +338,11 @@
             "49": "2026-08-24T14:07:58"
           },
           "failed": [],
-          "last_updated": "2026-08-24T14:07:58",
+          "last_updated": "2026-08-24T14:20:21",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            49,
             50,
             51,
             52,
@@ -354,11 +352,11 @@
             56,
             57
           ],
-          "count": 9,
-          "size_mb": 176.6,
+          "count": 8,
+          "size_mb": 144.3,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 22,
+          "refill_progress": 20,
           "needs_refill": true,
           "over_target": 0
         },
@@ -494,7 +492,7 @@
             "32": "2026-08-24T03:01:36"
           },
           "failed": [],
-          "last_updated": "2026-08-24T14:00:05",
+          "last_updated": "2026-08-24T14:20:21",
           "source": "local"
         },
         "server_buffer": {
