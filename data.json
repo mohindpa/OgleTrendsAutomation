@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T20:50:12+04:00",
+  "generated_at": "2026-08-24T21:00:13+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -139,7 +139,7 @@
             "70": "2026-08-24T18:15:00"
           },
           "failed": [],
-          "last_updated": "2026-08-24T20:45:12",
+          "last_updated": "2026-08-24T21:00:13",
           "source": "local"
         },
         "server_buffer": {
@@ -342,7 +342,7 @@
             "50": "2026-08-24T18:01:01"
           },
           "failed": [],
-          "last_updated": "2026-08-24T20:45:12",
+          "last_updated": "2026-08-24T21:00:13",
           "source": "local"
         },
         "server_buffer": {
@@ -529,7 +529,7 @@
             "33": "2026-08-24T18:01:00"
           },
           "failed": [],
-          "last_updated": "2026-08-24T20:45:12",
+          "last_updated": "2026-08-24T21:00:13",
           "source": "local"
         },
         "server_buffer": {
