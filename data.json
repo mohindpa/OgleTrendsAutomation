@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T13:50:05+04:00",
+  "generated_at": "2026-08-24T14:00:05+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -135,7 +135,7 @@
             "68": "2026-08-24T10:01:43"
           },
           "failed": [],
-          "last_updated": "2026-08-24T13:45:05",
+          "last_updated": "2026-08-24T14:00:05",
           "source": "local"
         },
         "server_buffer": {
@@ -226,7 +226,7 @@
             ]
           }
         ],
-        "stale": false
+        "stale": true
       },
       "streetsmartkidsusa": {
         "name": "Street Smart Kids USA",
@@ -335,7 +335,7 @@
             "48": "2026-08-24T10:01:11"
           },
           "failed": [],
-          "last_updated": "2026-08-24T13:45:05",
+          "last_updated": "2026-08-24T14:00:05",
           "source": "local"
         },
         "server_buffer": {
@@ -413,7 +413,7 @@
             ]
           }
         ],
-        "stale": false
+        "stale": true
       },
       "healthykids_jones": {
         "name": "Healthy Kids Jones",
@@ -490,7 +490,7 @@
             "32": "2026-08-24T03:01:36"
           },
           "failed": [],
-          "last_updated": "2026-08-24T13:45:05",
+          "last_updated": "2026-08-24T14:00:05",
           "source": "local"
         },
         "server_buffer": {
@@ -611,7 +611,7 @@
             ]
           }
         ],
-        "stale": false
+        "stale": true
       }
     },
     "total": {
@@ -1221,9 +1221,9 @@
     }
   ],
   "sources": {
-    "ig_account_ogletrends": "ok",
-    "ig_account_streetsmartkidsusa": "ok",
-    "ig_account_healthykids_jones": "ok",
+    "ig_account_ogletrends": "stale",
+    "ig_account_streetsmartkidsusa": "stale",
+    "ig_account_healthykids_jones": "stale",
     "gumroad": "ok"
   }
 }
