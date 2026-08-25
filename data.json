@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T15:00:06+04:00",
+  "generated_at": "2026-08-25T15:10:06+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -145,7 +145,7 @@
             "73": "2026-08-25T14:01:37"
           },
           "failed": [],
-          "last_updated": "2026-08-25T14:45:06",
+          "last_updated": "2026-08-25T15:00:06",
           "source": "local"
         },
         "server_buffer": {
@@ -178,7 +178,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138018,
+          "followers": 138019,
           "media_count": 271,
           "username": "ogletrends"
         },
@@ -499,7 +499,8 @@
             31,
             32,
             33,
-            34
+            34,
+            35
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -535,15 +536,15 @@
             "31": "2026-08-24T00:01:04",
             "32": "2026-08-24T03:01:36",
             "33": "2026-08-24T18:01:00",
-            "34": "2026-08-25T00:01:04"
+            "34": "2026-08-25T00:01:04",
+            "35": "2026-08-25T15:00:50"
           },
           "failed": [],
-          "last_updated": "2026-08-25T15:00:06",
+          "last_updated": "2026-08-25T15:02:00",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            35,
             36,
             37,
             38,
@@ -582,17 +583,17 @@
             71,
             72
           ],
-          "count": 38,
-          "size_mb": 1588.0,
+          "count": 37,
+          "size_mb": 1566.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 95,
+          "refill_progress": 92,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 36,
-          "media_count": 35,
+          "media_count": 36,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -661,7 +662,7 @@
       }
     },
     "total": {
-      "published": 160,
+      "published": 161,
       "failed": 0
     }
   },
