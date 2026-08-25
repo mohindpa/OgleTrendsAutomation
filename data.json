@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T00:00:18+04:00",
+  "generated_at": "2026-08-26T00:10:18+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -83,7 +83,8 @@
             71,
             72,
             73,
-            74
+            74,
+            75
           ],
           "posted_at": {
             "15": "2026-08-08T18:01:13",
@@ -144,17 +145,17 @@
             "71": "2026-08-25T00:01:50",
             "72": "2026-08-25T10:01:44",
             "73": "2026-08-25T14:01:37",
-            "74": "2026-08-25T18:01:35"
+            "74": "2026-08-25T18:01:35",
+            "75": "2026-08-26T00:01:28"
           },
           "failed": [],
-          "last_updated": "2026-08-25T23:45:17",
+          "last_updated": "2026-08-26T00:02:38",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             70,
             74,
-            75,
             76,
             77,
             78,
@@ -171,17 +172,17 @@
             89,
             90
           ],
-          "count": 18,
-          "size_mb": 1034.3,
+          "count": 17,
+          "size_mb": 994.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 45,
+          "refill_progress": 42,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 138040,
-          "media_count": 272,
+          "media_count": 273,
           "username": "ogletrends"
         },
         "slots": [
@@ -296,7 +297,8 @@
             51,
             52,
             53,
-            54
+            54,
+            55
           ],
           "posted_at": {
             "1": "2026-08-10T02:19:36",
@@ -352,16 +354,16 @@
             "51": "2026-08-25T00:17:20",
             "52": "2026-08-25T10:00:53",
             "53": "2026-08-25T14:01:11",
-            "54": "2026-08-25T18:01:02"
+            "54": "2026-08-25T18:01:02",
+            "55": "2026-08-26T00:01:58"
           },
           "failed": [],
-          "last_updated": "2026-08-26T00:00:18",
+          "last_updated": "2026-08-26T00:04:14",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             51,
-            55,
             56,
             57,
             58,
@@ -397,17 +399,17 @@
             88,
             89
           ],
-          "count": 36,
-          "size_mb": 980.6,
+          "count": 35,
+          "size_mb": 950.1,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 90,
+          "refill_progress": 88,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 74915,
-          "media_count": 217,
+          "media_count": 218,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -504,7 +506,8 @@
             33,
             34,
             35,
-            36
+            36,
+            37
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -542,15 +545,15 @@
             "33": "2026-08-24T18:01:00",
             "34": "2026-08-25T00:01:04",
             "35": "2026-08-25T15:00:50",
-            "36": "2026-08-25T18:01:20"
+            "36": "2026-08-25T18:01:20",
+            "37": "2026-08-26T00:01:53"
           },
           "failed": [],
-          "last_updated": "2026-08-26T00:00:18",
+          "last_updated": "2026-08-26T00:03:20",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            37,
             38,
             39,
             40,
@@ -587,17 +590,17 @@
             71,
             72
           ],
-          "count": 36,
-          "size_mb": 1549.4,
+          "count": 35,
+          "size_mb": 1525.1,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 90,
+          "refill_progress": 88,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 37,
-          "media_count": 37,
+          "media_count": 38,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -666,7 +669,7 @@
       }
     },
     "total": {
-      "published": 164,
+      "published": 167,
       "failed": 0
     }
   },
