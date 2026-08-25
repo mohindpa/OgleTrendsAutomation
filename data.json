@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-25T08:50:48+04:00",
+  "generated_at": "2026-08-25T09:00:50+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -141,7 +141,7 @@
             "71": "2026-08-25T00:01:50"
           },
           "failed": [],
-          "last_updated": "2026-08-25T08:45:47",
+          "last_updated": "2026-08-25T09:00:50",
           "source": "local"
         },
         "server_buffer": {
@@ -176,7 +176,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 137978,
+          "followers": 137979,
           "media_count": 268,
           "username": "ogletrends"
         },
@@ -345,7 +345,7 @@
             "51": "2026-08-25T00:17:20"
           },
           "failed": [],
-          "last_updated": "2026-08-25T08:45:47",
+          "last_updated": "2026-08-25T09:00:50",
           "source": "local"
         },
         "server_buffer": {
@@ -399,7 +399,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74928,
+          "followers": 74930,
           "media_count": 214,
           "username": "streetsmartkidsusa"
         },
@@ -534,7 +534,7 @@
             "34": "2026-08-25T00:01:04"
           },
           "failed": [],
-          "last_updated": "2026-08-25T08:45:47",
+          "last_updated": "2026-08-25T09:00:50",
           "source": "local"
         },
         "server_buffer": {
@@ -664,13 +664,13 @@
   "gumroad": {
     "today_revenue": 0.0,
     "today_units": 0,
-    "total_revenue_14d": 549.68,
-    "total_units_14d": 32,
-    "aov_14d": 17.18,
+    "total_revenue_14d": 539.69,
+    "total_units_14d": 31,
+    "aov_14d": 17.41,
     "daily": [
       {
         "day": "2026-08-11",
-        "revenue": 69.96
+        "revenue": 59.97
       },
       {
         "day": "2026-08-12",
@@ -1154,7 +1154,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 129.87
+        "revenue": 119.88
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
