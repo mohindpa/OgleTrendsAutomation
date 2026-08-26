@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26T16:10:09+04:00",
+  "generated_at": "2026-08-26T16:20:10+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -153,7 +153,7 @@
             "77": "2026-08-26T14:01:35"
           },
           "failed": [],
-          "last_updated": "2026-08-26T16:00:09",
+          "last_updated": "2026-08-26T16:15:09",
           "source": "local"
         },
         "server_buffer": {
@@ -362,7 +362,7 @@
             "57": "2026-08-26T14:00:42"
           },
           "failed": [],
-          "last_updated": "2026-08-26T16:00:09",
+          "last_updated": "2026-08-26T16:15:09",
           "source": "local"
         },
         "server_buffer": {
@@ -552,7 +552,7 @@
             "38": "2026-08-26T15:01:23"
           },
           "failed": [],
-          "last_updated": "2026-08-26T16:00:09",
+          "last_updated": "2026-08-26T16:15:09",
           "source": "local"
         },
         "server_buffer": {
@@ -678,14 +678,10 @@
   "gumroad": {
     "today_revenue": 24.99,
     "today_units": 1,
-    "total_revenue_14d": 504.71,
-    "total_units_14d": 29,
-    "aov_14d": 17.4,
+    "total_revenue_14d": 494.72,
+    "total_units_14d": 28,
+    "aov_14d": 17.67,
     "daily": [
-      {
-        "day": "2026-08-12",
-        "revenue": 9.99
-      },
       {
         "day": "2026-08-13",
         "revenue": 34.98
@@ -1172,7 +1168,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 119.88
+        "revenue": 109.89
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
