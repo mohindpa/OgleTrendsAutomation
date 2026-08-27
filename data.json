@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-27T10:20:40+04:00",
+  "generated_at": "2026-08-27T10:30:40+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -401,7 +401,7 @@
             "60": "2026-08-27T10:01:50"
           },
           "failed": [],
-          "last_updated": "2026-08-27T10:15:40",
+          "last_updated": "2026-08-27T10:30:40",
           "source": "local"
         },
         "server_buffer": {
@@ -471,15 +471,28 @@
             123,
             124,
             125,
-            126
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139
           ],
-          "count": 66,
-          "size_mb": 1794.1,
+          "count": 79,
+          "size_mb": 2055.5,
           "target": 40,
           "refill_at": 10,
           "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 26
+          "over_target": 39
         },
         "account": {
           "followers": 74899,
@@ -629,7 +642,7 @@
             "40": "2026-08-27T00:02:05"
           },
           "failed": [],
-          "last_updated": "2026-08-27T10:15:40",
+          "last_updated": "2026-08-27T10:30:40",
           "source": "local"
         },
         "server_buffer": {
@@ -665,15 +678,59 @@
             69,
             70,
             71,
-            72
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116
           ],
-          "count": 32,
-          "size_mb": 1270.2,
+          "count": 76,
+          "size_mb": 3632.0,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 80,
+          "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 0
+          "over_target": 36
         },
         "account": {
           "followers": 38,
