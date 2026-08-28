@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T01:00:14+04:00",
+  "generated_at": "2026-08-29T01:10:14+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -173,7 +173,7 @@
             "87": "2026-08-29T00:01:51"
           },
           "failed": [],
-          "last_updated": "2026-08-29T00:45:14",
+          "last_updated": "2026-08-29T01:00:14",
           "source": "local"
         },
         "server_buffer": {
@@ -221,7 +221,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138282,
+          "followers": 138284,
           "media_count": 285,
           "username": "ogletrends"
         },
