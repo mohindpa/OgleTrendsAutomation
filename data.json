@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T10:00:59+04:00",
+  "generated_at": "2026-08-28T10:10:01+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -92,7 +92,8 @@
             80,
             81,
             82,
-            83
+            83,
+            84
           ],
           "posted_at": {
             "15": "2026-08-08T18:01:13",
@@ -162,15 +163,15 @@
             "80": "2026-08-27T10:02:19",
             "81": "2026-08-27T14:02:15",
             "82": "2026-08-27T18:01:52",
-            "83": "2026-08-28T00:02:34"
+            "83": "2026-08-28T00:02:34",
+            "84": "2026-08-28T10:01:46"
           },
           "failed": [],
-          "last_updated": "2026-08-28T09:45:55",
+          "last_updated": "2026-08-28T10:02:57",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
-            84,
             85,
             86,
             87,
@@ -208,17 +209,17 @@
             119,
             120
           ],
-          "count": 37,
-          "size_mb": 1516.1,
+          "count": 36,
+          "size_mb": 1494.2,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 92,
+          "refill_progress": 90,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 138260,
-          "media_count": 281,
+          "followers": 138259,
+          "media_count": 282,
           "username": "ogletrends"
         },
         "slots": [
@@ -342,7 +343,8 @@
             60,
             61,
             62,
-            63
+            63,
+            64
           ],
           "posted_at": {
             "1": "2026-08-10T02:19:36",
@@ -407,16 +409,16 @@
             "60": "2026-08-27T10:01:50",
             "61": "2026-08-27T14:01:52",
             "62": "2026-08-27T18:17:08",
-            "63": "2026-08-28T00:01:41"
+            "63": "2026-08-28T00:01:41",
+            "64": "2026-08-28T10:01:59"
           },
           "failed": [],
-          "last_updated": "2026-08-28T10:00:59",
+          "last_updated": "2026-08-28T10:03:07",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             62,
-            64,
             65,
             66,
             67,
@@ -454,17 +456,17 @@
             99,
             100
           ],
-          "count": 38,
-          "size_mb": 1071.4,
+          "count": 37,
+          "size_mb": 1060.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 95,
+          "refill_progress": 92,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 74883,
-          "media_count": 226,
+          "media_count": 227,
           "username": "streetsmartkidsusa"
         },
         "slots": [
@@ -738,7 +740,7 @@
       }
     },
     "total": {
-      "published": 189,
+      "published": 191,
       "failed": 0
     }
   },
