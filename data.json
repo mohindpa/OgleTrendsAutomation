@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-28T23:50:13+04:00",
+  "generated_at": "2026-08-29T00:00:13+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -419,7 +419,7 @@
             "66": "2026-08-28T18:02:02"
           },
           "failed": [],
-          "last_updated": "2026-08-28T23:45:12",
+          "last_updated": "2026-08-29T00:00:13",
           "source": "local"
         },
         "server_buffer": {
@@ -626,7 +626,7 @@
             "45": "2026-08-28T18:02:07"
           },
           "failed": [],
-          "last_updated": "2026-08-28T23:45:12",
+          "last_updated": "2026-08-29T00:00:13",
           "source": "local"
         },
         "server_buffer": {
@@ -751,8 +751,8 @@
     }
   },
   "gumroad": {
-    "today_revenue": 27.48,
-    "today_units": 2,
+    "today_revenue": 0.0,
+    "today_units": 0,
     "total_revenue_14d": 472.22,
     "total_units_14d": 28,
     "aov_14d": 16.87,
