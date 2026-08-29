@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-29T23:50:29+04:00",
+  "generated_at": "2026-08-30T00:00:32+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -225,7 +225,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138402,
+          "followers": 138401,
           "media_count": 288,
           "username": "ogletrends"
         },
@@ -432,7 +432,7 @@
             "70": "2026-08-29T18:01:20"
           },
           "failed": [],
-          "last_updated": "2026-08-29T23:45:28",
+          "last_updated": "2026-08-30T00:00:32",
           "source": "local"
         },
         "server_buffer": {
@@ -641,7 +641,7 @@
             "48": "2026-08-29T18:01:25"
           },
           "failed": [],
-          "last_updated": "2026-08-29T23:45:28",
+          "last_updated": "2026-08-30T00:00:32",
           "source": "local"
         },
         "server_buffer": {
@@ -763,8 +763,8 @@
     }
   },
   "gumroad": {
-    "today_revenue": 27.48,
-    "today_units": 2,
+    "today_revenue": 0.0,
+    "today_units": 0,
     "total_revenue_14d": 442.23,
     "total_units_14d": 27,
     "aov_14d": 16.38,
