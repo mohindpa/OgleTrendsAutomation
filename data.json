@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T17:00:13+04:00",
+  "generated_at": "2026-08-31T17:10:13+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -201,7 +201,7 @@
             "101": "2026-08-31T14:01:03"
           },
           "failed": [],
-          "last_updated": "2026-08-31T16:45:12",
+          "last_updated": "2026-08-31T17:00:13",
           "source": "local"
         },
         "server_buffer": {
@@ -237,7 +237,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138658,
+          "followers": 138661,
           "media_count": 299,
           "username": "ogletrends"
         },
@@ -796,11 +796,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 49.98,
-    "today_units": 1,
-    "total_revenue_14d": 312.3,
-    "total_units_14d": 19,
-    "aov_14d": 16.44,
+    "today_revenue": 59.97,
+    "today_units": 2,
+    "total_revenue_14d": 322.29,
+    "total_units_14d": 20,
+    "aov_14d": 16.11,
     "daily": [
       {
         "day": "2026-08-17",
@@ -848,7 +848,7 @@
       },
       {
         "day": "2026-08-31",
-        "revenue": 49.98
+        "revenue": 59.97
       }
     ],
     "daily_all": [
@@ -1294,7 +1294,7 @@
       },
       {
         "day": "2026-08-31",
-        "revenue": 49.98
+        "revenue": 59.97
       }
     ],
     "products": [
@@ -1304,13 +1304,13 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 109.89
+        "revenue": 119.88
       }
     ],
     "products_all": [
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 4337.85
+        "revenue": 4347.84
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
@@ -1326,8 +1326,8 @@
       }
     ],
     "all_time": {
-      "revenue": 6518.37,
-      "units": 777,
+      "revenue": 6528.36,
+      "units": 778,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
@@ -1335,9 +1335,9 @@
       "to": "2026-08-31"
     },
     "week_over_week": {
-      "current": 209.88,
+      "current": 219.87,
       "previous": 339.8,
-      "change_pct": -38.2
+      "change_pct": -35.3
     }
   },
   "schedule": [
