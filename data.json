@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01T16:30:28+04:00",
+  "generated_at": "2026-09-01T16:40:28+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -209,7 +209,7 @@
             "105": "2026-09-01T14:01:56"
           },
           "failed": [],
-          "last_updated": "2026-09-01T16:15:28",
+          "last_updated": "2026-09-01T16:30:28",
           "source": "local"
         },
         "server_buffer": {
@@ -509,7 +509,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74903,
+          "followers": 74902,
           "media_count": 248,
           "username": "streetsmartkidsusa"
         },
