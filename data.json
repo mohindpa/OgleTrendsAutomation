@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T00:40:08+04:00",
+  "generated_at": "2026-09-03T00:50:08+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -221,7 +221,7 @@
             "111": "2026-09-03T00:00:53"
           },
           "failed": [],
-          "last_updated": "2026-09-03T00:30:08",
+          "last_updated": "2026-09-03T00:45:08",
           "source": "local"
         },
         "server_buffer": {
@@ -268,29 +268,15 @@
             148,
             149,
             150,
-            151,
-            152,
-            153,
-            154,
-            155,
-            156,
-            157,
-            158,
-            159,
-            160,
-            161,
-            162,
-            163,
-            164,
-            165
+            151
           ],
-          "count": 57,
-          "size_mb": 2919.2,
+          "count": 43,
+          "size_mb": 2021.0,
           "target": 40,
           "refill_at": 10,
           "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 17
+          "over_target": 3
         },
         "account": {
           "followers": 138815,
@@ -542,7 +528,7 @@
             "91": "2026-09-03T00:00:48"
           },
           "failed": [],
-          "last_updated": "2026-09-03T00:30:08",
+          "last_updated": "2026-09-03T00:45:08",
           "source": "local"
         },
         "server_buffer": {
@@ -556,15 +542,46 @@
             97,
             98,
             99,
-            100
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131
           ],
-          "count": 10,
-          "size_mb": 303.5,
+          "count": 41,
+          "size_mb": 1087.3,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 25,
-          "needs_refill": true,
-          "over_target": 0
+          "refill_progress": 100,
+          "needs_refill": false,
+          "over_target": 1
         },
         "account": {
           "followers": 74904,
@@ -762,7 +779,7 @@
             "64": "2026-09-03T00:01:59"
           },
           "failed": [],
-          "last_updated": "2026-09-03T00:30:08",
+          "last_updated": "2026-09-03T00:45:08",
           "source": "local"
         },
         "server_buffer": {
