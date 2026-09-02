@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T15:00:49+04:00",
+  "generated_at": "2026-09-02T15:10:49+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -246,7 +246,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138784,
+          "followers": 138783,
           "media_count": 307,
           "username": "ogletrends"
         },
@@ -641,7 +641,8 @@
             58,
             59,
             60,
-            61
+            61,
+            62
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -704,18 +705,16 @@
             "58": "2026-08-31T18:02:09",
             "59": "2026-09-01T00:01:11",
             "60": "2026-09-01T15:01:46",
-            "61": "2026-09-01T18:02:28"
+            "61": "2026-09-01T18:02:28",
+            "62": "2026-09-02T15:02:02"
           },
-          "failed": [
-            62
-          ],
-          "last_updated": "2026-09-02T15:00:49",
+          "failed": [],
+          "last_updated": "2026-09-02T15:03:10",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            62,
             63,
             64,
             65,
@@ -735,17 +734,17 @@
             79,
             80
           ],
-          "count": 20,
-          "size_mb": 915.2,
+          "count": 19,
+          "size_mb": 883.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 50,
+          "refill_progress": 48,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 55,
-          "media_count": 62,
+          "media_count": 63,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -814,8 +813,8 @@
       }
     },
     "total": {
-      "published": 259,
-      "failed": 1
+      "published": 260,
+      "failed": 0
     }
   },
   "gumroad": {
