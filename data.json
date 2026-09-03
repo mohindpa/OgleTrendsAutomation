@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T16:10:33+04:00",
+  "generated_at": "2026-09-03T16:20:35+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -225,7 +225,7 @@
             "113": "2026-09-03T14:01:13"
           },
           "failed": [],
-          "last_updated": "2026-09-03T16:00:31",
+          "last_updated": "2026-09-03T16:15:34",
           "source": "local"
         },
         "server_buffer": {
@@ -534,7 +534,7 @@
             "93": "2026-09-03T14:01:33"
           },
           "failed": [],
-          "last_updated": "2026-09-03T16:00:31",
+          "last_updated": "2026-09-03T16:15:34",
           "source": "local"
         },
         "server_buffer": {
@@ -785,7 +785,7 @@
             "65": "2026-09-03T15:01:40"
           },
           "failed": [],
-          "last_updated": "2026-09-03T16:00:31",
+          "last_updated": "2026-09-03T16:15:34",
           "source": "local"
         },
         "server_buffer": {
@@ -893,13 +893,13 @@
   "gumroad": {
     "today_revenue": 24.99,
     "today_units": 1,
-    "total_revenue_14d": 334.8,
-    "total_units_14d": 19,
-    "aov_14d": 17.62,
+    "total_revenue_14d": 324.81,
+    "total_units_14d": 18,
+    "aov_14d": 18.05,
     "daily": [
       {
         "day": "2026-08-20",
-        "revenue": 44.97
+        "revenue": 34.98
       },
       {
         "day": "2026-08-21",
@@ -1399,7 +1399,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 99.9
+        "revenue": 89.91
       }
     ],
     "products_all": [
