@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T20:00:01+04:00",
+  "generated_at": "2026-09-03T20:10:01+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -227,7 +227,7 @@
             "114": "2026-09-03T18:02:11"
           },
           "failed": [],
-          "last_updated": "2026-09-03T19:45:01",
+          "last_updated": "2026-09-03T20:00:02",
           "source": "local"
         },
         "server_buffer": {
@@ -282,7 +282,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138905,
+          "followers": 138907,
           "media_count": 312,
           "username": "ogletrends"
         },
@@ -819,7 +819,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 59,
+          "followers": 60,
           "media_count": 67,
           "username": "healthykids_jones"
         },
