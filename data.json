@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-03T18:40:00+04:00",
+  "generated_at": "2026-09-03T18:50:00+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -227,7 +227,7 @@
             "114": "2026-09-03T18:02:11"
           },
           "failed": [],
-          "last_updated": "2026-09-03T18:30:00",
+          "last_updated": "2026-09-03T18:45:00",
           "source": "local"
         },
         "server_buffer": {
@@ -282,7 +282,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138904,
+          "followers": 138898,
           "media_count": 312,
           "username": "ogletrends"
         },
@@ -537,7 +537,7 @@
             "94": "2026-09-03T18:02:54"
           },
           "failed": [],
-          "last_updated": "2026-09-03T18:30:00",
+          "last_updated": "2026-09-03T18:45:00",
           "source": "local"
         },
         "server_buffer": {
@@ -590,7 +590,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74891,
+          "followers": 74888,
           "media_count": 257,
           "username": "streetsmartkidsusa"
         },
@@ -789,7 +789,7 @@
             "66": "2026-09-03T18:01:59"
           },
           "failed": [],
-          "last_updated": "2026-09-03T18:30:00",
+          "last_updated": "2026-09-03T18:45:00",
           "source": "local"
         },
         "server_buffer": {
@@ -819,7 +819,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 58,
+          "followers": 59,
           "media_count": 67,
           "username": "healthykids_jones"
         },
