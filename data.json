@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T03:30:10+04:00",
+  "generated_at": "2026-09-04T03:40:10+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -229,7 +229,7 @@
             "115": "2026-09-04T00:01:45"
           },
           "failed": [],
-          "last_updated": "2026-09-04T03:15:10",
+          "last_updated": "2026-09-04T03:30:10",
           "source": "local"
         },
         "server_buffer": {
@@ -822,7 +822,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 62,
+          "followers": 63,
           "media_count": 68,
           "username": "healthykids_jones"
         },
@@ -1501,6 +1501,6 @@
     "ig_account_ogletrends": "ok",
     "ig_account_streetsmartkidsusa": "ok",
     "ig_account_healthykids_jones": "ok",
-    "gumroad": "stale"
+    "gumroad": "ok"
   }
 }
