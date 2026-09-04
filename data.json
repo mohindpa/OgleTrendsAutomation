@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T15:00:24+04:00",
+  "generated_at": "2026-09-04T15:10:24+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -285,7 +285,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 139013,
+          "followers": 139016,
           "media_count": 315,
           "username": "ogletrends"
         },
@@ -725,7 +725,8 @@
             64,
             65,
             66,
-            67
+            67,
+            68
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -794,16 +795,16 @@
             "64": "2026-09-03T00:01:59",
             "65": "2026-09-03T15:01:40",
             "66": "2026-09-03T18:01:59",
-            "67": "2026-09-04T00:00:57"
+            "67": "2026-09-04T00:00:57",
+            "68": "2026-09-04T15:02:17"
           },
           "failed": [],
-          "last_updated": "2026-09-04T15:00:24",
+          "last_updated": "2026-09-04T15:03:23",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            68,
             69,
             70,
             71,
@@ -844,17 +845,17 @@
             106,
             107
           ],
-          "count": 41,
-          "size_mb": 2230.2,
+          "count": 40,
+          "size_mb": 2168.5,
           "target": 40,
           "refill_at": 10,
           "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 1
+          "over_target": 0
         },
         "account": {
           "followers": 62,
-          "media_count": 68,
+          "media_count": 69,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -923,7 +924,7 @@
       }
     },
     "total": {
-      "published": 281,
+      "published": 282,
       "failed": 0
     }
   },
