@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-04T10:10:15+04:00",
+  "generated_at": "2026-09-04T10:20:16+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -231,7 +231,7 @@
             "116": "2026-09-04T10:00:54"
           },
           "failed": [],
-          "last_updated": "2026-09-04T10:02:09",
+          "last_updated": "2026-09-04T10:15:16",
           "source": "local"
         },
         "server_buffer": {
@@ -284,7 +284,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 138977,
+          "followers": 138976,
           "media_count": 314,
           "username": "ogletrends"
         },
@@ -543,7 +543,7 @@
             "96": "2026-09-04T10:01:17"
           },
           "failed": [],
-          "last_updated": "2026-09-04T10:02:25",
+          "last_updated": "2026-09-04T10:15:16",
           "source": "local"
         },
         "server_buffer": {
@@ -795,7 +795,7 @@
             "67": "2026-09-04T00:00:57"
           },
           "failed": [],
-          "last_updated": "2026-09-04T10:00:15",
+          "last_updated": "2026-09-04T10:15:16",
           "source": "local"
         },
         "server_buffer": {
@@ -813,15 +813,46 @@
             77,
             78,
             79,
-            80
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111
           ],
-          "count": 14,
-          "size_mb": 756.8,
+          "count": 45,
+          "size_mb": 2386.7,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 35,
+          "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 0
+          "over_target": 5
         },
         "account": {
           "followers": 62,
