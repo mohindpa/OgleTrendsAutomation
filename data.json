@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T08:00:53+04:00",
+  "generated_at": "2026-09-05T08:10:53+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -600,7 +600,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74876,
+          "followers": 74877,
           "media_count": 262,
           "username": "streetsmartkidsusa"
         },
@@ -937,14 +937,10 @@
   "gumroad": {
     "today_revenue": 0.0,
     "today_units": 0,
-    "total_revenue_14d": 304.83,
-    "total_units_14d": 16,
-    "aov_14d": 19.05,
+    "total_revenue_14d": 294.84,
+    "total_units_14d": 15,
+    "aov_14d": 19.66,
     "daily": [
-      {
-        "day": "2026-08-22",
-        "revenue": 9.99
-      },
       {
         "day": "2026-08-23",
         "revenue": 44.97
@@ -1435,7 +1431,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 69.93
+        "revenue": 59.94
       }
     ],
     "products_all": [
