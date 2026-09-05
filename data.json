@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-05T12:50:56+04:00",
+  "generated_at": "2026-09-05T13:00:57+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -239,7 +239,7 @@
             "120": "2026-09-05T10:01:40"
           },
           "failed": [],
-          "last_updated": "2026-09-05T12:45:56",
+          "last_updated": "2026-09-05T13:00:57",
           "source": "local"
         },
         "server_buffer": {
@@ -288,7 +288,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 139137,
+          "followers": 139138,
           "media_count": 318,
           "username": "ogletrends"
         },
@@ -555,7 +555,7 @@
             "100": "2026-09-05T10:02:36"
           },
           "failed": [],
-          "last_updated": "2026-09-05T12:45:56",
+          "last_updated": "2026-09-05T13:00:57",
           "source": "local"
         },
         "server_buffer": {
@@ -809,7 +809,7 @@
             "70": "2026-09-05T00:02:42"
           },
           "failed": [],
-          "last_updated": "2026-09-05T12:45:56",
+          "last_updated": "2026-09-05T13:00:57",
           "source": "local"
         },
         "server_buffer": {
