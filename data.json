@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-06T18:40:11+04:00",
+  "generated_at": "2026-09-06T18:50:11+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -255,7 +255,7 @@
             "128": "2026-09-06T18:01:42"
           },
           "failed": [],
-          "last_updated": "2026-09-06T18:30:11",
+          "last_updated": "2026-09-06T18:45:11",
           "source": "local"
         },
         "server_buffer": {
@@ -296,7 +296,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 139375,
+          "followers": 139378,
           "media_count": 326,
           "username": "ogletrends"
         },
@@ -579,7 +579,7 @@
             "108": "2026-09-06T18:02:11"
           },
           "failed": [],
-          "last_updated": "2026-09-06T18:30:11",
+          "last_updated": "2026-09-06T18:45:11",
           "source": "local"
         },
         "server_buffer": {
@@ -840,7 +840,7 @@
             "77": "2026-09-06T18:01:55"
           },
           "failed": [],
-          "last_updated": "2026-09-06T18:30:11",
+          "last_updated": "2026-09-06T18:45:11",
           "source": "local"
         },
         "server_buffer": {
@@ -963,14 +963,10 @@
   "gumroad": {
     "today_revenue": 0.0,
     "today_units": 0,
-    "total_revenue_14d": 259.86,
-    "total_units_14d": 13,
-    "aov_14d": 19.99,
+    "total_revenue_14d": 249.87,
+    "total_units_14d": 12,
+    "aov_14d": 20.82,
     "daily": [
-      {
-        "day": "2026-08-23",
-        "revenue": 9.99
-      },
       {
         "day": "2026-08-24",
         "revenue": 24.99
@@ -1457,7 +1453,7 @@
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 49.95
+        "revenue": 39.96
       }
     ],
     "products_all": [
