@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-07T05:30:27+04:00",
+  "generated_at": "2026-09-07T05:40:27+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -299,7 +299,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 139445,
+          "followers": 139448,
           "media_count": 329,
           "username": "ogletrends"
         },
@@ -970,11 +970,11 @@
     }
   },
   "gumroad": {
-    "today_revenue": 0.0,
-    "today_units": 0,
-    "total_revenue_14d": 249.87,
-    "total_units_14d": 12,
-    "aov_14d": 20.82,
+    "today_revenue": 24.99,
+    "today_units": 1,
+    "total_revenue_14d": 274.86,
+    "total_units_14d": 13,
+    "aov_14d": 21.14,
     "daily": [
       {
         "day": "2026-08-24",
@@ -1003,6 +1003,10 @@
       {
         "day": "2026-09-03",
         "revenue": 49.98
+      },
+      {
+        "day": "2026-09-07",
+        "revenue": 24.99
       }
     ],
     "daily_all": [
@@ -1453,12 +1457,16 @@
       {
         "day": "2026-09-03",
         "revenue": 49.98
+      },
+      {
+        "day": "2026-09-07",
+        "revenue": 24.99
       }
     ],
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 209.91
+        "revenue": 234.9
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
@@ -1472,7 +1480,7 @@
       },
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 2086.62
+        "revenue": 2111.61
       },
       {
         "name": "Street Smart Skills: with Real World Case Studies",
@@ -1484,18 +1492,18 @@
       }
     ],
     "all_time": {
-      "revenue": 6603.33,
-      "units": 790,
+      "revenue": 6628.32,
+      "units": 794,
       "refunds": 2,
       "disputes": 3,
       "refund_amount": 34.98,
       "from": "2026-04-24",
-      "to": "2026-09-03"
+      "to": "2026-09-07"
     },
     "week_over_week": {
       "current": 249.87,
-      "previous": 302.31,
-      "change_pct": -17.3
+      "previous": 172.38,
+      "change_pct": 45.0
     }
   },
   "schedule": [
