@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-08T15:00:31+04:00",
+  "generated_at": "2026-09-08T15:10:31+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -273,7 +273,7 @@
             "137": "2026-09-08T14:01:50"
           },
           "failed": [],
-          "last_updated": "2026-09-08T14:45:31",
+          "last_updated": "2026-09-08T15:00:31",
           "source": "local"
         },
         "server_buffer": {
@@ -306,7 +306,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 139654,
+          "followers": 139657,
           "media_count": 336,
           "username": "ogletrends"
         },
@@ -784,7 +784,8 @@
             80,
             81,
             82,
-            83
+            83,
+            84
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -869,16 +870,16 @@
             "80": "2026-09-07T03:01:52",
             "81": "2026-09-07T15:01:17",
             "82": "2026-09-07T18:01:21",
-            "83": "2026-09-08T00:01:22"
+            "83": "2026-09-08T00:01:22",
+            "84": "2026-09-08T15:02:06"
           },
           "failed": [],
-          "last_updated": "2026-09-08T15:00:31",
+          "last_updated": "2026-09-08T15:04:12",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            84,
             85,
             86,
             87,
@@ -903,17 +904,17 @@
             106,
             107
           ],
-          "count": 25,
-          "size_mb": 1348.3,
+          "count": 24,
+          "size_mb": 1298.0,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 62,
+          "refill_progress": 60,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
           "followers": 61,
-          "media_count": 84,
+          "media_count": 85,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -982,7 +983,7 @@
       }
     },
     "total": {
-      "published": 337,
+      "published": 338,
       "failed": 0
     }
   },
