@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-09T20:50:08+04:00",
+  "generated_at": "2026-09-09T21:00:09+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -653,7 +653,7 @@
             "122": "2026-09-09T18:01:46"
           },
           "failed": [],
-          "last_updated": "2026-09-09T20:45:08",
+          "last_updated": "2026-09-09T21:00:09",
           "source": "local"
         },
         "server_buffer": {
@@ -700,31 +700,15 @@
             159,
             160,
             161,
-            162,
-            163,
-            164,
-            165,
-            166,
-            167,
-            168,
-            169,
-            170,
-            171,
-            172,
-            173,
-            174,
-            175,
-            176,
-            177,
-            178
+            162
           ],
-          "count": 59,
-          "size_mb": 1283.4,
+          "count": 43,
+          "size_mb": 940.6,
           "target": 40,
           "refill_at": 10,
           "refill_progress": 100,
           "needs_refill": false,
-          "over_target": 19
+          "over_target": 3
         },
         "account": {
           "followers": 74834,
@@ -970,7 +954,7 @@
             "88": "2026-09-09T18:01:39"
           },
           "failed": [],
-          "last_updated": "2026-09-09T20:45:08",
+          "last_updated": "2026-09-09T21:00:09",
           "source": "local"
         },
         "server_buffer": {
