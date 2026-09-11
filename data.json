@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T18:00:22+04:00",
+  "generated_at": "2026-09-11T18:30:29+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -158,7 +158,8 @@
             146,
             147,
             148,
-            149
+            149,
+            150
           ],
           "posted_at": {
             "15": "2026-08-08T18:01:13",
@@ -294,10 +295,11 @@
             "146": "2026-09-10T18:00:52",
             "147": "2026-09-11T00:01:02",
             "148": "2026-09-11T10:01:47",
-            "149": "2026-09-11T14:02:13"
+            "149": "2026-09-11T14:02:13",
+            "150": "2026-09-11T18:02:02"
           },
           "failed": [],
-          "last_updated": "2026-09-11T18:00:22",
+          "last_updated": "2026-09-11T18:30:28",
           "source": "local"
         },
         "server_buffer": {
@@ -306,7 +308,6 @@
             99,
             107,
             133,
-            150,
             151,
             152,
             153,
@@ -340,11 +341,11 @@
             181,
             182
           ],
-          "count": 37,
-          "size_mb": 2315.7,
+          "count": 36,
+          "size_mb": 2273.8,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 92,
+          "refill_progress": 90,
           "needs_refill": false,
           "over_target": 0
         },
@@ -542,7 +543,8 @@
             126,
             127,
             128,
-            129
+            129,
+            130
           ],
           "posted_at": {
             "1": "2026-08-10T02:19:36",
@@ -673,10 +675,11 @@
             "126": "2026-09-10T18:01:21",
             "127": "2026-09-11T00:01:40",
             "128": "2026-09-11T10:01:35",
-            "129": "2026-09-11T14:02:40"
+            "129": "2026-09-11T14:02:40",
+            "130": "2026-09-11T18:01:06"
           },
           "failed": [],
-          "last_updated": "2026-09-11T18:00:22",
+          "last_updated": "2026-09-11T18:30:28",
           "source": "local"
         },
         "server_buffer": {
@@ -684,7 +687,6 @@
             62,
             102,
             113,
-            130,
             131,
             132,
             133,
@@ -718,18 +720,20 @@
             161,
             162
           ],
-          "count": 36,
-          "size_mb": 755.3,
+          "count": 35,
+          "size_mb": 749.8,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 90,
+          "refill_progress": 88,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 74907,
+          "followers": 74909,
           "media_count": 292,
-          "username": "streetsmartkidsusa"
+          "username": "streetsmartkidsusa",
+          "fetched_at": "2026-09-11T18:00:27+04:00",
+          "source": "jit-cache"
         },
         "slots": [
           {
@@ -781,7 +785,7 @@
             ]
           }
         ],
-        "stale": true
+        "stale": false
       },
       "healthykids_jones": {
         "name": "Healthy Kids Jones",
@@ -882,7 +886,8 @@
             90,
             91,
             92,
-            93
+            93,
+            94
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -977,16 +982,16 @@
             "90": "2026-09-10T15:02:22",
             "91": "2026-09-10T18:01:13",
             "92": "2026-09-11T00:01:12",
-            "93": "2026-09-11T15:02:17"
+            "93": "2026-09-11T15:02:17",
+            "94": "2026-09-11T18:01:38"
           },
           "failed": [],
-          "last_updated": "2026-09-11T18:00:22",
+          "last_updated": "2026-09-11T18:30:28",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            94,
             95,
             96,
             97,
@@ -1001,18 +1006,20 @@
             106,
             107
           ],
-          "count": 15,
-          "size_mb": 807.9,
+          "count": 14,
+          "size_mb": 757.4,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 38,
+          "refill_progress": 35,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 80,
+          "followers": 82,
           "media_count": 94,
-          "username": "healthykids_jones"
+          "username": "healthykids_jones",
+          "fetched_at": "2026-09-11T18:00:29+04:00",
+          "source": "jit-cache"
         },
         "slots": [
           {
@@ -1076,11 +1083,11 @@
             ]
           }
         ],
-        "stale": true
+        "stale": false
       }
     },
     "total": {
-      "published": 371,
+      "published": 374,
       "failed": 0
     }
   },
