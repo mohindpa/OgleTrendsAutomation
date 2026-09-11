@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T15:00:55+04:00",
+  "generated_at": "2026-09-11T15:10:56+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -297,7 +297,7 @@
             "149": "2026-09-11T14:02:13"
           },
           "failed": [],
-          "last_updated": "2026-09-11T14:45:52",
+          "last_updated": "2026-09-11T15:00:55",
           "source": "local"
         },
         "server_buffer": {
@@ -349,7 +349,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 140003,
+          "followers": 140002,
           "media_count": 348,
           "username": "ogletrends"
         },
@@ -879,7 +879,8 @@
             89,
             90,
             91,
-            92
+            92,
+            93
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -973,16 +974,16 @@
             "89": "2026-09-10T00:01:22",
             "90": "2026-09-10T15:02:22",
             "91": "2026-09-10T18:01:13",
-            "92": "2026-09-11T00:01:12"
+            "92": "2026-09-11T00:01:12",
+            "93": "2026-09-11T15:02:17"
           },
           "failed": [],
-          "last_updated": "2026-09-11T15:00:55",
+          "last_updated": "2026-09-11T15:03:28",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            93,
             94,
             95,
             96,
@@ -998,17 +999,17 @@
             106,
             107
           ],
-          "count": 16,
-          "size_mb": 863.8,
+          "count": 15,
+          "size_mb": 807.9,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 40,
+          "refill_progress": 38,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 76,
-          "media_count": 93,
+          "followers": 77,
+          "media_count": 94,
           "username": "healthykids_jones"
         },
         "slots": [
@@ -1077,7 +1078,7 @@
       }
     },
     "total": {
-      "published": 370,
+      "published": 371,
       "failed": 0
     }
   },
