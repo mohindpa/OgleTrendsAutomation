@@ -104,35 +104,24 @@ def load_server_buffer(account_dir, videos_total):
     }
 
 
-def ig_account_info(account_name, composio_account, prev, prev_key):
-    """Profile stats from the JIT cache (API-slim policy 2026-09-11).
-
-    INSTAGRAM_GET_USER_INFO is NO LONGER called on the dashboard refresh
-    schedule. The single sanctioned caller is ig_post_slot.sh's JIT hook
-    (ig_profile_stats.py) which runs immediately before each publishing
-    window; freshness is governed by max_age_hours in ig_profile_stats.
-
-    Args:
-        prev: the previous data.json payload (for last-good fallback)
-        prev_key: key of this account inside prev["ig"]["accounts"]
-    """
+def ig_account_info(composio_account):
+    """Followers + media count via composio CLI with explicit account selector."""
     try:
-        sys.path.insert(0, os.path.join(os.path.dirname(BASE), "IG"))
-        from ig_profile_stats import load_profile  # noqa: E402
-        stats = load_profile(account_name)
-        if stats:
+        cmd = ["composio", "execute", "INSTAGRAM_GET_USER_INFO", "--account",
+               composio_account, "--skip-tool-params-check", "-d", "{}"]
+        env = dict(os.environ)
+        env["PATH"] = f"{COMPOSIO}:{env.get('PATH', '')}"
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=60, env=env)
+        d = json.loads(out.stdout or out.stderr)
+        if d.get("successful"):
+            data = d["data"]
             return {
-                "followers": stats.get("followers"),
-                "media_count": stats.get("media_count"),
-                "username": stats.get("username"),
-                "fetched_at": stats.get("fetched_at"),
-                "source": "jit-cache",
+                "followers": data.get("followers_count"),
+                "media_count": data.get("media_count"),
+                "username": data.get("username"),
             }
     except Exception as e:
-        print("ig_account_info cache read error:", e, file=sys.stderr)
-    prev_acc = ((prev or {}).get("ig") or {}).get("accounts", {}).get(prev_key, {}).get("account")
-    if prev_acc:
-        return prev_acc  # last good data; caller marks entry stale
+        print("ig_account_info error:", e, file=sys.stderr)
     return None
 
 
@@ -271,7 +260,7 @@ def main():
     for name, cfg in accounts.items():
         adir = os.path.join(IG_BASE, name)
         state = load_ig_state(adir)
-        acc = ig_account_info(name, cfg.get("composio_account", ""), prev, name)
+        acc = ig_account_info(cfg.get("composio_account", ""))
         entry = {
             "name": cfg.get("display_name", name),
             "username": name,
