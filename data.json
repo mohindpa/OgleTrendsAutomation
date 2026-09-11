@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T15:10:56+04:00",
+  "generated_at": "2026-09-11T15:20:57+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -297,7 +297,7 @@
             "149": "2026-09-11T14:02:13"
           },
           "failed": [],
-          "last_updated": "2026-09-11T15:00:55",
+          "last_updated": "2026-09-11T15:15:56",
           "source": "local"
         },
         "server_buffer": {
@@ -674,7 +674,7 @@
             "129": "2026-09-11T14:02:40"
           },
           "failed": [],
-          "last_updated": "2026-09-11T15:00:55",
+          "last_updated": "2026-09-11T15:15:56",
           "source": "local"
         },
         "server_buffer": {
@@ -725,7 +725,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 74903,
+          "followers": 74902,
           "media_count": 292,
           "username": "streetsmartkidsusa"
         },
@@ -978,7 +978,7 @@
             "93": "2026-09-11T15:02:17"
           },
           "failed": [],
-          "last_updated": "2026-09-11T15:03:28",
+          "last_updated": "2026-09-11T15:15:57",
           "source": "local"
         },
         "server_buffer": {
@@ -1008,7 +1008,7 @@
           "over_target": 0
         },
         "account": {
-          "followers": 77,
+          "followers": 79,
           "media_count": 94,
           "username": "healthykids_jones"
         },
