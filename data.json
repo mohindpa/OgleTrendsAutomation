@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-11T17:30:16+04:00",
+  "generated_at": "2026-09-11T17:41:23+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -349,9 +349,11 @@
           "over_target": 0
         },
         "account": {
-          "followers": 140018,
+          "followers": 140019,
           "media_count": 348,
-          "username": "ogletrends"
+          "username": "ogletrends",
+          "fetched_at": "2026-09-11T17:31:01+04:00",
+          "source": "jit-cache"
         },
         "slots": [
           {
@@ -779,7 +781,7 @@
             ]
           }
         ],
-        "stale": false
+        "stale": true
       },
       "healthykids_jones": {
         "name": "Healthy Kids Jones",
@@ -1074,7 +1076,7 @@
             ]
           }
         ],
-        "stale": false
+        "stale": true
       }
     },
     "total": {

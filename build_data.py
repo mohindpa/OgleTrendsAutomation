@@ -281,7 +281,7 @@ def main():
             "server_buffer": load_server_buffer(adir, cfg.get("videos", 0)),
             "account": acc,
             "slots": cfg.get("slots", []),
-            "stale": acc is None,
+            "stale": acc is None or (acc or {}).get("source") != "jit-cache",
         }
         result["ig"]["accounts"][name] = entry
         result["ig"]["total"]["published"] += len(state.get("published", []))
