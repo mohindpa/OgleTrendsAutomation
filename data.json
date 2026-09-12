@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-13T00:30:08+04:00",
+  "generated_at": "2026-09-13T01:00:14+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -309,7 +309,7 @@
             "155": "2026-09-13T00:01:44"
           },
           "failed": [],
-          "last_updated": "2026-09-13T00:30:07",
+          "last_updated": "2026-09-13T01:00:14",
           "source": "local"
         },
         "server_buffer": {
@@ -694,7 +694,7 @@
             "135": "2026-09-13T00:01:21"
           },
           "failed": [],
-          "last_updated": "2026-09-13T00:30:07",
+          "last_updated": "2026-09-13T01:00:14",
           "source": "local"
         },
         "server_buffer": {
@@ -1004,7 +1004,7 @@
             "98": "2026-09-13T00:01:17"
           },
           "failed": [],
-          "last_updated": "2026-09-13T00:30:07",
+          "last_updated": "2026-09-13T01:00:14",
           "source": "local"
         },
         "server_buffer": {
@@ -1018,15 +1018,46 @@
             104,
             105,
             106,
-            107
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138
           ],
-          "count": 10,
-          "size_mb": 531.4,
+          "count": 41,
+          "size_mb": 1989.2,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 25,
-          "needs_refill": true,
-          "over_target": 0
+          "refill_progress": 100,
+          "needs_refill": false,
+          "over_target": 1
         },
         "account": {
           "followers": 114,
