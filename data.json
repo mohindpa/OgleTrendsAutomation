@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T17:00:08+04:00",
+  "generated_at": "2026-09-14T17:30:09+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -329,7 +329,7 @@
             "165": "2026-09-14T14:02:01"
           },
           "failed": [],
-          "last_updated": "2026-09-14T17:00:08",
+          "last_updated": "2026-09-14T17:30:09",
           "source": "local"
         },
         "server_buffer": {
@@ -725,7 +725,7 @@
             "145": "2026-09-14T14:01:27"
           },
           "failed": [],
-          "last_updated": "2026-09-14T17:00:08",
+          "last_updated": "2026-09-14T17:30:09",
           "source": "local"
         },
         "server_buffer": {
@@ -1041,7 +1041,7 @@
             "106": "2026-09-14T15:01:57"
           },
           "failed": [],
-          "last_updated": "2026-09-14T17:00:08",
+          "last_updated": "2026-09-14T17:30:09",
           "source": "local"
         },
         "server_buffer": {
@@ -1168,13 +1168,13 @@
   "gumroad": {
     "today_revenue": 34.98,
     "today_units": 2,
-    "total_revenue_14d": 277.37,
-    "total_units_14d": 13,
-    "aov_14d": 21.34,
+    "total_revenue_14d": 267.38,
+    "total_units_14d": 12,
+    "aov_14d": 22.28,
     "daily": [
       {
         "day": "2026-08-31",
-        "revenue": 34.98
+        "revenue": 24.99
       },
       {
         "day": "2026-09-03",
@@ -1685,12 +1685,12 @@
         "revenue": 242.4
       },
       {
-        "name": "Street Smart Kids: The Cheat Codes for Real Life",
-        "revenue": 19.98
-      },
-      {
         "name": "Street Smart Skills: with Real World Case Studies",
         "revenue": 14.99
+      },
+      {
+        "name": "Street Smart Kids: The Cheat Codes for Real Life",
+        "revenue": 9.99
       }
     ],
     "products_all": [
