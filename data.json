@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-14T15:00:51+04:00",
+  "generated_at": "2026-09-14T15:30:55+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -329,7 +329,7 @@
             "165": "2026-09-14T14:02:01"
           },
           "failed": [],
-          "last_updated": "2026-09-14T15:00:50",
+          "last_updated": "2026-09-14T15:30:55",
           "source": "local"
         },
         "server_buffer": {
@@ -725,7 +725,7 @@
             "145": "2026-09-14T14:01:27"
           },
           "failed": [],
-          "last_updated": "2026-09-14T15:00:50",
+          "last_updated": "2026-09-14T15:30:55",
           "source": "local"
         },
         "server_buffer": {
@@ -929,7 +929,8 @@
             102,
             103,
             104,
-            105
+            105,
+            106
           ],
           "posted_at": {
             "1": "2026-08-16T12:01:38",
@@ -1036,16 +1037,16 @@
             "102": "2026-09-13T18:01:38",
             "103": "2026-09-13T21:01:22",
             "104": "2026-09-14T00:02:30",
-            "105": "2026-09-14T03:01:22"
+            "105": "2026-09-14T03:01:22",
+            "106": "2026-09-14T15:01:57"
           },
           "failed": [],
-          "last_updated": "2026-09-14T15:00:50",
+          "last_updated": "2026-09-14T15:30:55",
           "source": "local"
         },
         "server_buffer": {
           "on_disk": [
             53,
-            106,
             107,
             108,
             109,
@@ -1079,19 +1080,19 @@
             137,
             138
           ],
-          "count": 34,
-          "size_mb": 1603.9,
+          "count": 33,
+          "size_mb": 1550.8,
           "target": 40,
           "refill_at": 10,
-          "refill_progress": 85,
+          "refill_progress": 82,
           "needs_refill": false,
           "over_target": 0
         },
         "account": {
-          "followers": 135,
-          "media_count": 105,
+          "followers": 153,
+          "media_count": 106,
           "username": "healthykids_jones",
-          "fetched_at": "2026-09-14T03:00:20+04:00",
+          "fetched_at": "2026-09-14T15:00:57+04:00",
           "source": "jit-cache"
         },
         "slots": [
@@ -1160,20 +1161,20 @@
       }
     },
     "total": {
-      "published": 415,
+      "published": 416,
       "failed": 0
     }
   },
   "gumroad": {
     "today_revenue": 9.99,
     "today_units": 1,
-    "total_revenue_14d": 302.36,
-    "total_units_14d": 13,
-    "aov_14d": 23.26,
+    "total_revenue_14d": 252.38,
+    "total_units_14d": 12,
+    "aov_14d": 21.03,
     "daily": [
       {
         "day": "2026-08-31",
-        "revenue": 84.96
+        "revenue": 34.98
       },
       {
         "day": "2026-09-03",
@@ -1681,7 +1682,7 @@
     "products": [
       {
         "name": "The Street Smart Family Bundle \u2014 All 3 Books \u00b7 Ages 8 to Adult",
-        "revenue": 267.39
+        "revenue": 217.41
       },
       {
         "name": "Street Smart Kids: The Cheat Codes for Real Life",
