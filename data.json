@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-15T23:30:38+04:00",
+  "generated_at": "2026-09-16T00:00:45+04:00",
   "total_videos": 690,
   "ig": {
     "accounts": {
@@ -339,7 +339,7 @@
             "170": "2026-09-15T18:02:38"
           },
           "failed": [],
-          "last_updated": "2026-09-15T23:30:38",
+          "last_updated": "2026-09-16T00:00:44",
           "source": "local"
         },
         "server_buffer": {
@@ -741,7 +741,7 @@
             "150": "2026-09-15T18:01:39"
           },
           "failed": [],
-          "last_updated": "2026-09-15T23:30:38",
+          "last_updated": "2026-09-16T00:00:44",
           "source": "local"
         },
         "server_buffer": {
@@ -1058,7 +1058,7 @@
             "109": "2026-09-15T18:01:39"
           },
           "failed": [],
-          "last_updated": "2026-09-15T23:30:38",
+          "last_updated": "2026-09-16T00:00:44",
           "source": "local"
         },
         "server_buffer": {
@@ -1180,8 +1180,8 @@
     }
   },
   "gumroad": {
-    "today_revenue": 24.99,
-    "today_units": 1,
+    "today_revenue": 0.0,
+    "today_units": 0,
     "total_revenue_14d": 267.38,
     "total_units_14d": 12,
     "aov_14d": 22.28,
